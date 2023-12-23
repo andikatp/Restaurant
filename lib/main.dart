@@ -1,4 +1,4 @@
-import 'package:dicoding_final/core/commons/pages/splash_screen.dart';
+// import 'package:dicoding_final/core/commons/pages/splash_screen.dart';
 import 'package:dicoding_final/core/res/routes.dart';
 import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
@@ -21,16 +21,18 @@ class MyApp extends StatelessWidget {
       designSize: const Size(412, 732),
       minTextAdapt: true,
       builder: (_, child) => MaterialApp(
+        title: 'Restaurant',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.currentTheme,
         routes: AppRoutes.routes,
-        home: FutureBuilder(
-          future: Future<void>.delayed(const Duration(seconds: 3)),
-          builder: (context, snapshot) =>
-              snapshot.connectionState == ConnectionState.waiting
-                  ? const SplashScreen()
-                  : const RestaurantPage(),
-        ),
+        // home: FutureBuilder(
+        //   future: Future<void>.delayed(const Duration(seconds: 3)),
+        //   builder: (context, snapshot) =>
+        //       snapshot.connectionState == ConnectionState.waiting
+        //           ? const SplashScreen()
+        //           : const RestaurantPage(),
+        // ),
+        home: const RestaurantPage(),
       ),
     );
   }

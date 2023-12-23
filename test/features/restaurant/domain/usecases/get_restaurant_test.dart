@@ -16,7 +16,7 @@ void main() {
     usecase = GetRestaurants(repo: mockRepository);
   });
 
-  final tListRestaurants = [Restaurant.empty(), Restaurant.empty()];
+  final tListRestaurants = [const Restaurant.empty(), const Restaurant.empty()];
 
   test('Should call [RestaurantRepo] when call [GetRestaurant] usecase',
       () async {

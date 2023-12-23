@@ -20,7 +20,7 @@ void main() {
     repo = RestaurantRepoImpl(dataSource: mockLocalDataSource);
   });
 
-  final tRestaurants = [RestaurantModel.empty()];
+  final tRestaurants = [const RestaurantModel.empty()];
   const tException = CacheException(message: 'Unknown Failure');
 
   test('Should call the [RestaurantLocalDataSource.getRestaurant]', () async {
