@@ -1,9 +1,10 @@
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dicoding_final/features/restaurant/domain/entities/dish.dart';
 
-part 'dish_model.mapper.dart';
-
-@MappableClass()
-class DishModel extends Dish with DishModelMappable {
+class DishModel extends Dish {
   const DishModel({required super.name});
+
+  factory DishModel.fromJson(Map<String, dynamic> json) =>
+      DishModel(name: json['name'] as String);
+
+  Map<String, dynamic> toJson() => {'name': name};
 }

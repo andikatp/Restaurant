@@ -1,0 +1,24 @@
+{
+  "restaurants": [
+    {
+      "id": "",
+      "name": "",
+      "description": "",
+      "pictureId": "",
+      "city": "",
+      "rating": 1.1,
+      "menus": {
+        "foods": [
+          {
+            "name": ""
+          }
+        ],
+        "drinks": [
+          {
+            "name": ""
+          }
+        ]
+      }
+    }
+  ]
+}
