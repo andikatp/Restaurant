@@ -1,6 +1,7 @@
 # dicoding_final
 
-A new Flutter project.
+A project created only for Dicoding submission
+[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
 ## Getting Started
 
