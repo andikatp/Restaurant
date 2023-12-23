@@ -13,6 +13,7 @@ class RestaurantModelMapper extends ClassMapperBase<RestaurantModel> {
   static RestaurantModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = RestaurantModelMapper._());
+      MenuModelMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -35,8 +36,8 @@ class RestaurantModelMapper extends ClassMapperBase<RestaurantModel> {
   static double _$rating(RestaurantModel v) => v.rating;
   static const Field<RestaurantModel, double> _f$rating =
       Field('rating', _$rating);
-  static Menus _$menus(RestaurantModel v) => v.menus;
-  static const Field<RestaurantModel, Menus> _f$menus = Field('menus', _$menus);
+  static const Field<RestaurantModel, MenuModel> _f$menus =
+      Field('menus', null, mode: FieldMode.param);
 
   @override
   final Map<Symbol, Field<RestaurantModel, dynamic>> fields = const {
@@ -122,7 +123,7 @@ abstract class RestaurantModelCopyWith<$R, $In extends RestaurantModel, $Out>
       String? pictureId,
       String? city,
       double? rating,
-      Menus? menus});
+      required MenuModel menus});
   RestaurantModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -143,7 +144,7 @@ class _RestaurantModelCopyWithImpl<$R, $Out>
           String? pictureId,
           String? city,
           double? rating,
-          Menus? menus}) =>
+          required MenuModel menus}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,
@@ -151,7 +152,7 @@ class _RestaurantModelCopyWithImpl<$R, $Out>
         if (pictureId != null) #pictureId: pictureId,
         if (city != null) #city: city,
         if (rating != null) #rating: rating,
-        if (menus != null) #menus: menus
+        #menus: menus
       }));
   @override
   RestaurantModel $make(CopyWithData data) => RestaurantModel(
@@ -161,7 +162,7 @@ class _RestaurantModelCopyWithImpl<$R, $Out>
       pictureId: data.get(#pictureId, or: $value.pictureId),
       city: data.get(#city, or: $value.city),
       rating: data.get(#rating, or: $value.rating),
-      menus: data.get(#menus, or: $value.menus));
+      menus: data.get(#menus));
 
   @override
   RestaurantModelCopyWith<$R2, RestaurantModel, $Out2> $chain<$R2, $Out2>(
