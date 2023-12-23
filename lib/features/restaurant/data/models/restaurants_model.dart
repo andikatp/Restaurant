@@ -5,7 +5,7 @@ class RestaurantsModel extends Restaurants {
   const RestaurantsModel({required List<RestaurantModel> restaurants})
       : super(restaurants: restaurants);
 
-  factory RestaurantsModel.toJson(Map<String, dynamic> json) =>
+  factory RestaurantsModel.fromJson(Map<String, dynamic> json) =>
       RestaurantsModel(
         restaurants: (json['restaurants'] as List<dynamic>)
             .map(
