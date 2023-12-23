@@ -12,7 +12,11 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   final GetRestaurants _getRestaurants;
 
   Future<void> getRestaurants() async {
+    emit(const RestaurantLoading());
     final result = await _getRestaurants();
-    result.fold((failure) => null, (restaurants) => null);
+    result.fold(
+      (failure) => emit(RestaurantError(message: failure.errorMessage)),
+      (restaurants) => emit(RestaurantLoaded(restaurants: restaurants)),
+    );
   }
 }
