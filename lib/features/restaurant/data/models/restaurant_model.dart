@@ -1,13 +1,9 @@
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dicoding_final/features/restaurant/data/models/dish_model.dart';
 import 'package:dicoding_final/features/restaurant/data/models/menu_model.dart';
 import 'package:dicoding_final/features/restaurant/domain/entities/restaurant.dart';
 
-part 'restaurant_model.mapper.dart';
-
-@MappableClass()
-class RestaurantModel extends Restaurant with RestaurantModelMappable {
-  RestaurantModel({
+class RestaurantModel extends Restaurant {
+  const RestaurantModel({
     required super.id,
     required super.name,
     required super.description,
@@ -16,7 +12,7 @@ class RestaurantModel extends Restaurant with RestaurantModelMappable {
     required super.rating,
     required MenuModel menus,
   }) : super(menus: menus);
-  RestaurantModel.empty()
+  const RestaurantModel.empty()
       : this(
           id: '',
           name: '',
@@ -29,4 +25,25 @@ class RestaurantModel extends Restaurant with RestaurantModelMappable {
             drinks: [DishModel(name: '')],
           ),
         );
+
+  factory RestaurantModel.fromJson(Map<String, dynamic> json) =>
+      RestaurantModel(
+        id: json['id'] as String,
+        name: json['name'] as String,
+        description: json['description'] as String,
+        pictureId: json['pictureId'] as String,
+        city: json['city'] as String,
+        rating: (json['rating'] as num).toDouble(),
+        menus: MenuModel.fromJson(json['menus'] as Map<String, dynamic>),
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'pictureId': pictureId,
+        'city': city,
+        'rating': rating,
+        'menus': (menus as MenuModel).toJson(),
+      };
 }

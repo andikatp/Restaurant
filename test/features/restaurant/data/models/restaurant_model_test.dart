@@ -7,12 +7,13 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixture/fixture_reader.dart';
 
 void main() {
-  final tRestaurant = RestaurantModel.empty();
-  final tRestaurantList = [RestaurantModel.empty()];
-  final tRestaurantJson = fixtureReader('restaurant.json');
-  final tRestaurantListJson = (jsonDecode(tRestaurantJson) as List<dynamic>)
-      .map((e) => e as Map<String, dynamic>)
-      .toList();
+  const tRestaurant = RestaurantModel.empty();
+  final tRestaurantList = [const RestaurantModel.empty()];
+  final tRestaurantJson =
+      jsonDecode(fixtureReader('restaurant.json')) as Map<String, dynamic>;
+  // final tRestaurantListJson = (jsonDecode(tRestaurantJson) as List<dynamic>)
+  //     .map((e) => e as Map<String, dynamic>)
+  //     .toList();
 
   test('Should be a subclass of [Restaurant] entity', () async {
     // assert
@@ -22,9 +23,34 @@ void main() {
   group('fromJson', () {
     test('Should return a valid model when data is json', () async {
       // act
-      final result = tRestaurantListJson.map(RestaurantModelMapper.fromMap);
+      final result = RestaurantModel.fromJson(tRestaurantJson);
       // assert
-      expect(result, tRestaurantList);
+      expect(result, tRestaurant);
+    });
+  });
+
+  group('toJson', () {
+    test('Should convert [RestaurantModel] to Map<String, dynamic>', () {
+      // act
+      final result = tRestaurant.toJson();
+      //assert
+      final expectedMap = {
+        'id': '',
+        'name': '',
+        'description': '',
+        'pictureId': '',
+        'city': '',
+        'rating': 1.1,
+        'menus': {
+          'foods': [
+            {'name': ''},
+          ],
+          'drinks': [
+            {'name': ''},
+          ],
+        },
+      };
+      expect(result, equals(expectedMap));
     });
   });
 }
