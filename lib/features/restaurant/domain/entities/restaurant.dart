@@ -1,6 +1,8 @@
+import 'package:dicoding_final/features/restaurant/domain/entities/dish.dart';
+import 'package:dicoding_final/features/restaurant/domain/entities/menu.dart';
 import 'package:equatable/equatable.dart';
 
-class Restaurant extends Equatable  {
+class Restaurant extends Equatable {
   const Restaurant({
     required this.id,
     required this.name,
@@ -11,15 +13,18 @@ class Restaurant extends Equatable  {
     required this.menus,
   });
 
-  Restaurant.empty()
+  const Restaurant.empty()
       : this(
           id: '',
           name: '',
           description: '',
           pictureId: '',
           city: '',
-          rating: 1,
-          menus: Menus(foods: [], drinks: []),
+          rating: 1.1,
+          menus: const Menus(
+            foods: [Dish(name: '')],
+            drinks: [Dish(name: '')],
+          ),
         );
 
   final String id;
@@ -32,20 +37,4 @@ class Restaurant extends Equatable  {
 
   @override
   List<String?> get props => [id];
-}
-
-class Menus {
-  Menus({
-    required this.foods,
-    required this.drinks,
-  });
-  final List<Dish> foods;
-  final List<Dish> drinks;
-}
-
-class Dish {
-  Dish({
-    required this.name,
-  });
-  final String name;
 }
