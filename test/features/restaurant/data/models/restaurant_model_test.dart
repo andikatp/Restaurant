@@ -8,12 +8,8 @@ import '../../../../fixture/fixture_reader.dart';
 
 void main() {
   const tRestaurant = RestaurantModel.empty();
-  final tRestaurantList = [const RestaurantModel.empty()];
   final tRestaurantJson =
       jsonDecode(fixtureReader('restaurant.json')) as Map<String, dynamic>;
-  // final tRestaurantListJson = (jsonDecode(tRestaurantJson) as List<dynamic>)
-  //     .map((e) => e as Map<String, dynamic>)
-  //     .toList();
 
   test('Should be a subclass of [Restaurant] entity', () async {
     // assert
