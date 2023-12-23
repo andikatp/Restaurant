@@ -6,7 +6,6 @@ import 'package:dicoding_final/features/restaurant/data/models/restaurants_model
 
 abstract class RestaurantLocalDataSource {
   const RestaurantLocalDataSource();
-
   /// Gets the list of [RestaurantModel] from dummy fixture reader
   ///
   /// Throws a dummy [CacheException] if the fixture error.
@@ -15,12 +14,17 @@ abstract class RestaurantLocalDataSource {
 
 class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
   @override
-  Future<List<RestaurantModel>> getRestaurants() {
-    final result = RestaurantsModel.fromJson(
-      jsonDecode(fixture()) as Map<String, dynamic>,
-    );
-    final restaurants =
-        result.restaurants.map((e) => e as RestaurantModel).toList();
-    return Future.value(restaurants);
+  Future<List<RestaurantModel>> getRestaurants() async {
+    try {
+      await Future<void>.delayed(const Duration(seconds: 2));
+      final result = RestaurantsModel.fromJson(
+        jsonDecode(fixture()) as Map<String, dynamic>,
+      );
+      final restaurants =
+          result.restaurants.map((e) => e as RestaurantModel).toList();
+      return Future.value(restaurants);
+    } catch (e) {
+      throw CacheException(message: e.toString());
+    }
   }
 }
