@@ -8,10 +8,22 @@ import 'package:flutter/widgets.dart';
 abstract class RestaurantLocalDataSource {
   const RestaurantLocalDataSource();
 
-  /// Gets the list of [RestaurantModel] from dummy fixture reader
+  /// Retrieves the list of [RestaurantModel] from the dummy fixture reader.
   ///
-  /// Throws a dummy [CacheException] if the fixture error.
+  /// Returns a [Future] that completes with a list of [RestaurantModel] when 
+  /// the retrieval is successful.
+  /// Throws a [CacheException] if an error occurs while reading the dummy 
+  /// fixture.
   Future<List<RestaurantModel>> getRestaurants();
+
+  /// Searches for restaurants in the list of [RestaurantModel] using the dummy
+  /// fixture reader.
+  ///
+  /// Returns a [Future] that completes with a list of [RestaurantModel] when
+  /// the search is successful.
+  /// Throws a [CacheException] if an error occurs while reading the dummy
+  /// fixture.
+  Future<List<RestaurantModel>> searchRestaurant();
 }
 
 class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
@@ -29,5 +41,11 @@ class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
       debugPrintStack(stackTrace: s);
       throw CacheException(message: e.toString());
     }
+  }
+
+  @override
+  Future<List<RestaurantModel>> searchRestaurant() {
+    // TODO: implement searchRestaurant
+    throw UnimplementedError();
   }
 }

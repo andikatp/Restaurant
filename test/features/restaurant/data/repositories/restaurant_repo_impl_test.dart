@@ -23,35 +23,78 @@ void main() {
   final tRestaurants = [const RestaurantModel.empty()];
   const tException = CacheException(message: 'Unknown Failure');
 
-  test('Should call the [RestaurantLocalDataSource.getRestaurant]', () async {
-    // arrange
-    when(() => mockLocalDataSource.getRestaurants())
-        .thenAnswer((_) async => tRestaurants);
-    // act
-    final result = await repo.getRestaurants();
-    // assert
-    expect(result, equals(Right<dynamic, List<RestaurantModel>>(tRestaurants)));
-    verify(() => mockLocalDataSource.getRestaurants()).called(1);
-    verifyNoMoreInteractions(mockLocalDataSource);
+  group('getRestaurant', () {
+    test('Should call the [RestaurantLocalDataSource.getRestaurant]', () async {
+      // arrange
+      when(() => mockLocalDataSource.getRestaurants())
+          .thenAnswer((_) async => tRestaurants);
+      // act
+      final result = await repo.getRestaurants();
+      // assert
+      expect(
+        result,
+        equals(Right<dynamic, List<RestaurantModel>>(tRestaurants)),
+      );
+      verify(() => mockLocalDataSource.getRestaurants()).called(1);
+      verifyNoMoreInteractions(mockLocalDataSource);
+    });
+
+    test(
+        'Should throw a [CacheFailure] when the call to '
+        '[RestaurantLocalDataSource.getRestaurant] unsuccessful', () async {
+      // arrange
+      when(() => mockLocalDataSource.getRestaurants()).thenThrow(tException);
+      // act
+      final result = await repo.getRestaurants();
+      // assert
+      expect(
+        result,
+        equals(
+          Left<Failure, dynamic>(
+            CacheFailure.fromException(tException),
+          ),
+        ),
+      );
+      verify(() => mockLocalDataSource.getRestaurants()).called(1);
+      verifyNoMoreInteractions(mockLocalDataSource);
+    });
   });
 
-  test(
-      'Should throw a [CacheFailure] when the call to '
-      '[RestaurantLocalDataSource.getRestaurant] unsuccessful', () async {
-    // arrange
-    when(() => mockLocalDataSource.getRestaurants()).thenThrow(tException);
-    // act
-    final result = await repo.getRestaurants();
-    // assert
-    expect(
-      result,
-      equals(
-        Left<Failure, dynamic>(
-          CacheFailure.fromException(tException),
+  group('searchRestaurants', () {
+    test('Should call the [RestaurantLocalDataSource.searchRestaurant]',
+        () async {
+      // arrange
+      when(() => mockLocalDataSource.searchRestaurant())
+          .thenAnswer((_) async => tRestaurants);
+      // act
+      final result = await repo.searchRestaurant();
+      // assert
+      expect(
+        result,
+        equals(Right<dynamic, List<RestaurantModel>>(tRestaurants)),
+      );
+      verify(() => mockLocalDataSource.searchRestaurant()).called(1);
+      verifyNoMoreInteractions(mockLocalDataSource);
+    });
+
+    test(
+        'Should throw a [CacheFailure] when the call to '
+        '[RestaurantLocalDataSource.searchRestaurant] unsuccessful', () async {
+      // arrange
+      when(() => mockLocalDataSource.searchRestaurant()).thenThrow(tException);
+      // act
+      final result = await repo.searchRestaurant();
+      // assert
+      expect(
+        result,
+        equals(
+          Left<Failure, dynamic>(
+            CacheFailure.fromException(tException),
+          ),
         ),
-      ),
-    );
-    verify(() => mockLocalDataSource.getRestaurants()).called(1);
-    verifyNoMoreInteractions(mockLocalDataSource);
+      );
+      verify(() => mockLocalDataSource.searchRestaurant()).called(1);
+      verifyNoMoreInteractions(mockLocalDataSource);
+    });
   });
 }
