@@ -34,7 +34,9 @@ class DetailPage extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO(Saved): Create a save button
+                },
                 icon: const Icon(
                   Icons.bookmark_border,
                   size: 35,

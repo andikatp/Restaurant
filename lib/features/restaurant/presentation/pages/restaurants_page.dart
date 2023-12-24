@@ -26,9 +26,9 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
   @override
   void initState() {
+    super.initState();
     _controller = TextEditingController();
     context.read<RestaurantCubit>().getRestaurants();
-    super.initState();
   }
 
   void search(String restaurant) =>
@@ -89,6 +89,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                           child: Container(
                             padding: REdgeInsets.all(12).copyWith(left: 20),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Wrap(
                                   spacing: 10.w,
@@ -148,6 +149,16 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                       ),
                                     ),
                                   ],
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    // TODO(Saved): Create a save button
+                                  },
+                                  icon: const Icon(
+                                    Icons.bookmark_border_outlined,
+                                    size: 35,
+                                    color: Colours.secondaryColor,
+                                  ),
                                 ),
                               ],
                             ),
