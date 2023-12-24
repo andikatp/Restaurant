@@ -4,5 +4,5 @@ import 'package:dicoding_final/features/restaurant/domain/entities/restaurant.da
 abstract class RestaurantRepo {
   const RestaurantRepo();
   ResultFuture<List<Restaurant>> getRestaurants();
-  ResultFuture<List<Restaurant>> searchRestaurant();
+  ResultFuture<List<Restaurant>> searchRestaurant(String search);
 }

@@ -25,9 +25,9 @@ class RestaurantCubit extends Cubit<RestaurantState> {
     );
   }
 
-  Future<void> searchRestaurants() async {
+  Future<void> searchRestaurants(String search) async {
     emit(const RestaurantLoading());
-    final result = await _searchRestaurant();
+    final result = await _searchRestaurant(search);
     result.fold(
       (failure) => emit(RestaurantError(message: failure.errorMessage)),
       (restaurants) => emit(RestaurantLoaded(restaurants: restaurants)),

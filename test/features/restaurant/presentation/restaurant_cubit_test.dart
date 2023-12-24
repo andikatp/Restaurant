@@ -67,14 +67,15 @@ void main() {
   });
 
   group('searchRestaurants', () {
+    const tSearch = '';
     blocTest<RestaurantCubit, RestaurantState>(
       'Should emit [RestaurantLoading, RestaurantLoaded] when successful',
       build: () {
-        when(() => mockSearchUseCase())
+        when(() => mockSearchUseCase(any()))
             .thenAnswer((_) async => Right(tRestaurantList));
         return restoCubit;
       },
-      act: (_) => restoCubit.searchRestaurants(),
+      act: (_) => restoCubit.searchRestaurants(tSearch),
       expect: () => [
         const RestaurantLoading(),
         RestaurantLoaded(restaurants: tRestaurantList),
@@ -84,11 +85,11 @@ void main() {
     blocTest<RestaurantCubit, RestaurantState>(
       'Should emit [RestaurantLoading, RestaurantError] when unsuccessful',
       build: () {
-        when(() => mockSearchUseCase())
+        when(() => mockSearchUseCase(any()))
             .thenAnswer((_) async => const Left(tFailure));
         return restoCubit;
       },
-      act: (_) => restoCubit.searchRestaurants(),
+      act: (_) => restoCubit.searchRestaurants(tSearch),
       expect: () => [
         const RestaurantLoading(),
         RestaurantError(message: tFailure.errorMessage),
