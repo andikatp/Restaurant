@@ -2,9 +2,11 @@ import 'package:dicoding_final/core/res/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-PreferredSizeWidget appBarWidget() => AppBar(
+SliverAppBar appBarWidget(BuildContext ctx) => SliverAppBar(
       toolbarHeight: 80.h,
+      floating: true,
       title: TextField(
+        onTapOutside: (_) => FocusScope.of(ctx).unfocus(),
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide.none,

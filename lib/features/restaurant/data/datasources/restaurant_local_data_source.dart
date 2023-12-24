@@ -30,8 +30,9 @@ class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
   @override
   Future<List<RestaurantModel>> getRestaurants() async {
     try {
-      final decode = jsonDecode(await fixture())as Map<String, dynamic>;
-      final result = RestaurantsModel.fromJson( decode );
+      await Future<void>.delayed(const Duration(seconds: 2));
+      final decode = jsonDecode(await fixture()) as Map<String, dynamic>;
+      final result = RestaurantsModel.fromJson(decode);
       final restaurants =
           result.restaurants.map((e) => e as RestaurantModel).toList();
       return restaurants;
@@ -44,7 +45,8 @@ class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
   @override
   Future<List<RestaurantModel>> searchRestaurant(String search) async {
     try {
-      final decode = jsonDecode(await fixture())as Map<String, dynamic>;
+      await Future<void>.delayed(const Duration(seconds: 2));
+      final decode = jsonDecode(await fixture()) as Map<String, dynamic>;
       final result = RestaurantsModel.fromJson(decode);
       final restaurants =
           result.restaurants.map((e) => e as RestaurantModel).toList();
