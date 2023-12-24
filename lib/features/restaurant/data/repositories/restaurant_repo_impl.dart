@@ -21,9 +21,9 @@ class RestaurantRepoImpl implements RestaurantRepo {
   }
 
   @override
-  ResultFuture<List<Restaurant>> searchRestaurant() async {
+  ResultFuture<List<Restaurant>> searchRestaurant(String search) async {
     try {
-      return Right(await _dataSource.searchRestaurant());
+      return Right(await _dataSource.searchRestaurant(search));
     } on CacheException catch (e) {
       return Left(CacheFailure.fromException(e));
     }

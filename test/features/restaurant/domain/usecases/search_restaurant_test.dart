@@ -19,28 +19,29 @@ void main() {
 
   final tListRestaurants = [const Restaurant.empty(), const Restaurant.empty()];
   const tFailure = CacheFailure(message: 'message');
+  const tSearch = '';
 
   test('call [RestaurantRepo] when call [GetRestaurant] usecase', () async {
     // arrange
-    when(() => mockRepository.searchRestaurant())
+    when(() => mockRepository.searchRestaurant(any()))
         .thenAnswer((_) async => Right(tListRestaurants));
     // act
-    final result = await usecase();
+    final result = await usecase(tSearch);
     // assert
     expect(result, equals(Right<dynamic, List<Restaurant>>(tListRestaurants)));
-    verify(() => mockRepository.searchRestaurant()).called(1);
+    verify(() => mockRepository.searchRestaurant(tSearch)).called(1);
     verifyNoMoreInteractions(mockRepository);
   });
 
   test('call return [CacheFailure] when [SearchRestaurant] failed', () async {
     // arrange
-    when(() => mockRepository.searchRestaurant())
+    when(() => mockRepository.searchRestaurant(any()))
         .thenAnswer((_) async => const Left(tFailure));
     // act
-    final result = await usecase();
+    final result = await usecase(tSearch);
     // assert
     expect(result, equals(const Left<Failure, dynamic>(tFailure)));
-    verify(() => mockRepository.searchRestaurant()).called(1);
+    verify(() => mockRepository.searchRestaurant(tSearch)).called(1);
     verifyNoMoreInteractions(mockRepository);
   });
 }

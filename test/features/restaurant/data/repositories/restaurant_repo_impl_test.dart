@@ -61,19 +61,20 @@ void main() {
   });
 
   group('searchRestaurants', () {
+    const tSearch = '';
     test('Should call the [RestaurantLocalDataSource.searchRestaurant]',
         () async {
       // arrange
-      when(() => mockLocalDataSource.searchRestaurant())
+      when(() => mockLocalDataSource.searchRestaurant(any()))
           .thenAnswer((_) async => tRestaurants);
       // act
-      final result = await repo.searchRestaurant();
+      final result = await repo.searchRestaurant(tSearch);
       // assert
       expect(
         result,
         equals(Right<dynamic, List<RestaurantModel>>(tRestaurants)),
       );
-      verify(() => mockLocalDataSource.searchRestaurant()).called(1);
+      verify(() => mockLocalDataSource.searchRestaurant(tSearch)).called(1);
       verifyNoMoreInteractions(mockLocalDataSource);
     });
 
@@ -81,9 +82,10 @@ void main() {
         'Should throw a [CacheFailure] when the call to '
         '[RestaurantLocalDataSource.searchRestaurant] unsuccessful', () async {
       // arrange
-      when(() => mockLocalDataSource.searchRestaurant()).thenThrow(tException);
+      when(() => mockLocalDataSource.searchRestaurant(any()))
+          .thenThrow(tException);
       // act
-      final result = await repo.searchRestaurant();
+      final result = await repo.searchRestaurant(tSearch);
       // assert
       expect(
         result,
@@ -93,7 +95,7 @@ void main() {
           ),
         ),
       );
-      verify(() => mockLocalDataSource.searchRestaurant()).called(1);
+      verify(() => mockLocalDataSource.searchRestaurant(tSearch)).called(1);
       verifyNoMoreInteractions(mockLocalDataSource);
     });
   });

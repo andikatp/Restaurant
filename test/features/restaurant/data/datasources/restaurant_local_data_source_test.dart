@@ -18,11 +18,12 @@ void main() {
   });
 
   group('searchRestaurants', () {
+    const tSearch = '';
     test(
         'Should return search List of Restaurant when [localData] being called',
         () async {
       // act
-      final result = await localData.searchRestaurant();
+      final result = await localData.searchRestaurant(tSearch);
       // assert
       expect(result, isA<List<RestaurantModel>>());
     });
