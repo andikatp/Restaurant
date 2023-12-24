@@ -19,4 +19,13 @@ class RestaurantRepoImpl implements RestaurantRepo {
       return Left(CacheFailure.fromException(e));
     }
   }
+
+  @override
+  ResultFuture<List<Restaurant>> searchRestaurant() async {
+    try {
+      return Right(await _dataSource.searchRestaurant());
+    } on CacheException catch (e) {
+      return Left(CacheFailure.fromException(e));
+    }
+  }
 }
