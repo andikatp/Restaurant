@@ -11,13 +11,11 @@ dependencies:
   bloc_test: ^9.1.5
   cached_network_image: ^3.3.0
   cupertino_icons: ^1.0.2
-  dart_mappable: ^4.1.0
   dartz: ^0.10.1
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
-  flutter_native_splash: ^2.3.8
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.9
