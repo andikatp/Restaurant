@@ -32,7 +32,7 @@ void main() {
     verifyNoMoreInteractions(mockRepository);
   });
 
-    test('Should return [CacheFailure] when call [GetRestaurant] usecase',
+  test('Should return [CacheFailure] when call [GetRestaurant] usecase',
       () async {
     // arrange
     when(() => mockRepository.getRestaurants())
