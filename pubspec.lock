@@ -145,14 +145,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
-  dart_mappable:
-    dependency: "direct main"
-    description:
-      name: dart_mappable
-      sha256: "03d2d199a88416ef634e89b369782f9957f2ecfcca1722d9f28cd65165e73bc0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
   dartz:
     dependency: "direct main"
     description:
@@ -696,14 +688,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.9"
-  type_plus:
-    dependency: transitive
-    description:
-      name: type_plus
-      sha256: "2e33cfac2e129297d5874567bdf7587502ec359881e9318551e014d91b02f84a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   typed_data:
     dependency: transitive
     description:
