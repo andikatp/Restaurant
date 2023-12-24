@@ -30,13 +30,11 @@ class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
   @override
   Future<List<RestaurantModel>> getRestaurants() async {
     try {
-      await Future<void>.delayed(const Duration(seconds: 2));
-      final result = RestaurantsModel.fromJson(
-        jsonDecode(fixture()) as Map<String, dynamic>,
-      );
+      final decode = jsonDecode(await fixture())as Map<String, dynamic>;
+      final result = RestaurantsModel.fromJson( decode );
       final restaurants =
           result.restaurants.map((e) => e as RestaurantModel).toList();
-      return Future.value(restaurants);
+      return restaurants;
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
       throw CacheException(message: e.toString());
@@ -46,10 +44,8 @@ class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
   @override
   Future<List<RestaurantModel>> searchRestaurant(String search) async {
     try {
-      await Future<void>.delayed(const Duration(seconds: 1));
-      final result = RestaurantsModel.fromJson(
-        jsonDecode(fixture()) as Map<String, dynamic>,
-      );
+      final decode = jsonDecode(await fixture())as Map<String, dynamic>;
+      final result = RestaurantsModel.fromJson(decode);
       final restaurants =
           result.restaurants.map((e) => e as RestaurantModel).toList();
       final filteredRestaurants = restaurants
@@ -58,7 +54,7 @@ class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
                 restaurant.name.toLowerCase().contains(search.toLowerCase()),
           )
           .toList();
-      return Future.value(filteredRestaurants);
+      return filteredRestaurants;
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
       throw CacheException(message: e.toString());

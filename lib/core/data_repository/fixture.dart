@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:flutter/services.dart' show rootBundle;
 
-String fixture() =>
-    File('lib/core/data_repository/restaurants.json').readAsStringSync();
+Future<String> fixture() =>
+    rootBundle.loadString('assets/data_repository/restaurants.json');

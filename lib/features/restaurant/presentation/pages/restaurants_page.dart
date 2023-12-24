@@ -4,10 +4,22 @@ import 'package:dicoding_final/features/restaurant/presentation/widgets/loading_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RestaurantPage extends StatelessWidget {
+class RestaurantPage extends StatefulWidget {
   const RestaurantPage({super.key});
 
   static const routeName = 'home';
+
+  @override
+  State<RestaurantPage> createState() => _RestaurantPageState();
+}
+
+class _RestaurantPageState extends State<RestaurantPage> {
+
+  @override
+  void initState() {
+    context.read<RestaurantCubit>().getRestaurants();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +38,21 @@ class RestaurantPage extends StatelessWidget {
               return const LoadingWidget();
             }
             if (state is RestaurantLoaded) {
-              final restaurants = state.restaurants;
-              // TODO(Restaurants): create a card list containing restaurant.
+              return CustomScrollView(
+                slivers: [
+                  SliverAnimatedList(
+                    initialItemCount: state.restaurants.length,
+                    itemBuilder: (context, index, animation) {
+                      final restaurants = state.restaurants[index];
+                      return ListTile(
+                        leading: CircleAvatar(
+                          child: Image.network(restaurants.pictureId),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              );
             }
             return const Placeholder();
           },
