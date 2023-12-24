@@ -8,10 +8,13 @@ class AppTheme {
     scaffoldBackgroundColor: Colours.backgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     textTheme: AppFonts.textTheme,
-    primaryColor: Colours.primaryColor,
-    colorScheme: ThemeData().colorScheme.copyWith(
-          primary: Colours.primaryColor,
-          secondary: Colours.secondaryColor,
-        ),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Colours.primaryColor,
+      secondary: Colours.secondaryColor,
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
+    ),
   );
 }
