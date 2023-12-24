@@ -5,14 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 SliverAppBar appBarWidget({
   required BuildContext ctx,
   required TextEditingController controller,
-  required Function search,
+  required void Function(String) search,
 }) =>
     SliverAppBar(
       toolbarHeight: 80.h,
       floating: true,
       title: TextField(
         controller: controller,
-        onChanged: (value) => search(value),
+        onChanged: (String value) => search(value),
         onTapOutside: (_) => FocusScope.of(ctx).unfocus(),
         decoration: InputDecoration(
           border: OutlineInputBorder(
