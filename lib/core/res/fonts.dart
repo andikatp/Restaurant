@@ -32,7 +32,7 @@ class AppFonts {
     headlineSmall: TextStyle(
       fontFamily: 'Montserrat',
       fontSize: 24.sp,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w700,
       color: Colors.black,
     ),
     titleLarge: TextStyle(
