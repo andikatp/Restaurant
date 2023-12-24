@@ -45,7 +45,6 @@ class RestaurantLocalDataSourceImpl implements RestaurantLocalDataSource {
   @override
   Future<List<RestaurantModel>> searchRestaurant(String search) async {
     try {
-      await Future<void>.delayed(const Duration(seconds: 2));
       final decode = jsonDecode(await fixture()) as Map<String, dynamic>;
       final result = RestaurantsModel.fromJson(decode);
       final restaurants =

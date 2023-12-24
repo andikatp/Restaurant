@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 class RestaurantPage extends StatefulWidget {
   const RestaurantPage({super.key});
@@ -21,11 +22,17 @@ class RestaurantPage extends StatefulWidget {
 }
 
 class _RestaurantPageState extends State<RestaurantPage> {
+  late TextEditingController _controller;
+
   @override
   void initState() {
+    _controller = TextEditingController();
     context.read<RestaurantCubit>().getRestaurants();
     super.initState();
   }
+
+  void search(String restaurant) =>
+      context.read<RestaurantCubit>().searchRestaurants(restaurant);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +53,28 @@ class _RestaurantPageState extends State<RestaurantPage> {
               return CustomScrollView(
                 physics: const BouncingScrollPhysics(),
                 slivers: [
-                  appBarWidget(context),
+                  appBarWidget(
+                    ctx: context,
+                    controller: _controller,
+                    search: search,
+                  ),
+                  if (state.restaurants.isEmpty)
+                    SliverList(
+                      delegate: SliverChildListDelegate([
+                        Column(
+                          children: [
+                            Lottie.asset(
+                              'assets/data_repository/empty.json',
+                            ),
+                            Text(
+                              'Restaurant not found. \nPlease check the name!',
+                              textAlign: TextAlign.center,
+                              style: context.theme.textTheme.labelLarge,
+                            ),
+                          ],
+                        ),
+                      ]),
+                    ),
                   SliverList.separated(
                     itemCount: state.restaurants.length,
                     itemBuilder: (context, index) {

@@ -2,10 +2,17 @@ import 'package:dicoding_final/core/res/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-SliverAppBar appBarWidget(BuildContext ctx) => SliverAppBar(
+SliverAppBar appBarWidget({
+  required BuildContext ctx,
+  required TextEditingController controller,
+  required Function search,
+}) =>
+    SliverAppBar(
       toolbarHeight: 80.h,
       floating: true,
       title: TextField(
+        controller: controller,
+        onChanged: (value) => search(value),
         onTapOutside: (_) => FocusScope.of(ctx).unfocus(),
         decoration: InputDecoration(
           border: OutlineInputBorder(
