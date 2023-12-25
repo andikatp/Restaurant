@@ -1,4 +1,3 @@
-// import 'package:dicoding_final/core/commons/pages/splash_screen.dart';
 import 'package:dicoding_final/core/commons/pages/splash_screen.dart';
 import 'package:dicoding_final/core/res/routes.dart';
 import 'package:dicoding_final/core/res/theme.dart';
