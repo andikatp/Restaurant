@@ -2,18 +2,29 @@ import 'package:dicoding_final/core/res/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-SliverAppBar appBarWidget({
-  required BuildContext ctx,
-  required TextEditingController controller,
-  required void Function(String) search,
-}) =>
-    SliverAppBar(
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({
+    required this.ctx,
+    required this.controller,
+    required this.search,
+    super.key,
+  });
+
+  final BuildContext ctx;
+  final TextEditingController controller;
+  final void Function(String) search;
+
+  @override
+  Widget build(BuildContext context) {
+    const assetImage = 'assets/logo/german.png';
+    const hintText = 'Search';
+
+    return SliverAppBar(
       toolbarHeight: 80.h,
       floating: true,
       title: TextField(
         controller: controller,
-        onChanged: (String value) => search(value),
-        onTapOutside: (_) => FocusScope.of(ctx).unfocus(),
+        onChanged: search,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
@@ -23,7 +34,7 @@ SliverAppBar appBarWidget({
           contentPadding: EdgeInsets.zero,
           fillColor: Colours.greyColor,
           filled: true,
-          hintText: 'Search',
+          hintText: hintText,
           prefixIcon: Icon(
             Icons.search,
             color: Colours.secondaryGreyColor,
@@ -39,8 +50,10 @@ SliverAppBar appBarWidget({
         Padding(
           padding: EdgeInsets.only(right: 10.w),
           child: const CircleAvatar(
-            backgroundImage: AssetImage('assets/logo/german.png'),
+            backgroundImage: AssetImage(assetImage),
           ),
         ),
       ],
     );
+  }
+}

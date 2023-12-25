@@ -6,8 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppBarDetail_widget extends StatelessWidget {
-  const AppBarDetail_widget({
+class AppBarDetail extends StatelessWidget {
+  const AppBarDetail({
     required this.restaurant,
     super.key,
   });

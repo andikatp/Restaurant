@@ -26,6 +26,12 @@ class _RestaurantPageState extends State<RestaurantPage> {
     context.read<RestaurantCubit>().getRestaurants();
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void search(String restaurant) =>
       context.read<RestaurantCubit>().searchRestaurants(restaurant);
 
@@ -48,7 +54,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
               return CustomScrollView(
                 physics: const BouncingScrollPhysics(),
                 slivers: [
-                  appBarWidget(
+                  AppBarWidget(
                     ctx: context,
                     controller: _controller,
                     search: search,
