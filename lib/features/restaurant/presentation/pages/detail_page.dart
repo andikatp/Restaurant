@@ -1,8 +1,6 @@
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/features/restaurant/domain/entities/restaurant.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/appbar_detail_widget.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/detail_widget.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/menu_widget.dart';
+import 'package:dicoding_final/features/restaurant/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {

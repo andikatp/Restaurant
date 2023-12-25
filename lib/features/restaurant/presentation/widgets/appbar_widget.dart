@@ -4,13 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
-    required this.ctx,
     required this.controller,
     required this.search,
     super.key,
   });
 
-  final BuildContext ctx;
   final TextEditingController controller;
   final void Function(String) search;
 

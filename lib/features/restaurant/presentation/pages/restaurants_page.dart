@@ -1,8 +1,5 @@
 import 'package:dicoding_final/features/restaurant/presentation/cubit/restaurant_cubit.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/appbar_widget.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/loading_widget.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/restaurant_tile_widget.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/search_empty.dart';
+import 'package:dicoding_final/features/restaurant/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +52,6 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 physics: const BouncingScrollPhysics(),
                 slivers: [
                   AppBarWidget(
-                    ctx: context,
                     controller: _controller,
                     search: search,
                   ),

@@ -32,6 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const assetPath = 'assets/logo/logo.svg';
+
     return Scaffold(
       backgroundColor: Colours.backgroundColor,
       body: Center(
@@ -39,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              'assets/logo/logo.svg',
+              assetPath,
               height: 80.h,
             ),
           ],
