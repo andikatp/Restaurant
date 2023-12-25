@@ -47,12 +47,12 @@ class AppBarDetail extends StatelessWidget {
             imageUrl: restaurant.pictureId,
             fit: BoxFit.fill,
             height: 330.h,
-            placeholder: (context, url) => const Center(
+            placeholder: (_, __) => const Center(
               child: CupertinoActivityIndicator(
                 color: Colours.secondaryColor,
               ),
             ),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (_, __, error) => const Icon(Icons.error),
           ),
         ),
       ),
