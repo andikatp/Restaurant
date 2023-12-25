@@ -7,8 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailWidget extends StatelessWidget {
   const DetailWidget({
-    required this.restaurant, super.key,
+    required this.restaurant,
+    super.key,
   });
+
 
   final Restaurant restaurant;
 

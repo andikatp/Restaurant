@@ -18,7 +18,7 @@ class DetailPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          AppBarDetail_widget(restaurant: restaurant),
+          AppBarDetail(restaurant: restaurant),
           DetailWidget(restaurant: restaurant),
           MenuWidget(restaurant: restaurant),
         ],

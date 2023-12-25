@@ -6,13 +6,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuWidget extends StatelessWidget {
   const MenuWidget({
-    required this.restaurant, super.key,
+    required this.restaurant,
+    super.key,
   });
 
   final Restaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
+    const dishType = ['Foods:', 'Drinks'];
+
     return SliverToBoxAdapter(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,7 +23,7 @@ class MenuWidget extends StatelessWidget {
           Padding(
             padding: REdgeInsets.only(left: 15),
             child: Text(
-              'Foods:',
+              dishType[0],
               style: context.theme.textTheme.bodyLarge,
               textAlign: TextAlign.justify,
             ),
@@ -37,8 +40,8 @@ class MenuWidget extends StatelessWidget {
                   style: context.theme.textTheme.bodyMedium!
                       .copyWith(color: Colors.white),
                 ),
-                color: const MaterialStatePropertyAll(
-                  Colours.secondaryColor,
+                color: MaterialStatePropertyAll(
+                  Colours.secondaryColor.withOpacity(0.95),
                 ),
               ),
               separatorBuilder: (_, __) => SizedBox(width: 10.w),
@@ -49,7 +52,7 @@ class MenuWidget extends StatelessWidget {
           Padding(
             padding: REdgeInsets.only(left: 15),
             child: Text(
-              'Drinks:',
+              dishType[1],
               style: context.theme.textTheme.bodyLarge,
               textAlign: TextAlign.justify,
             ),
@@ -66,8 +69,8 @@ class MenuWidget extends StatelessWidget {
                   style: context.theme.textTheme.bodyMedium!
                       .copyWith(color: Colors.white),
                 ),
-                color: const MaterialStatePropertyAll(
-                  Colours.secondaryColor,
+                color: MaterialStatePropertyAll(
+                  Colours.secondaryColor.withOpacity(0.95),
                 ),
               ),
               separatorBuilder: (_, __) => SizedBox(width: 10.w),

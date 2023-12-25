@@ -10,20 +10,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RestaurantTile extends StatelessWidget {
   const RestaurantTile({
-    required this.restaurant, super.key,
+    required this.restaurant,
+    super.key,
   });
 
   final Restaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
+    void goToDetail(Restaurant restaurant) {
+      context.focusScope.unfocus();
+      context.navigator.pushNamed(
+        DetailPage.routeName,
+        arguments: restaurant,
+      );
+    }
+
     return Material(
       color: Colors.white,
       child: InkWell(
-        onTap: () => context.navigator.pushNamed(
-          DetailPage.routeName,
-          arguments: restaurant,
-        ),
+        onTap: () => goToDetail(restaurant),
         child: Container(
           padding: REdgeInsets.all(12).copyWith(left: 20),
           child: Row(
@@ -39,20 +45,19 @@ class RestaurantTile extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: restaurant.pictureId,
                         fit: BoxFit.cover,
-                        placeholder: (context, url) => const Center(
+                        placeholder: (_, __) => const Center(
                           child: CupertinoActivityIndicator(
                             color: Colours.secondaryColor,
                           ),
                         ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                        errorWidget: (_, __, error) => const Icon(Icons.error),
                         height: 100.h,
                         width: 100.h,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 90,
+                    height: 90.h,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +70,7 @@ class RestaurantTile extends StatelessWidget {
                         ),
                         RatingBarIndicator(
                           rating: restaurant.rating,
-                          itemBuilder: (context, index) => const Icon(
+                          itemBuilder: (_, __) => const Icon(
                             Icons.star,
                             color: Colours.secondaryColor,
                           ),

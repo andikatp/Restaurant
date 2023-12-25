@@ -23,12 +23,15 @@ class MyApp extends StatelessWidget {
       child: ScreenUtilInit(
         designSize: const Size(412, 732),
         minTextAdapt: true,
-        builder: (_, child) => MaterialApp(
-          title: 'Restaurant',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.currentTheme,
-          routes: AppRoutes.routes,
-          home: const SplashScreen(),
+        builder: (_, child) => GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: MaterialApp(
+            title: 'Restaurant',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.currentTheme,
+            routes: AppRoutes.routes,
+            home: const SplashScreen(),
+          ),
         ),
       ),
     );

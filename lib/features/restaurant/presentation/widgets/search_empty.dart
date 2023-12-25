@@ -9,15 +9,16 @@ class SearchEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const lottieAsset = 'assets/data_repository/empty.json';
+    const lottieText = 'Restaurant not found. \nPlease check the name!';
+
     return SliverList(
       delegate: SliverChildListDelegate([
         Column(
           children: [
-            Lottie.asset(
-              'assets/data_repository/empty.json',
-            ),
+            Lottie.asset(lottieAsset),
             Text(
-              'Restaurant not found. \nPlease check the name!',
+              lottieText,
               textAlign: TextAlign.center,
               style: context.theme.textTheme.labelLarge,
             ),
