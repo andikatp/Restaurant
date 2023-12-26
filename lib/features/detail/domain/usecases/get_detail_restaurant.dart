@@ -8,7 +8,7 @@ class GetDetailRestaurant implements UseCaseWithParams<Restaurant, String> {
   final DetailRepo _repo;
 
   @override
-  ResultFuture<Restaurant> call(String params) {
-    return _repo.getDetailRestaurant();
+  ResultFuture<Restaurant> call(String id) {
+    return _repo.getDetailRestaurant(id);
   }
 }
