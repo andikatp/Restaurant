@@ -4,5 +4,5 @@ import 'package:dicoding_final/features/dashboard/domain/entities/restaurant.dar
 abstract class DetailRepo {
   const DetailRepo();
 
-  ResultFuture<Restaurant> getDetailRestaurant();
+  ResultFuture<Restaurant> getDetailRestaurant(String id);
 }
