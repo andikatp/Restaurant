@@ -22,7 +22,7 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
   Future<DetailRestaurantModel> getDetailRestaurant(String id) async {
     try {
       final url =
-          Uri.parse('${AppConstant.baseUrl}${ApiEndpoint.detailRestaurant}$id');
+          Uri.parse('${AppConstant.baseUrl}${ApiEndpoint.detailRestaurant}/$id');
       final response = await _client.get(url);
       if (response.statusCode != 200) {
         throw ServerException(message: response.body);

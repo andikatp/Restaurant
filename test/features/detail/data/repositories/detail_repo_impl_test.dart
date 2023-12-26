@@ -2,45 +2,44 @@ import 'package:dartz/dartz.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/core/network_info/network_info.dart';
-import 'package:dicoding_final/features/dashboard/data/datasources/dashboard_remote_data_source.dart';
-import 'package:dicoding_final/features/dashboard/data/repositories/dashboard_repo_impl.dart';
-import 'package:dicoding_final/shared/models/restaurant_model.dart';
+import 'package:dicoding_final/features/detail/data/datasources/detail_remote_data_source.dart';
+import 'package:dicoding_final/features/detail/data/models/detail_restaurant_model.dart';
+import 'package:dicoding_final/features/detail/data/repositories/detail_repo_impl.dart';
+import 'package:dicoding_final/features/detail/domain/repositories/detail_repo.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockDashboardRemoteDatasource extends Mock
-    implements DashboardRemoteDataSource {}
+class MockDetailRemoteDataSource extends Mock
+    implements DetailRemoteDataSource {}
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
-  late DashboardRemoteDataSource mockRemote;
+  late DetailRepo repo;
+  late DetailRemoteDataSource mockRemote;
   late NetworkInfo mockNetworkInfo;
-  late DashboardRepoImpl repo;
 
   setUp(() {
-    mockRemote = MockDashboardRemoteDatasource();
+    mockRemote = MockDetailRemoteDataSource();
     mockNetworkInfo = MockNetworkInfo();
-    repo =
-        DashboardRepoImpl(networkInfo: mockNetworkInfo, dataSource: mockRemote);
+    repo = DetailRepoImpl(remote: mockRemote, network: mockNetworkInfo);
   });
+
+  const tId = '1';
+  const tRestaurant = DetailRestaurantModel.empty();
 
   test('Should check if the device is online', () async {
     // arrange
     when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-    when(mockRemote.getRestaurants)
-        .thenAnswer((_) async => <RestaurantModel>[]);
+    when(() => mockRemote.getDetailRestaurant(any()))
+        .thenAnswer((_) async => tRestaurant);
     // act
-    await repo.getRestaurants();
+    await repo.getDetailRestaurant(tId);
     // assert
     expect(true, await mockNetworkInfo.isConnected);
   });
 
   group('device is online', () {
-    const tListRestaurants = <RestaurantModel>[
-      RestaurantModel.empty(),
-      RestaurantModel.empty(),
-    ];
     const tException = ServerException(message: 'message');
 
     setUp(
@@ -51,16 +50,16 @@ void main() {
     test('Should return remote data when the call to remote data is successful',
         () async {
       // arrange
-      when(() => mockRemote.getRestaurants())
-          .thenAnswer((_) async => tListRestaurants);
+      when(() => mockRemote.getDetailRestaurant(any()))
+          .thenAnswer((_) async => tRestaurant);
       // act
-      final result = await repo.getRestaurants();
+      final result = await repo.getDetailRestaurant(tId);
       // assert
       expect(
         result,
-        equals(const Right<dynamic, List<RestaurantModel>>(tListRestaurants)),
+        equals(const Right<dynamic, DetailRestaurantModel>(tRestaurant)),
       );
-      verify(() => mockRemote.getRestaurants()).called(1);
+      verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
       verifyNoMoreInteractions(mockRemote);
     });
 
@@ -68,9 +67,9 @@ void main() {
         'Should return server failure data when the call to '
         'remote data is unsuccessful', () async {
       // arrange
-      when(() => mockRemote.getRestaurants()).thenThrow(tException);
+      when(() => mockRemote.getDetailRestaurant(any())).thenThrow(tException);
       // act
-      final result = await repo.getRestaurants();
+      final result = await repo.getDetailRestaurant(tId);
       // assert
       expect(
         result,
@@ -78,7 +77,7 @@ void main() {
           Left<Failure, dynamic>(ServerFailure.fromException(tException)),
         ),
       );
-      verify(() => mockRemote.getRestaurants()).called(1);
+      verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
       verifyNoMoreInteractions(mockRemote);
     });
   });

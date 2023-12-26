@@ -17,6 +17,8 @@ class DetailRestaurantModel extends DetailRestaurant {
     required super.rating,
     required super.customerReviews,
   });
+  
+  const DetailRestaurantModel.empty() : super.empty();
 
   factory DetailRestaurantModel.fromJson(ResultMap json) {
     return DetailRestaurantModel(
