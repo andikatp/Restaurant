@@ -1,3 +1,4 @@
+import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/core/res/routes.dart';
@@ -20,7 +21,7 @@ class AppBarWidget extends StatelessWidget {
     void goToSearchPage() => context.navigator.pushNamed(AppRoutes.searchPage);
 
     return SliverAppBar(
-      toolbarHeight: 80.h,
+      toolbarHeight: Sizes.p80,
       floating: true,
       title: TextField(
         controller: controller,
@@ -29,7 +30,7 @@ class AppBarWidget extends StatelessWidget {
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(15).r,
+            borderRadius: BorderRadius.circular(Sizes.p16).r,
           ),
           isDense: true,
           contentPadding: EdgeInsets.zero,
@@ -39,7 +40,7 @@ class AppBarWidget extends StatelessWidget {
           prefixIcon: Icon(
             Icons.search,
             color: Colours.secondaryGreyColor,
-            size: 25.sp,
+            size: Sizes.p24.sp,
           ),
           suffixIcon: const Icon(
             Icons.mic,
@@ -49,7 +50,7 @@ class AppBarWidget extends StatelessWidget {
       ),
       actions: [
         Padding(
-          padding: EdgeInsets.only(right: 10.w),
+          padding: REdgeInsets.only(right: Sizes.p12),
           child: const CircleAvatar(
             backgroundImage: AssetImage(assetImage),
           ),

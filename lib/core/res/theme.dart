@@ -13,5 +13,10 @@ class AppTheme {
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colours.primaryColor,
+      ),
+    ),
   );
 }

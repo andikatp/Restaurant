@@ -1,5 +1,7 @@
 import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
+import 'package:dicoding_final/core/commons/widgets/network_error_widget.dart';
 import 'package:dicoding_final/core/commons/widgets/restaurant_tile_widget.dart';
+import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:dicoding_final/features/dashboard/presentation/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +24,17 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     _controller = TextEditingController();
-    context.read<DashboardCubit>().getRestaurants();
+    fetchData();
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void fetchData() {
+    context.read<DashboardCubit>().getRestaurants();
   }
 
   @override
@@ -38,6 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
         child: BlocConsumer<DashboardCubit, DashboardState>(
           listener: (context, state) {
             if (state is DashboardError) {
+              ScaffoldMessenger.of(context).removeCurrentSnackBar();
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.message)));
             }
@@ -59,12 +66,12 @@ class _DashboardPageState extends State<DashboardPage> {
                       final restaurant = state.restaurants[index];
                       return RestaurantTile(restaurant: restaurant);
                     },
-                    separatorBuilder: (_, __) => SizedBox(height: 10.h),
+                    separatorBuilder: (_, __) => Gap.h8,
                   ),
                 ],
               );
             }
-            return const Placeholder();
+            return NetworkErrorWidget(onRetry: fetchData);
           },
         ),
       ),
