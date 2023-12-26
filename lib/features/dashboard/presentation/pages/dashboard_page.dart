@@ -2,7 +2,6 @@ import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
 import 'package:dicoding_final/core/commons/widgets/restaurant_tile_widget.dart';
 import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:dicoding_final/features/dashboard/presentation/widgets/appbar_widget.dart';
-import 'package:dicoding_final/features/restaurant/presentation/cubit/restaurant_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

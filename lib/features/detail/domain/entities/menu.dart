@@ -1,4 +1,4 @@
-import 'package:dicoding_final/features/restaurant/domain/entities/dish.dart';
+import 'package:dicoding_final/features/detail/domain/entities/category.dart';
 import 'package:equatable/equatable.dart';
 
 class Menu extends Equatable {
@@ -6,8 +6,9 @@ class Menu extends Equatable {
     required this.foods,
     required this.drinks,
   });
-  final List<Dish> foods;
-  final List<Dish> drinks;
+
+  final List<Category> foods;
+  final List<Category> drinks;
 
   @override
   List<Object?> get props => [foods, drinks];
