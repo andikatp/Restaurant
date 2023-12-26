@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
-import 'package:dicoding_final/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:dicoding_final/core/res/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Timer(
       duration,
       () => context.modalRoute!.navigator!
-          .pushReplacementNamed(DashboardPage.routeName),
+          .pushReplacementNamed(AppRoutes.dashboardPage),
     );
   }
 

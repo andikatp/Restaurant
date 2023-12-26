@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
+import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/features/detail/presentation/pages/detail_page.dart';
@@ -27,20 +28,24 @@ class RestaurantTile extends StatelessWidget {
       );
     }
 
+    void makeFavorite(Restaurant restaurant) {
+      // TODO(Saved): Create a save button
+    }
+
     return Material(
       color: Colors.white,
       child: InkWell(
         onTap: () => goToDetail(restaurant),
         child: Container(
-          padding: REdgeInsets.all(12).copyWith(left: 20),
+          padding: REdgeInsets.all(Sizes.p12).copyWith(left: Sizes.p20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Wrap(
-                spacing: 10.w,
+                spacing: Sizes.p12.w,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(12).r,
+                    borderRadius: BorderRadius.circular(Sizes.p12).r,
                     child: Hero(
                       tag: restaurant.pictureId,
                       child: CachedNetworkImage(
@@ -53,13 +58,13 @@ class RestaurantTile extends StatelessWidget {
                           ),
                         ),
                         errorWidget: (_, __, error) => const Icon(Icons.error),
-                        height: 100.h,
-                        width: 100.h,
+                        height: Sizes.p100.h,
+                        width: Sizes.p100.h,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 90.h,
+                    height: Sizes.p92.h,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +81,7 @@ class RestaurantTile extends StatelessWidget {
                             Icons.star,
                             color: Colours.primaryColor,
                           ),
-                          itemSize: 25.w,
+                          itemSize: Sizes.p24.w,
                         ),
                         Text(
                           restaurant.city,
@@ -90,12 +95,10 @@ class RestaurantTile extends StatelessWidget {
                 ],
               ),
               IconButton(
-                onPressed: () {
-                  // TODO(Saved): Create a save button
-                },
+                onPressed: () => makeFavorite(restaurant),
                 icon: Icon(
                   Icons.bookmark_border_outlined,
-                  size: 35.sp,
+                  size: Sizes.p36.sp,
                   color: Colours.primaryColor,
                 ),
               ),

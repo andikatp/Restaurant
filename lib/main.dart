@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   runApp(const MyApp());
@@ -18,20 +18,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<DashboardCubit>(),
-      child: ScreenUtilInit(
-        designSize: const Size(412, 732),
-        minTextAdapt: true,
-        builder: (_, child) => GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: MaterialApp(
-            title: 'Restaurant',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.currentTheme,
-            routes: AppRoutes.routes,
-            home: const SplashScreen(),
-          ),
+    return ScreenUtilInit(
+      designSize: const Size(412, 732),
+      minTextAdapt: true,
+      builder: (_, child) => GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: MaterialApp(
+          title: 'Restaurant',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.currentTheme,
+          routes: AppRoutes.routes,
+          home: const SplashScreen(),
         ),
       ),
     );

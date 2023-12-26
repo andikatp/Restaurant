@@ -1,3 +1,4 @@
+import 'package:dicoding_final/core/network_info/network_info.dart';
 import 'package:dicoding_final/features/dashboard/data/datasources/dashboard_remote_data_source.dart';
 import 'package:dicoding_final/features/dashboard/data/repositories/dashboard_repo_impl.dart';
 import 'package:dicoding_final/features/dashboard/domain/repositories/dashboard_repo.dart';
@@ -15,17 +16,21 @@ Future<void> init() async {
     ..registerFactory(
       () => DashboardCubit(getRestaurants: sl()),
     )
-    //use cases
+    // usecases
     ..registerLazySingleton(() => GetRestaurants(repo: sl()))
     // repos
     ..registerLazySingleton<DashboardRepo>(
       () => DashboardRepoImpl(dataSource: sl(), networkInfo: sl()),
     )
-    //data sources
+    // data sources
     ..registerLazySingleton<DashboardRemoteDataSource>(
       () => DashboardRemoteDataSourceImpl(client: sl()),
     )
-    // external = none
-    ..registerLazySingleton(() => http.Client.new)
-    ..registerLazySingleton(() => InternetConnection.new);
+    // core
+    ..registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(networkInfo: sl()),
+    )
+    // external
+    ..registerLazySingleton(http.Client.new)
+    ..registerLazySingleton(InternetConnection.new);
 }
