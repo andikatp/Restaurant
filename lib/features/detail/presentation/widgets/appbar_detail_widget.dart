@@ -23,7 +23,7 @@ class AppBarDetail extends StatelessWidget {
       ),
       expandedHeight: 300.h,
       leading: BackButton(
-        color: Colours.secondaryColor,
+        color: Colours.primaryColor,
         style: ButtonStyle(
           iconSize: MaterialStatePropertyAll(35.sp),
         ),
@@ -36,7 +36,7 @@ class AppBarDetail extends StatelessWidget {
           icon: Icon(
             Icons.bookmark_border,
             size: 35.sp,
-            color: Colours.secondaryColor,
+            color: Colours.primaryColor,
           ),
         ),
       ],
@@ -49,7 +49,7 @@ class AppBarDetail extends StatelessWidget {
             height: 330.h,
             placeholder: (_, __) => const Center(
               child: CupertinoActivityIndicator(
-                color: Colours.secondaryColor,
+                color: Colours.primaryColor,
               ),
             ),
             errorWidget: (_, __, error) => const Icon(Icons.error),

@@ -27,7 +27,7 @@ final class DashboardLoaded extends DashboardState {
 final class DashboardError extends DashboardState {
   const DashboardError({required this.message});
   final String message;
-  
+
   @override
   List<Object> get props => [message];
 }

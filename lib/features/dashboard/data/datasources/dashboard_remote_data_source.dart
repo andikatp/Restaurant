@@ -14,7 +14,7 @@ abstract class DashboardRemoteDataSource {
   /// Calls the https://restaurant-api.dicoding.dev/list endpoint.
   ///
   /// Throw a [ServerException] for all the error codes.
-  Future<List<RestaurantModel>> getRestaurant();
+  Future<List<RestaurantModel>> getRestaurants();
 }
 
 class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
@@ -23,13 +23,13 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
   final http.Client _client;
 
   @override
-  Future<List<RestaurantModel>> getRestaurant() async {
+  Future<List<RestaurantModel>> getRestaurants() async {
     try {
       final url =
           Uri.parse('${AppConstant.baseUrl}${ApiEndpoint.allRestaurants}');
       final response = await _client.get(url);
 
-      if (response.statusCode != 200) {
+      if (response.statusCode != AppConstant.successfulHttpStatusCode) {
         throw ServerException(message: response.body);
       }
 

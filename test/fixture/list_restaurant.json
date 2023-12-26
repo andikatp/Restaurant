@@ -1,4 +1,7 @@
 {
+  "error": false,
+  "message": "",
+  "count": 1,
   "restaurants": [
     {
       "id": "",
@@ -6,19 +9,7 @@
       "description": "",
       "pictureId": "",
       "city": "",
-      "rating": 1.1,
-      "menus": {
-        "foods": [
-          {
-            "name": ""
-          }
-        ],
-        "drinks": [
-          {
-            "name": ""
-          }
-        ]
-      }
+      "rating": 1.0
     }
   ]
 }

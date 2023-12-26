@@ -29,7 +29,7 @@ class DetailWidget extends StatelessWidget {
               rating: restaurant.rating,
               itemBuilder: (context, index) => const Icon(
                 Icons.star,
-                color: Colours.secondaryColor,
+                color: Colours.primaryColor,
               ),
               itemSize: 25.w,
             ),

@@ -1,19 +1,45 @@
 {
-  "id": "",
-  "name": "",
-  "description": "",
-  "pictureId": "",
-  "city": "",
-  "rating": 1.1,
-  "menus": {
-    "foods": [
+  "error": false,
+  "message": "",
+  "restaurant": {
+    "id": "",
+    "name": " Pot",
+    "description": "",
+    "city": "",
+    "address": "",
+    "pictureId": "",
+    "categories": [
+      {
+        "name": ""
+      },
       {
         "name": ""
       }
     ],
-    "drinks": [
+    "menus": {
+      "foods": [
+        {
+          "name": ""
+        },
+        {
+          "name": ""
+        }
+      ],
+      "drinks": [
+        {
+          "name": ""
+        },
+        {
+          "name": ""
+        }
+      ]
+    },
+    "rating": 1.0,
+    "customerReviews": [
       {
-        "name": ""
+        "name": "",
+        "review": "",
+        "date": ""
       }
     ]
   }

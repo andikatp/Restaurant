@@ -10,7 +10,7 @@ import 'package:dicoding_final/shared/models/restaurant_model.dart';
 
 class DashboardRepoImpl implements DashboardRepo {
   const DashboardRepoImpl({
-    required NetworkInfoImpl networkInfo,
+    required NetworkInfo networkInfo,
     required DashboardRemoteDataSource dataSource,
   })  : _remote = dataSource,
         _networkInfo = networkInfo;
@@ -21,13 +21,13 @@ class DashboardRepoImpl implements DashboardRepo {
   @override
   ResultFuture<List<RestaurantModel>> getRestaurants() async {
     try {
-      if (!await _networkInfo.isConnected) {
-        return const Left(
-          ServerFailure(message: AppConstant.noInternetConnection),
-        );
+      if (await _networkInfo.isConnected) {
+        final result = await _remote.getRestaurants();
+        return Right(result);
       }
-      final result = await _remote.getRestaurant();
-      return Right(result);
+      return const Left(
+        ServerFailure(message: AppConstant.noInternetConnection),
+      );
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));
     }
