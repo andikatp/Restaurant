@@ -1,11 +1,11 @@
 import 'package:dicoding_final/features/restaurant/data/models/dish_model.dart';
 import 'package:dicoding_final/features/restaurant/domain/entities/menu.dart';
 
-class MenuModel extends Menus {
+class MenuModel extends Menu {
   const MenuModel({
-    required List<DishModel> foods,
-    required List<DishModel> drinks,
-  }) : super(foods: foods, drinks: drinks);
+    required super.foods,
+    required super.drinks,
+  });
 
   factory MenuModel.fromJson(Map<String, dynamic> json) {
     return MenuModel(
@@ -18,8 +18,10 @@ class MenuModel extends Menus {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'foods': foods.map((food) => (food as DishModel).toJson()).toList(),
-        'drinks': drinks.map((drink) => (drink as DishModel).toJson()).toList(),
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'foods': foods.map((food) => (food as DishModel).toJson()).toList(),
+      'drinks': drinks.map((drink) => (drink as DishModel).toJson()).toList(),
+    };
+  }
 }

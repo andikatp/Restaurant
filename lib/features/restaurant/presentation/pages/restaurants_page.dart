@@ -58,7 +58,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                   if (state.restaurants.isEmpty) const SearchEmpty(),
                   SliverList.separated(
                     itemCount: state.restaurants.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (_, index) {
                       final restaurant = state.restaurants[index];
                       return RestaurantTile(restaurant: restaurant);
                     },
