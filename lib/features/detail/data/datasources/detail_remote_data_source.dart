@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/utils/typedef.dart';
-import 'package:dicoding_final/features/dashboard/data/models/restaurant_model.dart';
-import 'package:dicoding_final/features/dashboard/domain/entities/restaurant.dart';
+import 'package:dicoding_final/features/detail/data/models/detail_restaurant_model.dart';
 import 'package:http/http.dart' as http;
 
 abstract class DetailRemoteDataSource {
   const DetailRemoteDataSource();
 
-  Future<Restaurant> getDetailRestaurant(String id);
+  Future<DetailRestaurantModel> getDetailRestaurant(String id);
 }
 
 class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
@@ -17,7 +16,7 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
   final http.Client _client;
 
   @override
-  Future<Restaurant> getDetailRestaurant(String id) async {
+  Future<DetailRestaurantModel> getDetailRestaurant(String id) async {
     final response = await _client
         .get(Uri.parse('https://restaurant-api.dicoding.dev/detail/$id'));
     if (response.statusCode != 200) {
@@ -28,6 +27,6 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
     if (decode['error'] == true) {
       throw ServerException(message: decode['message'] as String);
     }
-    return RestaurantModel.fromJson(decode['restaurant'] as ResultMap);
+    return DetailRestaurantModel.fromJson(decode['restaurant'] as ResultMap);
   }
 }
