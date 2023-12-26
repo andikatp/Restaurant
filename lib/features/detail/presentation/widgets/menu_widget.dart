@@ -41,7 +41,7 @@ class MenuWidget extends StatelessWidget {
                       .copyWith(color: Colors.white),
                 ),
                 color: MaterialStatePropertyAll(
-                  Colours.secondaryColor.withOpacity(0.95),
+                  Colours.primaryColor.withOpacity(0.95),
                 ),
               ),
               separatorBuilder: (_, __) => SizedBox(width: 10.w),
@@ -70,7 +70,7 @@ class MenuWidget extends StatelessWidget {
                       .copyWith(color: Colors.white),
                 ),
                 color: MaterialStatePropertyAll(
-                  Colours.secondaryColor.withOpacity(0.95),
+                  Colours.primaryColor.withOpacity(0.95),
                 ),
               ),
               separatorBuilder: (_, __) => SizedBox(width: 10.w),

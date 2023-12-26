@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/features/detail/presentation/pages/detail_page.dart';
@@ -22,9 +23,10 @@ class RestaurantTile extends StatelessWidget {
       context.focusScope.unfocus();
       context.navigator.pushNamed(
         DetailPage.routeName,
-        arguments: restaurant,
+        arguments: restaurant.id,
       );
     }
+
     return Material(
       color: Colors.white,
       child: InkWell(
@@ -42,11 +44,12 @@ class RestaurantTile extends StatelessWidget {
                     child: Hero(
                       tag: restaurant.pictureId,
                       child: CachedNetworkImage(
-                        imageUrl: 'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
+                        imageUrl:
+                            '${AppConstant.imageUrl}${restaurant.pictureId}',
                         fit: BoxFit.cover,
                         placeholder: (_, __) => const Center(
                           child: CupertinoActivityIndicator(
-                            color: Colours.secondaryColor,
+                            color: Colours.primaryColor,
                           ),
                         ),
                         errorWidget: (_, __, error) => const Icon(Icons.error),
@@ -71,7 +74,7 @@ class RestaurantTile extends StatelessWidget {
                           rating: restaurant.rating,
                           itemBuilder: (_, __) => const Icon(
                             Icons.star,
-                            color: Colours.secondaryColor,
+                            color: Colours.primaryColor,
                           ),
                           itemSize: 25.w,
                         ),
@@ -93,7 +96,7 @@ class RestaurantTile extends StatelessWidget {
                 icon: Icon(
                   Icons.bookmark_border_outlined,
                   size: 35.sp,
-                  color: Colours.secondaryColor,
+                  color: Colours.primaryColor,
                 ),
               ),
             ],

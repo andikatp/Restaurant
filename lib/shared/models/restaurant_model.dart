@@ -11,15 +11,7 @@ class RestaurantModel extends Restaurant {
     required super.rating,
   });
 
-  const RestaurantModel.empty()
-      : this(
-          id: '',
-          name: '',
-          description: '',
-          pictureId: '',
-          city: '',
-          rating: 1.1,
-        );
+  const RestaurantModel.empty() : super.empty();
 
   factory RestaurantModel.fromJson(ResultMap map) {
     return RestaurantModel(

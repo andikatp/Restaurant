@@ -1,4 +1,6 @@
+import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
+import 'package:dicoding_final/core/res/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,12 +17,15 @@ class AppBarWidget extends StatelessWidget {
     const assetImage = 'assets/logo/german.png';
     const hintText = 'Search';
 
+    void goToSearchPage() => context.navigator.pushNamed(AppRoutes.searchPage);
+
     return SliverAppBar(
       toolbarHeight: 80.h,
       floating: true,
       title: TextField(
         controller: controller,
-        onChanged: (e) {},
+        readOnly: true,
+        onTap: goToSearchPage,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide.none,

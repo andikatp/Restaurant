@@ -10,7 +10,6 @@ class CacheException extends Equatable implements Exception {
 
 class ServerException extends Equatable implements Exception {
   const ServerException({required this.message});
-
   final String message;
 
   @override
