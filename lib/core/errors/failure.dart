@@ -16,3 +16,10 @@ class CacheFailure extends Failure {
   CacheFailure.fromException(CacheException exception)
       : this(message: exception.message);
 }
+
+class ServerFailure extends Failure {
+  const ServerFailure({required super.message});
+
+  ServerFailure.fromException(ServerException exception)
+      : this(message: exception.message);
+}
