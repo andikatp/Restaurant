@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/utils/typedef.dart';
-import 'package:dicoding_final/features/dashboard/data/models/restaurant_model.dart';
+import 'package:dicoding_final/shared/models/restaurant_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

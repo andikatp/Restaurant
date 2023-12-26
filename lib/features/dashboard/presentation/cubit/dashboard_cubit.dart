@@ -1,4 +1,4 @@
-import 'package:dicoding_final/features/dashboard/domain/entities/restaurant.dart';
+import 'package:dicoding_final/shared/entities/restaurant.dart';
 import 'package:dicoding_final/features/dashboard/domain/usecases/get_restaurants.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

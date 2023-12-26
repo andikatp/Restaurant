@@ -21,6 +21,7 @@ dependencies:
   flutter_svg: ^2.0.9
   get_it: ^7.6.4
   http: ^1.1.2
+  internet_connection_checker_plus: ^2.1.0
   lottie: ^2.7.0
   mocktail: ^1.0.2
   very_good_analysis: ^5.1.0
