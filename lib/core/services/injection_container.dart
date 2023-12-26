@@ -5,6 +5,7 @@ import 'package:dicoding_final/features/dashboard/domain/usecases/get_restaurant
 import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 final sl = GetIt.instance;
 
@@ -18,12 +19,13 @@ Future<void> init() async {
     ..registerLazySingleton(() => GetRestaurants(repo: sl()))
     // repos
     ..registerLazySingleton<DashboardRepo>(
-      () => DashboardRepoImpl(dataSource: sl()),
+      () => DashboardRepoImpl(dataSource: sl(), networkInfo: sl()),
     )
     //data sources
     ..registerLazySingleton<DashboardRemoteDataSource>(
       () => DashboardRemoteDataSourceImpl(client: sl()),
     )
     // external = none
-    ..registerLazySingleton(http.Client.new);
+    ..registerLazySingleton(() => http.Client.new)
+    ..registerLazySingleton(() => InternetConnection.new);
 }
