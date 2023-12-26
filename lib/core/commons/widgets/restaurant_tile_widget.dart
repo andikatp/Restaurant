@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
-import 'package:dicoding_final/features/dashboard/domain/entities/restaurant.dart';
+import 'package:dicoding_final/shared/entities/restaurant.dart';
 import 'package:dicoding_final/features/restaurant/presentation/pages/detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

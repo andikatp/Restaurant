@@ -1,9 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class Dish extends Equatable {
-  const Dish({
-    required this.name,
-  });
+class Category extends Equatable {
+  const Category({required this.name});
   final String name;
 
   @override
