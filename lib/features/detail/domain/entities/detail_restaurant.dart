@@ -19,6 +19,25 @@ class DetailRestaurant extends Equatable {
     required this.customerReviews,
   });
 
+  const DetailRestaurant.empty()
+      : this(
+          id: '',
+          name: '',
+          description: '',
+          city: '',
+          address: '',
+          pictureId: '',
+          categories: const [Category(name: '')],
+          menu: const Menu(
+            foods: [Category(name: '')],
+            drinks: [Category(name: '')],
+          ),
+          rating: 1,
+          customerReviews: const [
+            CustomerReview(name: '', review: '', date: ''),
+          ],
+        );
+
   final String id;
   final String name;
   final String description;

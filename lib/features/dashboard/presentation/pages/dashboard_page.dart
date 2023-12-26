@@ -6,7 +6,6 @@ import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_c
 import 'package:dicoding_final/features/dashboard/presentation/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

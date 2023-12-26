@@ -11,8 +11,8 @@ import 'package:dicoding_final/features/detail/domain/repositories/detail_repo.d
 
 class DetailRepoImpl implements DetailRepo {
   DetailRepoImpl({
-    required DetailRemoteDataSourceImpl remote,
-    required NetworkInfoImpl network,
+    required DetailRemoteDataSource remote,
+    required NetworkInfo network,
   })  : _remote = remote,
         _network = network;
 
