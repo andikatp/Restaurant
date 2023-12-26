@@ -24,7 +24,7 @@ class DetailRepoImpl implements DetailRepo {
     try {
       if (!await _network.isConnected) {
         return const Left(
-          ServerFailure(message: 'Please Check Your Connection'),
+          ServerFailure(message: 'Please check your connection'),
         );
       }
       final result = await _remote.getDetailRestaurant(id);

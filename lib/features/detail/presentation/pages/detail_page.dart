@@ -31,7 +31,7 @@ class _DetailPageState extends State<DetailPage> {
         slivers: [
           AppBarDetail(restaurant: restaurant),
           DetailWidget(restaurant: restaurant),
-          MenuWidget(restaurant: restaurant),
+          // MenuWidget(restaurant: restaurant),
         ],
       ),
     );
