@@ -1,26 +1,29 @@
+import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
+import 'package:dicoding_final/core/commons/widgets/restaurant_tile_widget.dart';
+import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_cubit.dart';
+import 'package:dicoding_final/features/dashboard/presentation/widgets/appbar_widget.dart';
 import 'package:dicoding_final/features/restaurant/presentation/cubit/restaurant_cubit.dart';
-import 'package:dicoding_final/features/restaurant/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RestaurantPage extends StatefulWidget {
-  const RestaurantPage({super.key});
+class DashboardPage extends StatefulWidget {
+  const DashboardPage({super.key});
 
-  static const routeName = 'home';
+  static const routeName = 'dashboard';
 
   @override
-  State<RestaurantPage> createState() => _RestaurantPageState();
+  State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _RestaurantPageState extends State<RestaurantPage> {
+class _DashboardPageState extends State<DashboardPage> {
   late TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController();
-    context.read<RestaurantCubit>().getRestaurants();
+    context.read<DashboardCubit>().getRestaurants();
   }
 
   @override
@@ -29,33 +32,28 @@ class _RestaurantPageState extends State<RestaurantPage> {
     super.dispose();
   }
 
-  void search(String restaurant) =>
-      context.read<RestaurantCubit>().searchRestaurants(restaurant);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocConsumer<RestaurantCubit, RestaurantState>(
+        child: BlocConsumer<DashboardCubit, DashboardState>(
           listener: (context, state) {
-            if (state is RestaurantError) {
+            if (state is DashboardError) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.message)));
             }
           },
           builder: (context, state) {
-            if (state is RestaurantLoading) {
+            if (state is DashboardLoading) {
               return const LoadingWidget();
             }
-            if (state is RestaurantLoaded) {
+            if (state is DashboardLoaded) {
               return CustomScrollView(
                 physics: const BouncingScrollPhysics(),
                 slivers: [
                   AppBarWidget(
                     controller: _controller,
-                    search: search,
                   ),
-                  if (state.restaurants.isEmpty) const SearchEmpty(),
                   SliverList.separated(
                     itemCount: state.restaurants.length,
                     itemBuilder: (_, index) {

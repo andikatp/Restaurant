@@ -17,7 +17,7 @@ void main() {
   });
 
   final tListRestaurants = [const Restaurant.empty(), const Restaurant.empty()];
-  const tFailure = CacheFailure(message: 'message');
+  const tFailure = ServerFailure(message: 'message');
 
   test('Should call [RestaurantRepo] when call [GetRestaurant] usecase',
       () async {

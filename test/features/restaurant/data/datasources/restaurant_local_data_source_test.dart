@@ -1,8 +1,10 @@
 import 'package:dicoding_final/features/restaurant/data/datasources/restaurant_local_data_source.dart';
 import 'package:dicoding_final/features/restaurant/data/models/restaurant_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   late RestaurantLocalDataSource localData;
 
   setUp(() => localData = RestaurantLocalDataSourceImpl());

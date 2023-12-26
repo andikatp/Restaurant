@@ -36,7 +36,7 @@ class MenuWidget extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Chip(
                 label: Text(
-                  restaurant.menus.foods[index].name,
+                  restaurant.menu.foods[index].name,
                   style: context.theme.textTheme.bodyMedium!
                       .copyWith(color: Colors.white),
                 ),
@@ -45,7 +45,7 @@ class MenuWidget extends StatelessWidget {
                 ),
               ),
               separatorBuilder: (_, __) => SizedBox(width: 10.w),
-              itemCount: restaurant.menus.foods.length,
+              itemCount: restaurant.menu.foods.length,
             ),
           ),
           SizedBox(height: 10.h),
@@ -65,7 +65,7 @@ class MenuWidget extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Chip(
                 label: Text(
-                  restaurant.menus.drinks[index].name,
+                  restaurant.menu.drinks[index].name,
                   style: context.theme.textTheme.bodyMedium!
                       .copyWith(color: Colors.white),
                 ),
@@ -74,7 +74,7 @@ class MenuWidget extends StatelessWidget {
                 ),
               ),
               separatorBuilder: (_, __) => SizedBox(width: 10.w),
-              itemCount: restaurant.menus.drinks.length,
+              itemCount: restaurant.menu.drinks.length,
             ),
           ),
           SizedBox(height: 20.h),

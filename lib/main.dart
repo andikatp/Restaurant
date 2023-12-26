@@ -2,6 +2,7 @@ import 'package:dicoding_final/core/commons/pages/splash_screen.dart';
 import 'package:dicoding_final/core/res/routes.dart';
 import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
+import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:dicoding_final/features/restaurant/presentation/cubit/restaurant_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<RestaurantCubit>(),
+      create: (context) => sl<DashboardCubit>(),
       child: ScreenUtilInit(
         designSize: const Size(412, 732),
         minTextAdapt: true,

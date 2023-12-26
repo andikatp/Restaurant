@@ -10,8 +10,8 @@ class RestaurantModel extends Restaurant {
     required super.pictureId,
     required super.city,
     required super.rating,
-    required MenuModel menus,
-  }) : super(menus: menus);
+    required super.menu,
+  });
   const RestaurantModel.empty()
       : this(
           id: '',
@@ -20,7 +20,7 @@ class RestaurantModel extends Restaurant {
           pictureId: '',
           city: '',
           rating: 1.1,
-          menus: const MenuModel(
+          menu: const MenuModel(
             foods: [DishModel(name: '')],
             drinks: [DishModel(name: '')],
           ),
@@ -34,7 +34,7 @@ class RestaurantModel extends Restaurant {
         pictureId: json['pictureId'] as String,
         city: json['city'] as String,
         rating: (json['rating'] as num).toDouble(),
-        menus: MenuModel.fromJson(json['menus'] as Map<String, dynamic>),
+        menu: MenuModel.fromJson(json['menus'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,6 +44,6 @@ class RestaurantModel extends Restaurant {
         'pictureId': pictureId,
         'city': city,
         'rating': rating,
-        'menus': (menus as MenuModel).toJson(),
+        'menus': (menu as MenuModel).toJson(),
       };
 }

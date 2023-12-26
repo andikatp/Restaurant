@@ -1,8 +1,8 @@
 import 'package:dicoding_final/features/restaurant/domain/entities/dish.dart';
 import 'package:equatable/equatable.dart';
 
-class Menus extends Equatable {
-  const Menus({
+class Menu extends Equatable {
+  const Menu({
     required this.foods,
     required this.drinks,
   });
