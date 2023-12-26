@@ -1,6 +1,6 @@
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
-import 'package:dicoding_final/features/restaurant/domain/entities/restaurant.dart';
+import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +10,7 @@ class MenuWidget extends StatelessWidget {
     super.key,
   });
 
-  final Restaurant restaurant;
+  final DetailRestaurant restaurant;
 
   @override
   Widget build(BuildContext context) {

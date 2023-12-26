@@ -3,7 +3,7 @@ import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/core/utils/typedef.dart';
 import 'package:dicoding_final/features/dashboard/data/datasources/dashboard_remote_data_source.dart';
-import 'package:dicoding_final/features/dashboard/data/models/restaurant_model.dart';
+import 'package:dicoding_final/shared/models/restaurant_model.dart';
 import 'package:dicoding_final/features/dashboard/domain/repositories/dashboard_repo.dart';
 
 class DashboardRepoImpl implements DashboardRepo {
