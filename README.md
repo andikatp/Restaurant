@@ -1,6 +1,6 @@
 # 🏨 Restaurant Dicoding
 
-A project created only for Dicoding submission
+A project created only for Dicoding submission</br>
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
 ## 🎉 Features App
