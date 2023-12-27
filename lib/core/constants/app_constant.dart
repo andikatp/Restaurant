@@ -23,4 +23,5 @@ class AppConstant {
   // others
   static const String hintText = 'Search...';
   static const String searchText = 'Start Searching Here..';
+  static const String addCommentText = 'Add Comment';
 }

@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 
 import 'package:dicoding_final/core/errors/exception.dart';
@@ -27,6 +26,19 @@ class DetailRepoImpl implements DetailRepo {
       }
       final result = await _remote.getDetailRestaurant(id);
       return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
+    }
+  }
+
+  @override
+  ResultFuture<void> reviewRestaurant(String id, String review) async {
+    try {
+      if (!await _network.isConnected) {
+        return const Left(InternetFailure());
+      }
+      await _remote.reviewRestaurant(id, review);
+      return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));
     }

@@ -1,12 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
+import 'package:dicoding_final/features/detail/presentation/widgets/modal_review_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 class DetailWidget extends StatelessWidget {
   const DetailWidget({
@@ -18,121 +16,39 @@ class DetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = TextEditingController();
     const buttonText = 'See Review';
 
-    void showReview() {
-      showModalBottomSheet<Widget>(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) => Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Container(
-            width: double.infinity,
-            height: Sizes.p400,
-            padding: REdgeInsets.all(Sizes.p20),
-            child: Column(
-              children: [
-                Container(
-                  height: Sizes.p8,
-                  width: Sizes.p24,
-                  decoration: const BoxDecoration(
-                    color: Colours.secondaryGreyColor,
-                    borderRadius: BorderRadius.all(Radius.circular(Sizes.p16)),
-                  ),
-                ),
-                Gap.h12,
-                ShaderMask(
-                  shaderCallback: (bounds) => const LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [Colors.transparent, Colors.white],
-                    stops: [0.0, 0.05],
-                  ).createShader(bounds),
-                  child: SizedBox(
-                    height: Sizes.p280,
-                    child: ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) => Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const CircleAvatar(
-                            backgroundImage: AssetImage(
-                              AppConstant.userImagePath,
-                            ),
-                            radius: Sizes.p24,
-                          ),
-                          Gap.w16,
-                          Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  restaurant.customerReviews[index].name,
-                                  style: context.theme.textTheme.labelLarge,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  restaurant.customerReviews[index].review,
-                                  style: context.theme.textTheme.labelMedium,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  restaurant.customerReviews[index].date,
-                                  style: context.theme.textTheme.labelSmall!
-                                      .copyWith(
-                                    color: Colours.secondaryGreyColor,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      separatorBuilder: (context, index) => Gap.h12,
-                      itemCount: restaurant.customerReviews.length,
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                TextField(
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.all(Radius.circular(Sizes.p20)),
-                    ),
-                    hintText: 'Add Comment',
-                    contentPadding: REdgeInsets.all(Sizes.p12),
-                    isDense: true,
-                    suffixIcon: Transform.rotate(
-                      angle: 3.14 / 2,
-                      child: const Icon(
-                        Icons.arrow_circle_left,
-                        size: Sizes.p32,
-                        color: Colours.primaryColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-              // Container(
-              //   child: Row(
-              //     children: [
-
-              //
-
-              //       ),
-              //     ],
-              //   ),
-              // ),
-            ),
+    void createReview(BuildContext currentContext) {
+      if (controller.text.isEmpty) {
+        showDialog<void>(
+          context: currentContext,
+          builder: (ctx) => AlertDialog(
+            title: const Text('Review Required'),
+            content: const Text('Please enter a review before submitting.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
           ),
-        ),
+        );
+      } else {
+        controller.clear();
+        FocusManager.instance.primaryFocus?.unfocus();
+        Navigator.pop(currentContext);
+      }
+    }
+
+    void showReview() {
+      modalReviewWidget(
+        context: context,
+        restaurant: restaurant,
+        controller: controller,
+        addReview: createReview,
       );
     }
 
@@ -147,10 +63,10 @@ class DetailWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.location_on,
                   color: Colours.primaryColor,
-                  size: Sizes.p24,
+                  size: Sizes.p24.sp,
                 ),
                 Gap.w8,
                 Text(
@@ -171,10 +87,10 @@ class DetailWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.star,
                   color: Colours.primaryColor,
-                  size: Sizes.p24,
+                  size: Sizes.p24.sp,
                 ),
                 Gap.w8,
                 Text(

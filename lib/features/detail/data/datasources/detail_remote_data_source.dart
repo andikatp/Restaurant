@@ -12,6 +12,7 @@ abstract class DetailRemoteDataSource {
   const DetailRemoteDataSource();
 
   Future<DetailRestaurantModel> getDetailRestaurant(String id);
+  Future<void> reviewRestaurant(String id, String review);
 }
 
 class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
@@ -21,8 +22,9 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
   @override
   Future<DetailRestaurantModel> getDetailRestaurant(String id) async {
     try {
-      final url =
-          Uri.parse('${AppConstant.baseUrl}${ApiEndpoint.detailRestaurant}/$id');
+      final url = Uri.parse(
+        '${AppConstant.baseUrl}${ApiEndpoint.detailRestaurant}/$id',
+      );
       final response = await _client.get(url);
 
       if (response.statusCode != 200) {
@@ -33,8 +35,32 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
       if (decode['error'] == true) {
         throw ServerException(message: decode['message'] as String);
       }
-      
+
       return DetailRestaurantModel.fromJson(decode['restaurant'] as ResultMap);
+    } catch (e, s) {
+      debugPrintStack(stackTrace: s);
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> reviewRestaurant(String id, String review) async {
+    try {
+      final url = Uri.parse(AppConstant.baseUrl + ApiEndpoint.postReview);
+      final response = await http.post(
+        url,
+        body: {'id': id, 'name': 'New User', 'review': review},
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode != 200) {
+        throw ServerException(message: response.body);
+      }
+
+      final decode = jsonDecode(response.body) as ResultMap;
+      if (decode['error'] == true) {
+        throw ServerException(message: decode['message'] as String);
+      }
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
       throw ServerException(message: e.toString());
