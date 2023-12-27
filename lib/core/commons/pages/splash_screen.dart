@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/core/res/routes.dart';
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const assetPath = 'assets/logo/logo.svg';
+  
 
     return Scaffold(
       backgroundColor: Colours.backgroundColor,
@@ -40,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              assetPath,
+              AppConstant.logoPath,
               height: 80.h,
             ),
           ],

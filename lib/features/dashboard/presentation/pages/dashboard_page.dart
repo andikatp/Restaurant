@@ -17,19 +17,10 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  late TextEditingController _controller;
-
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
     fetchData();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   void fetchData() {
@@ -56,9 +47,7 @@ class _DashboardPageState extends State<DashboardPage> {
               return CustomScrollView(
                 physics: const BouncingScrollPhysics(),
                 slivers: [
-                  AppBarWidget(
-                    controller: _controller,
-                  ),
+                  const AppBarWidget(),
                   SliverList.separated(
                     itemCount: state.restaurants.length,
                     itemBuilder: (_, index) {
