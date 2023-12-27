@@ -29,7 +29,7 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
           Uri.parse('${AppConstant.baseUrl}${ApiEndpoint.allRestaurants}');
       final response = await _client.get(url);
 
-      if (response.statusCode != AppConstant.successfulHttpStatusCode) {
+      if (response.statusCode != AppConstant.successfulHttpGetStatusCode) {
         throw ServerException(message: response.body);
       }
 

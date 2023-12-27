@@ -3,7 +3,8 @@ class AppConstant {
 
   //network stuff
   static const String baseUrl = 'https://restaurant-api.dicoding.dev';
-  static const int successfulHttpStatusCode = 200;
+  static const int successfulHttpGetStatusCode = 200;
+  static const int successfulHttpPostStatusCode = 201;
 
   // assets
   static const String imageUrl =

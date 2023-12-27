@@ -27,7 +27,7 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
       );
       final response = await _client.get(url);
 
-      if (response.statusCode != 200) {
+      if (response.statusCode != AppConstant.successfulHttpGetStatusCode) {
         throw ServerException(message: response.body);
       }
 
@@ -53,7 +53,7 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
         headers: {'Content-Type': 'application/json'},
       );
 
-      if (response.statusCode != 201) {
+      if (response.statusCode != AppConstant.successfulHttpPostStatusCode) {
         throw ServerException(message: response.body);
       }
 

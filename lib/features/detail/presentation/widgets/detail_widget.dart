@@ -20,20 +20,24 @@ class DetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = TextEditingController();
     const buttonText = 'See Review';
+    const noTextDialogTitle = 'Review Required';
+    const noTextDialogContent = 'Please enter a review before submitting.';
+    const reviewAddedMessage = 'Review has been added!';
+    const ok = 'Ok';
 
     void createReview(BuildContext currentContext) {
       if (controller.text.isEmpty) {
         showDialog<void>(
           context: currentContext,
           builder: (ctx) => AlertDialog(
-            title: const Text('Review Required'),
-            content: const Text('Please enter a review before submitting.'),
+            title: const Text(noTextDialogTitle),
+            content: const Text(noTextDialogContent),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
                 },
-                child: const Text('OK'),
+                child: const Text(ok),
               ),
             ],
           ),
@@ -44,7 +48,7 @@ class DetailWidget extends StatelessWidget {
         Navigator.pop(currentContext);
         currentContext.messenger.showSnackBar(
           const SnackBar(
-            content: Text('Review has been added!'),
+            content: Text(reviewAddedMessage),
             duration: Duration(seconds: 1),
           ),
         );

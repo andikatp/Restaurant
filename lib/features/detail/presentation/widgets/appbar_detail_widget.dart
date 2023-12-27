@@ -49,8 +49,8 @@ class AppBarDetail extends StatelessWidget {
           tag: restaurant.pictureId,
           child: ClipRRect(
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(Sizes.p28.r),
-              bottomRight: Radius.circular(Sizes.p28.r),
+              bottomLeft: const Radius.circular(Sizes.p28).r,
+              bottomRight: const Radius.circular(Sizes.p28).r,
             ),
             child: CachedNetworkImage(
               imageUrl: AppConstant.imageUrl + restaurant.pictureId,
