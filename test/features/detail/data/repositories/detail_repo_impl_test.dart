@@ -6,6 +6,7 @@ import 'package:dicoding_final/features/detail/data/datasources/detail_remote_da
 import 'package:dicoding_final/features/detail/data/models/detail_restaurant_model.dart';
 import 'package:dicoding_final/features/detail/data/repositories/detail_repo_impl.dart';
 import 'package:dicoding_final/features/detail/domain/repositories/detail_repo.dart';
+import 'package:dicoding_final/features/detail/domain/usecases/review_restaurant.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -47,38 +48,83 @@ void main() {
           when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true),
     );
 
-    test('Should return remote data when the call to remote data is successful',
-        () async {
-      // arrange
-      when(() => mockRemote.getDetailRestaurant(any()))
-          .thenAnswer((_) async => tRestaurant);
-      // act
-      final result = await repo.getDetailRestaurant(tId);
-      // assert
-      expect(
-        result,
-        equals(const Right<dynamic, DetailRestaurantModel>(tRestaurant)),
-      );
-      verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
-      verifyNoMoreInteractions(mockRemote);
-    });
+    group('GetDetail', () {
+      test(
+          'Should return remote data when the call to '
+          'remote data is successful', () async {
+        // arrange
+        when(() => mockRemote.getDetailRestaurant(any()))
+            .thenAnswer((_) async => tRestaurant);
+        // act
+        final result = await repo.getDetailRestaurant(tId);
+        // assert
+        expect(
+          result,
+          equals(const Right<dynamic, DetailRestaurantModel>(tRestaurant)),
+        );
+        verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
+        verifyNoMoreInteractions(mockRemote);
+      });
 
-    test(
-        'Should return server failure data when the call to '
-        'remote data is unsuccessful', () async {
-      // arrange
-      when(() => mockRemote.getDetailRestaurant(any())).thenThrow(tException);
-      // act
-      final result = await repo.getDetailRestaurant(tId);
-      // assert
-      expect(
-        result,
-        equals(
-          Left<Failure, dynamic>(ServerFailure.fromException(tException)),
-        ),
-      );
-      verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
-      verifyNoMoreInteractions(mockRemote);
+      test(
+          'Should return server failure data when the call to '
+          'remote data is unsuccessful', () async {
+        // arrange
+        when(() => mockRemote.getDetailRestaurant(any())).thenThrow(tException);
+        // act
+        final result = await repo.getDetailRestaurant(tId);
+        // assert
+        expect(
+          result,
+          equals(
+            Left<Failure, dynamic>(ServerFailure.fromException(tException)),
+          ),
+        );
+        verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
+        verifyNoMoreInteractions(mockRemote);
+      });
+
+      group('addReview', () {
+        const tParams = ReviewParams(id: 'id', review: 'review');
+        test(
+            'Should return remote data when the call to '
+            'remote data is successful', () async {
+          // arrange
+          when(() => mockRemote.reviewRestaurant(any(), any()))
+              .thenAnswer((_) async => Future.value());
+          // act
+          final result =
+              await repo.reviewRestaurant(tParams.id, tParams.review);
+          // assert
+          expect(
+            result,
+            equals(const Right<dynamic, void>(null)),
+          );
+          verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
+          verifyNoMoreInteractions(mockRemote);
+        });
+
+        test(
+            'Should return server failure data when the call to '
+            'remote data is unsuccessful', () async {
+          // arrange
+          when(() => mockRemote.reviewRestaurant(any(), any()))
+              .thenThrow(tException);
+          // act
+          final result =
+              await repo.reviewRestaurant(tParams.id, tParams.review);
+          // assert
+          expect(
+            result,
+            equals(
+              Left<Failure, dynamic>(ServerFailure.fromException(tException)),
+            ),
+          );
+          verify(() => mockRemote.reviewRestaurant(tParams.id, tParams.review))
+              .called(1);
+          verifyNoMoreInteractions(mockRemote);
+        });
+      });
     });
   });
 }

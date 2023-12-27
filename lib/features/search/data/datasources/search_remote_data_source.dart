@@ -30,7 +30,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
       );
       final response = await _client.get(url);
 
-      if (response.statusCode != 200) {
+      if (response.statusCode != AppConstant.successfulHttpGetStatusCode) {
         throw ServerException(message: response.body);
       }
 
