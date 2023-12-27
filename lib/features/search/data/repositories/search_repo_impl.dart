@@ -19,12 +19,12 @@ class SearchRepoImpl implements SearchRepo {
   final NetworkInfo _networkInfo;
 
   @override
-  ResultFuture<List<Restaurant>> searchRestaurant(String restaurantId) async {
+  ResultFuture<List<Restaurant>> searchRestaurant(String restaurantName) async {
     try {
       if (!await _networkInfo.isConnected) {
         return const Left(InternetFailure());
       }
-      final result = await _dataSource.searchRestaurant(restaurantId);
+      final result = await _dataSource.searchRestaurant(restaurantName);
       return Right(result);
     } on ServerException catch (e, s) {
       debugPrintStack(stackTrace: s);

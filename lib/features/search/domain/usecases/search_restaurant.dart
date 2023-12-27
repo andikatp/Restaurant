@@ -8,7 +8,7 @@ class SearchRestaurant implements UseCaseWithParams<List<Restaurant>, String> {
   final SearchRepo _repo;
 
   @override
-  ResultFuture<List<Restaurant>> call(String search) {
-    return _repo.searchRestaurant(search);
+  ResultFuture<List<Restaurant>> call(String restaurantName) {
+    return _repo.searchRestaurant(restaurantName);
   }
 }

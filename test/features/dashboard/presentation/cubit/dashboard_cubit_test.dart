@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     mockGetRestaurants = MockGetRestaurant();
-    dashboardCubit = DashboardCubit(getRestaurants: mockGetRestaurants);
+    dashboardCubit = DashboardCubit(usecase: mockGetRestaurants);
   });
 
   const tListRestaurants = <RestaurantModel>[

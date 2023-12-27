@@ -23,9 +23,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // Feature
   sl
-    ..registerFactory(
-      () => DashboardCubit(getRestaurants: sl()),
-    )
+    ..registerFactory(() => DashboardCubit(usecase: sl()))
     ..registerFactory(() => DetailCubit(usecase: sl()))
     ..registerFactory(() => SearchCubit(usecase: sl()))
     // usecases

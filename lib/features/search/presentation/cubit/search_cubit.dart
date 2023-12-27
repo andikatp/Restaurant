@@ -11,9 +11,9 @@ class SearchCubit extends Cubit<SearchState> {
         super(const SearchInitial());
   final SearchRestaurant _usecase;
 
-  Future<void> searchRestaurant(String restaurantId) async {
+  Future<void> searchRestaurant(String restaurantName) async {
     emit(const SearchLoading());
-    final result = await _usecase(restaurantId);
+    final result = await _usecase(restaurantName);
     result.fold(
       (failure) => emit(SearchError(message: failure.errorMessage)),
       (restaurants) => emit(SearchLoaded(restaurants: restaurants)),

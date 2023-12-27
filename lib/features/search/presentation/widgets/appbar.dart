@@ -1,28 +1,31 @@
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
-import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
-import 'package:dicoding_final/core/res/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key});
+  const AppBarWidget({
+    required this.controller,
+    required this.searchRestaurant,
+    super.key,
+  });
+
+  final TextEditingController controller;
+  final void Function(String restaurantName) searchRestaurant;
 
   @override
   Widget build(BuildContext context) {
-    void goToSearchPage() => context.navigator.pushNamed(AppRoutes.searchPage);
-
     return SliverAppBar(
-      toolbarHeight: Sizes.p80,
-      floating: true,
+      toolbarHeight: Sizes.p72,
       title: Hero(
         tag: AppConstant.hintText,
         child: Material(
           type: MaterialType.transparency,
           child: TextField(
-            readOnly: true,
-            onTap: goToSearchPage,
+            autofocus: true,
+            controller: controller,
+            onChanged: searchRestaurant,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
@@ -46,14 +49,6 @@ class AppBarWidget extends StatelessWidget {
           ),
         ),
       ),
-      actions: [
-        Padding(
-          padding: REdgeInsets.only(right: Sizes.p12),
-          child: const CircleAvatar(
-            backgroundImage: AssetImage(AppConstant.userImagePath),
-          ),
-        ),
-      ],
     );
   }
 }
