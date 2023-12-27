@@ -24,14 +24,16 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
       final url =
           Uri.parse('${AppConstant.baseUrl}${ApiEndpoint.detailRestaurant}/$id');
       final response = await _client.get(url);
+
       if (response.statusCode != 200) {
         throw ServerException(message: response.body);
       }
-      final decode = jsonDecode(response.body) as ResultMap;
 
+      final decode = jsonDecode(response.body) as ResultMap;
       if (decode['error'] == true) {
         throw ServerException(message: decode['message'] as String);
       }
+      
       return DetailRestaurantModel.fromJson(decode['restaurant'] as ResultMap);
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
