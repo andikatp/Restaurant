@@ -5,5 +5,5 @@ extension ContextExt on BuildContext {
   NavigatorState get navigator => Navigator.of(this);
   ModalRoute<dynamic>? get modalRoute => ModalRoute.of(this);
   FocusScopeNode get focusScope => FocusScope.of(this);
-  ScaffoldMessengerState get messanger => ScaffoldMessenger.of(this);
+  ScaffoldMessengerState get messenger => ScaffoldMessenger.of(this);
 }

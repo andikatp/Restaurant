@@ -31,8 +31,8 @@ class SearchPage extends StatelessWidget {
       body: BlocConsumer<SearchCubit, SearchState>(
         listener: (context, state) {
           if (state is SearchError) {
-            context.messanger.hideCurrentSnackBar();
-            context.messanger
+            context.messenger.hideCurrentSnackBar();
+            context.messenger
                 .showSnackBar(SnackBar(content: Text(state.message)));
           }
         },

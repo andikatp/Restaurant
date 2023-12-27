@@ -8,6 +8,7 @@ import 'package:dicoding_final/features/detail/data/datasources/detail_remote_da
 import 'package:dicoding_final/features/detail/data/repositories/detail_repo_impl.dart';
 import 'package:dicoding_final/features/detail/domain/repositories/detail_repo.dart';
 import 'package:dicoding_final/features/detail/domain/usecases/get_detail_restaurant.dart';
+import 'package:dicoding_final/features/detail/domain/usecases/review_restaurant.dart';
 import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
 import 'package:dicoding_final/features/search/data/datasources/search_remote_data_source.dart';
 import 'package:dicoding_final/features/search/data/repositories/search_repo_impl.dart';
@@ -24,11 +25,12 @@ Future<void> init() async {
   // Feature
   sl
     ..registerFactory(() => DashboardCubit(usecase: sl()))
-    ..registerFactory(() => DetailCubit(usecase: sl()))
+    ..registerFactory(() => DetailCubit(usecase: sl(), addReview: sl()))
     ..registerFactory(() => SearchCubit(usecase: sl()))
     // usecases
     ..registerLazySingleton(() => GetRestaurants(repo: sl()))
     ..registerLazySingleton(() => GetDetailRestaurant(repo: sl()))
+    ..registerLazySingleton(() => ReviewRestaurant(repo: sl()))
     ..registerLazySingleton(() => SearchRestaurant(repo: sl()))
     // repos
     ..registerLazySingleton<DashboardRepo>(

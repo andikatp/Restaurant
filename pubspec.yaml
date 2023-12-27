@@ -26,7 +26,6 @@ dependencies:
   mocktail: ^1.0.2
   persistent_bottom_nav_bar: ^5.0.2
   very_good_analysis: ^5.1.0
-  wolt_modal_sheet: ^0.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
