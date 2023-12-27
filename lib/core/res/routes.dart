@@ -3,6 +3,7 @@ import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_c
 import 'package:dicoding_final/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
 import 'package:dicoding_final/features/detail/presentation/pages/detail_page.dart';
+import 'package:dicoding_final/features/search/presentation/cubit/search_cubit.dart';
 import 'package:dicoding_final/features/search/presentation/pages/search_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,10 @@ class AppRoutes {
           create: (context) => sl<DetailCubit>(),
           child: const DetailPage(),
         ),
-    SearchPage.routeName: (_) => const SearchPage(),
+    SearchPage.routeName: (_) =>  BlocProvider<SearchCubit>(
+          create: (context) => sl<SearchCubit>(),
+          child: const SearchPage(),
+        ),
   };
 
   static const dashboardPage = DashboardPage.routeName;

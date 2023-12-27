@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dicoding_final/core/constants/api_endpoint.dart';
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/utils/typedef.dart';
 import 'package:dicoding_final/shared/models/restaurant_model.dart';
@@ -23,11 +25,10 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   @override
   Future<List<RestaurantModel>> searchRestaurant(String restaurantName) async {
     try {
-      final response = await _client.get(
-        Uri.parse(
-          'https://restaurant-api.dicoding.dev//search?q=$restaurantName',
-        ),
+      final url = Uri.parse(
+        '${AppConstant.baseUrl}${ApiEndpoint.searchRestaurants}$restaurantName',
       );
+      final response = await _client.get(url);
 
       if (response.statusCode != 200) {
         throw ServerException(message: response.body);
