@@ -25,7 +25,7 @@ class AppFonts {
     headlineMedium: TextStyle(
       fontFamily: 'Montserrat',
       fontSize: 35.sp,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
       letterSpacing: 0.25.w,
       color: Colors.black,
     ),
@@ -71,6 +71,13 @@ class AppFonts {
       color: Colors.black,
     ),
     labelLarge: TextStyle(
+      fontFamily: 'Montserrat',
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 1.25.w,
+      color: Colors.black,
+    ),
+     labelMedium: TextStyle(
       fontFamily: 'Montserrat',
       fontSize: 14.sp,
       fontWeight: FontWeight.w500,

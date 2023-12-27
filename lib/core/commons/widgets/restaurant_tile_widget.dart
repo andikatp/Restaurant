@@ -83,11 +83,19 @@ class RestaurantTile extends StatelessWidget {
                           ),
                           itemSize: Sizes.p24.w,
                         ),
-                        Text(
-                          restaurant.city,
-                          style: context.theme.textTheme.labelLarge,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        Row(
+                          children: [
+                            const Icon(Icons.location_on,
+                            color: Colours.primaryColor,
+                            size: Sizes.p16,
+                            ),
+                            Text(
+                              restaurant.city,
+                              style: context.theme.textTheme.labelMedium,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
                         ),
                       ],
                     ),

@@ -25,10 +25,11 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   @override
-  void initState() {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     getRestaurantFromCubit();
-    super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
