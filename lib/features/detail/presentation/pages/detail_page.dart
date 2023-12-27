@@ -30,7 +30,6 @@ class _DetailPageState extends State<DetailPage> {
     getRestaurantFromCubit();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
