@@ -1,6 +1,7 @@
 # 🏨 Restaurant Dicoding
 
 A project created only for Dicoding submission
+[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
 ## 🎉 Features App
 
@@ -13,7 +14,6 @@ A project created only for Dicoding submission
 
 ## 🛠️ Built With
 
-- [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 - [Flutter](https://flutter.dev/)
 - [Bloc](https://pub.dev/packages/flutter_bloc)
 - [BlocTest](https://pub.dev/packages/bloc_test)
