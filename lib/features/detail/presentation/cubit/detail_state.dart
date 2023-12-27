@@ -23,6 +23,10 @@ final class DetailLoaded extends DetailState {
   List<Object> get props => [restaurant];
 }
 
+final class ReviewAdded extends DetailState {
+  const ReviewAdded();
+}
+
 final class DetailError extends DetailState {
   const DetailError({required this.message});
   final String message;

@@ -4,19 +4,25 @@ import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
 import 'package:dicoding_final/features/detail/domain/usecases/get_detail_restaurant.dart';
+import 'package:dicoding_final/features/detail/domain/usecases/review_restaurant.dart';
 import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockGetDetail extends Mock implements GetDetailRestaurant {}
 
+class MockReviewRestaurant extends Mock implements ReviewRestaurant {}
+
 void main() {
-  late GetDetailRestaurant mockUsecase;
+  late GetDetailRestaurant mockGetDetailUsecase;
+  late ReviewRestaurant mockAddReview;
   late DetailCubit cubit;
 
   setUp(() {
-    mockUsecase = MockGetDetail();
-    cubit = DetailCubit(usecase: mockUsecase);
+    mockGetDetailUsecase = MockGetDetail();
+    mockAddReview = MockReviewRestaurant();
+    cubit =
+        DetailCubit(usecase: mockGetDetailUsecase, addReview: mockAddReview);
   });
 
   const tRestaurantName = 'restaurant';
@@ -32,7 +38,7 @@ void main() {
     'Should emit [DetailLoading] and [DetailLoaded] '
     'when data is gotten successfully',
     build: () {
-      when(() => mockUsecase(tRestaurantName))
+      when(() => mockGetDetailUsecase(tRestaurantName))
           .thenAnswer((_) async => const Right(tDetailRestaurant));
       return cubit;
     },
@@ -48,7 +54,7 @@ void main() {
     'when data is unsuccessfully',
     build: () {
       when(
-        () => mockUsecase(tRestaurantName),
+        () => mockGetDetailUsecase(tRestaurantName),
       ).thenAnswer((_) async => const Left(tFailure));
       return cubit;
     },
