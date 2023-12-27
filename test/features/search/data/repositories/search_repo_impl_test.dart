@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/core/network_info/network_info.dart';
-import 'package:dicoding_final/features/detail/data/models/detail_restaurant_model.dart';
 import 'package:dicoding_final/features/search/data/datasources/search_remote_data_source.dart';
 import 'package:dicoding_final/features/search/data/repositories/search_repo_impl.dart';
 import 'package:dicoding_final/features/search/domain/repositories/search_repo.dart';
