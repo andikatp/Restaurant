@@ -17,7 +17,7 @@ void main() {
     usecase = GetDetailRestaurant(repo: mockRepo);
   });
 
-  final tRestaurant = DetailRestaurant.empty();
+  const tRestaurant = DetailRestaurant.empty();
   const tFailure = ServerFailure(message: 'message');
   const tId = '1';
 
@@ -25,11 +25,11 @@ void main() {
       () async {
     // arrange
     when(() => mockRepo.getDetailRestaurant(any()))
-        .thenAnswer((_) async => Right(tRestaurant));
+        .thenAnswer((_) async => const Right(tRestaurant));
     // act
     final result = await usecase(tId);
     // assert
-    expect(result, equals(Right<dynamic, DetailRestaurant>(tRestaurant)));
+    expect(result, equals(const Right<dynamic, DetailRestaurant>(tRestaurant)));
   });
 
   test('Should return [ServerFailure] when call [GetRestaurant] usecase failed',

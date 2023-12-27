@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/core/network_info/network_info.dart';

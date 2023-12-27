@@ -2,7 +2,6 @@ import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
 import 'package:dicoding_final/core/commons/widgets/network_error_widget.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
-import 'package:dicoding_final/shared/entities/restaurant.dart';
 import 'package:dicoding_final/features/detail/presentation/widgets/appbar_detail_widget.dart';
 import 'package:dicoding_final/features/detail/presentation/widgets/detail_widget.dart';
 import 'package:dicoding_final/features/detail/presentation/widgets/menu_widget.dart';
