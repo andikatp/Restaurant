@@ -1,0 +1,11 @@
+import 'package:dicoding_final/core/constants/app_constant.dart';
+import 'package:dicoding_final/core/errors/failure.dart';
+
+String errorMessage(Failure failure) {
+  switch (failure.runtimeType) {
+    case ServerFailure:
+      return AppConstant.serverFailureMessage;
+    default:
+      return AppConstant.generalFailureMessage;
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:dicoding_final/core/errors/error_message.dart';
 import 'package:dicoding_final/features/dashboard/domain/usecases/get_restaurants.dart';
 import 'package:dicoding_final/shared/entities/restaurant.dart';
 import 'package:equatable/equatable.dart';
@@ -15,7 +16,7 @@ class DashboardCubit extends Cubit<DashboardState> {
     emit(const DashboardLoading());
     final result = await _usecase();
     result.fold(
-      (failure) => emit(DashboardError(message: failure.errorMessage)),
+      (failure) => emit(DashboardError(message: errorMessage(failure))),
       (restaurants) => emit(DashboardLoaded(restaurants: restaurants)),
     );
   }
