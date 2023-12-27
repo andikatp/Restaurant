@@ -18,6 +18,7 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       toolbarHeight: Sizes.p72,
+      floating: true,
       title: Hero(
         tag: AppConstant.hintText,
         child: Material(
