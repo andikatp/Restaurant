@@ -19,6 +19,9 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
   void getRestaurantFromCubit() {
     final restaurantId = context.modalRoute!.settings.arguments! as String;
     context.read<DetailCubit>().getDetailRestaurant(restaurantId);
@@ -33,6 +36,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
       body: BlocConsumer<DetailCubit, DetailState>(
         listener: (context, state) {

@@ -4,4 +4,5 @@ class ApiEndpoint {
   static const detailRestaurant = '/detail';
   static const allRestaurants = '/list';
   static const searchRestaurants = '/search?q=';
+  static const postReview = '/review';
 }
