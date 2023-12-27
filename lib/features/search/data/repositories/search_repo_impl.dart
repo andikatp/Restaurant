@@ -1,6 +1,6 @@
 import 'package:dicoding_final/core/utils/typedef.dart';
-import 'package:dicoding_final/shared/entities/restaurant.dart';
 import 'package:dicoding_final/features/search/domain/repositories/search_repo.dart';
+import 'package:dicoding_final/shared/entities/restaurant.dart';
 
 class SearchRepoImpl implements SearchRepo {
   @override

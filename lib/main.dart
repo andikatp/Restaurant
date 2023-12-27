@@ -2,9 +2,7 @@ import 'package:dicoding_final/core/commons/pages/splash_screen.dart';
 import 'package:dicoding_final/core/res/routes.dart';
 import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
-import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
