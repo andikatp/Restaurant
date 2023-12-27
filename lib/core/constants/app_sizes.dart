@@ -20,6 +20,8 @@ class Sizes {
   static const p92 = 92.0;
   static const p96 = 96.0;
   static const p100 = 100.0;
+  static const p300 = 300.0;
+  static const p330 = 330.0;
 }
 
 class Gap {

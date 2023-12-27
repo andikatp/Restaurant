@@ -1,3 +1,4 @@
+import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
@@ -14,14 +15,14 @@ class MenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const dishType = ['Foods:', 'Drinks'];
+    const dishType = ['Foods :', 'Drinks :'];
 
     return SliverToBoxAdapter(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: REdgeInsets.only(left: 15),
+            padding: REdgeInsets.only(left: Sizes.p16),
             child: Text(
               dishType[0],
               style: context.theme.textTheme.bodyLarge,
@@ -29,9 +30,9 @@ class MenuWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50.h,
+            height: Sizes.p48.h,
             child: ListView.separated(
-              padding: REdgeInsets.only(left: 15, right: 15),
+              padding: REdgeInsets.only(left: Sizes.p16, right: Sizes.p16),
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Chip(
@@ -48,9 +49,9 @@ class MenuWidget extends StatelessWidget {
               itemCount: restaurant.menu.foods.length,
             ),
           ),
-          SizedBox(height: 10.h),
+          Gap.h12,
           Padding(
-            padding: REdgeInsets.only(left: 15),
+            padding: REdgeInsets.only(left: Sizes.p16),
             child: Text(
               dishType[1],
               style: context.theme.textTheme.bodyLarge,
@@ -58,9 +59,9 @@ class MenuWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50.h,
+            height: Sizes.p48.h,
             child: ListView.separated(
-              padding: REdgeInsets.only(left: 15, right: 15),
+              padding: REdgeInsets.only(left: Sizes.p16, right: Sizes.p16),
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Chip(
@@ -73,11 +74,11 @@ class MenuWidget extends StatelessWidget {
                   Colours.primaryColor.withOpacity(0.95),
                 ),
               ),
-              separatorBuilder: (_, __) => SizedBox(width: 10.w),
+              separatorBuilder: (_, __) => Gap.w8,
               itemCount: restaurant.menu.drinks.length,
             ),
           ),
-          SizedBox(height: 20.h),
+          Gap.h24,
         ],
       ),
     );

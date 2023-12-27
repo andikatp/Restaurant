@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dicoding_final/core/constants/app_constant.dart';
+import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
@@ -16,26 +18,28 @@ class AppBarDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void makeFavorite(String restaurantId) {
+      // TODO(Saved): Create a save button
+    }
+
     return SliverAppBar.large(
       title: Text(
         restaurant.name,
         style: context.theme.textTheme.headlineSmall,
       ),
-      expandedHeight: 300.h,
+      expandedHeight: Sizes.p300.h,
       leading: BackButton(
         color: Colours.primaryColor,
         style: ButtonStyle(
-          iconSize: MaterialStatePropertyAll(35.sp),
+          iconSize: MaterialStatePropertyAll(Sizes.p36.sp),
         ),
       ),
       actions: [
         IconButton(
-          onPressed: () {
-            // TODO(Saved): Create a save button
-          },
+          onPressed: () => makeFavorite(restaurant.id),
           icon: Icon(
             Icons.bookmark_border,
-            size: 35.sp,
+            size: Sizes.p36.sp,
             color: Colours.primaryColor,
           ),
         ),
@@ -43,16 +47,22 @@ class AppBarDetail extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Hero(
           tag: restaurant.pictureId,
-          child: CachedNetworkImage(
-            imageUrl: restaurant.pictureId,
-            fit: BoxFit.fill,
-            height: 330.h,
-            placeholder: (_, __) => const Center(
-              child: CupertinoActivityIndicator(
-                color: Colours.primaryColor,
-              ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(Sizes.p28.r),
+              bottomRight: Radius.circular(Sizes.p28.r),
             ),
-            errorWidget: (_, __, error) => const Icon(Icons.error),
+            child: CachedNetworkImage(
+              imageUrl: AppConstant.imageUrl + restaurant.pictureId,
+              fit: BoxFit.fill,
+              height: Sizes.p330.h,
+              placeholder: (_, __) => const Center(
+                child: CupertinoActivityIndicator(
+                  color: Colours.primaryColor,
+                ),
+              ),
+              errorWidget: (_, __, error) => const Icon(Icons.error),
+            ),
           ),
         ),
       ),
