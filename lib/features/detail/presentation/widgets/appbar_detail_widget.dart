@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
-import 'package:dicoding_final/shared/entities/restaurant.dart';
+import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +12,7 @@ class AppBarDetail extends StatelessWidget {
     super.key,
   });
 
-  final Restaurant restaurant;
+  final DetailRestaurant restaurant;
 
   @override
   Widget build(BuildContext context) {

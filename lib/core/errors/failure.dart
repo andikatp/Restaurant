@@ -1,3 +1,4 @@
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:equatable/equatable.dart';
 
@@ -22,4 +23,8 @@ class ServerFailure extends Failure {
 
   ServerFailure.fromException(ServerException exception)
       : this(message: exception.message);
+}
+
+class InternetFailure extends Failure {
+  const InternetFailure() : super(message: AppConstant.noInternetConnection);
 }

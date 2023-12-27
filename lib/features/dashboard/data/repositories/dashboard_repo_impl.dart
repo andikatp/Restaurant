@@ -21,13 +21,11 @@ class DashboardRepoImpl implements DashboardRepo {
   @override
   ResultFuture<List<RestaurantModel>> getRestaurants() async {
     try {
-      if (await _networkInfo.isConnected) {
-        final result = await _remote.getRestaurants();
-        return Right(result);
+      if (!await _networkInfo.isConnected) {
+        return const Left(InternetFailure());
       }
-      return const Left(
-        ServerFailure(message: AppConstant.noInternetConnection),
-      );
+      final result = await _remote.getRestaurants();
+      return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));
     }
