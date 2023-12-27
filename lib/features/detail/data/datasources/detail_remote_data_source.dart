@@ -49,11 +49,11 @@ class DetailRemoteDataSourceImpl implements DetailRemoteDataSource {
       final url = Uri.parse(AppConstant.baseUrl + ApiEndpoint.postReview);
       final response = await http.post(
         url,
-        body: {'id': id, 'name': 'New User', 'review': review},
+        body: jsonEncode({'id': id, 'name': 'New User', 'review': review}),
         headers: {'Content-Type': 'application/json'},
       );
 
-      if (response.statusCode != 200) {
+      if (response.statusCode != 201) {
         throw ServerException(message: response.body);
       }
 

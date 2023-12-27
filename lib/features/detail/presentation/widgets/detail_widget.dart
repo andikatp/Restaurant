@@ -2,27 +2,24 @@ import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
-import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
 import 'package:dicoding_final/features/detail/presentation/widgets/modal_review_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailWidget extends StatelessWidget {
   const DetailWidget({
     required this.restaurant,
+    required this.addReview,
     super.key,
   });
 
+  final void Function(String restaurantId, String review) addReview;
   final DetailRestaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
     final controller = TextEditingController();
     const buttonText = 'See Review';
-
-    void sendReview() =>
-        context.read<DetailCubit>().addReview(restaurant.id, controller.text);
 
     void createReview(BuildContext currentContext) {
       if (controller.text.isEmpty) {
@@ -42,12 +39,14 @@ class DetailWidget extends StatelessWidget {
           ),
         );
       } else {
-        sendReview();
-        controller.clear();
+        addReview(restaurant.id, controller.text);
         FocusManager.instance.primaryFocus?.unfocus();
         Navigator.pop(currentContext);
-        context.messenger.showSnackBar(
-          const SnackBar(content: Text('Review has been added!')),
+        currentContext.messenger.showSnackBar(
+          const SnackBar(
+            content: Text('Review has been added!'),
+            duration: Duration(seconds: 1),
+          ),
         );
       }
     }

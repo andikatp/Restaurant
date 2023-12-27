@@ -19,12 +19,15 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void getRestaurantFromCubit() {
     final restaurantId = context.modalRoute!.settings.arguments! as String;
     context.read<DetailCubit>().getDetailRestaurant(restaurantId);
+  }
+
+  void addReview(String restaurantId, String review) {
+    context.read<DetailCubit>().addReview(restaurantId, review);
   }
 
   @override
@@ -45,6 +48,9 @@ class _DetailPageState extends State<DetailPage> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
           }
+          if(state is ReviewAdded){
+            getRestaurantFromCubit();
+          }
         },
         builder: (context, state) {
           if (state is DetailLoading) {
@@ -55,7 +61,7 @@ class _DetailPageState extends State<DetailPage> {
             return CustomScrollView(
               slivers: [
                 AppBarDetail(restaurant: restaurant),
-                DetailWidget(restaurant: restaurant),
+                DetailWidget(restaurant: restaurant, addReview: addReview),
                 MenuWidget(restaurant: restaurant),
               ],
             );

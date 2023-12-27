@@ -15,6 +15,10 @@ final class DetailLoading extends DetailState {
   const DetailLoading();
 }
 
+final class ReviewLoading extends DetailState {
+  const ReviewLoading();
+}
+
 final class DetailLoaded extends DetailState {
   const DetailLoaded({required this.restaurant});
   final DetailRestaurant restaurant;
