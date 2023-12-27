@@ -51,16 +51,22 @@ class SearchPage extends StatelessWidget {
                   child: LoadingWidget(),
                 ),
               if (state is SearchLoaded)
-                ...state.restaurants.map(
-                  (restaurant) => SliverToBoxAdapter(
-                    child: RestaurantTile(restaurant: restaurant),
-                  ),
+                SliverList.separated(
+                  itemCount: state.restaurants.length,
+                  itemBuilder: (_, index) {
+                    final restaurant = state.restaurants[index];
+                    return RestaurantTile(restaurant: restaurant);
+                  },
+                  separatorBuilder: (_, __) => Gap.h8,
                 ),
               if (state is SearchLoaded && state.restaurants.isEmpty)
                 const LottieState(lottieAsset: AppConstant.emptyLottie),
               if (state is SearchError &&
-                  state.message == AppConstant.noInternetConnection)
-                NetworkErrorWidget(onRetry: retrySearch),
+                  state.message.contains(AppConstant.noInternetConnection))
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: NetworkErrorWidget(onRetry: retrySearch),
+                ),
             ],
           );
         },
