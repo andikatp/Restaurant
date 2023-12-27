@@ -13,6 +13,7 @@ class AppConstant {
   static const String searchLottie = 'assets/json/search.json';
   static const String emptyLottie = 'assets/json/empty.json';
 
+
   // error message
   static const String noInternetConnection = 'Please check your connection';
   static const String serverFailureMessage =
