@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/features/dashboard/domain/usecases/get_restaurants.dart';
 import 'package:dicoding_final/features/dashboard/presentation/cubit/dashboard_cubit.dart';
@@ -56,7 +57,7 @@ void main() {
     act: (_) => dashboardCubit.getRestaurants(),
     expect: () =>  <DashboardState>[
       const DashboardLoading(),
-      DashboardError(message: tFailure.errorMessage),
+      const DashboardError(message: AppConstant.serverFailureMessage),
     ],
     verify: (_) => mockGetRestaurants(),
   );

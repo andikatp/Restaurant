@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
 import 'package:dicoding_final/features/detail/domain/usecases/get_detail_restaurant.dart';
@@ -54,7 +55,7 @@ void main() {
     act: (cubit) => cubit.getDetailRestaurant(tRestaurantName),
     expect: () => [
       const DetailLoading(),
-      DetailError(message: tFailure.errorMessage),
+      const DetailError(message: AppConstant.serverFailureMessage),
     ],
   );
 }
