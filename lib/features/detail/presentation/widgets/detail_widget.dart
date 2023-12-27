@@ -104,11 +104,13 @@ class DetailWidget extends StatelessWidget {
               ),
             ),
             Gap.h20,
+            const Divider(),
             Text(
               restaurant.description,
               style: context.theme.textTheme.bodyLarge,
               textAlign: TextAlign.justify,
             ),
+            const Divider(),
             Gap.h16,
           ],
         ),
