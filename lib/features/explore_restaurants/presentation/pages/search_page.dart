@@ -43,7 +43,7 @@ class SearchPage extends StatelessWidget {
                 controller: controller,
                 searchRestaurant: searchRestaurant,
               ),
-              if (state is SearchInitial)
+              if (state is GetRestaurantsInitial)
                 const LottieState(lottieAsset: AppConstant.searchLottie),
               if (state is SearchLoading)
                 const SliverFillRemaining(
