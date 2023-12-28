@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
 import 'package:dicoding_final/core/commons/widgets/network_error_widget.dart';
-import 'package:dicoding_final/core/commons/widgets/restaurant_tile_widget.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/cubit/explore_restaurants_cubit.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/home_widget/appbar_widget.dart';
+import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/restaurant_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class RestaurantPage extends StatefulWidget {
   const RestaurantPage({super.key});
 

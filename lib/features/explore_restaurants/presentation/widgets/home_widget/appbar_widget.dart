@@ -2,7 +2,7 @@ import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
-import 'package:dicoding_final/core/res/routes.dart';
+import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +11,7 @@ class AppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void goToSearchPage() => context.navigator.pushNamed(AppRoutes.searchPage);
+    void goToSearchPage() => context.routers.push(const SearchRoute());
 
     return SliverAppBar(
       toolbarHeight: Sizes.p80,

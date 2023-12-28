@@ -1,6 +1,5 @@
-import 'package:dicoding_final/core/commons/pages/splash_screen.dart';
-import 'package:dicoding_final/core/res/routes.dart';
 import 'package:dicoding_final/core/res/theme.dart';
+import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,12 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
+  final _router = AppRouter();
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -21,12 +21,11 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (_, child) => GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: MaterialApp(
+        child: MaterialApp.router(
           title: 'Restaurant',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.currentTheme,
-          routes: AppRoutes.routes,
-          home: const SplashScreen(),
+          routerConfig: _router.config(),
         ),
       ),
     );

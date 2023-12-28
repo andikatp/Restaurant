@@ -1,20 +1,21 @@
 import 'dart:async';
+import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
-import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
-import 'package:dicoding_final/core/res/routes.dart';
+import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+@RoutePage()
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
@@ -25,15 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
     const duration = Duration(seconds: 3);
     return Timer(
       duration,
-      () => context.modalRoute!.navigator!
-          .pushReplacementNamed(AppRoutes.home),
+      () => context.router.push(const ExploreRestaurantsRoute()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-  
-
     return Scaffold(
       backgroundColor: Colours.backgroundColor,
       body: Center(

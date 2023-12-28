@@ -1,28 +1,41 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
 import 'package:dicoding_final/core/commons/widgets/network_error_widget.dart';
-import 'package:dicoding_final/core/extensions/context_extension.dart';
+import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
 import 'package:dicoding_final/features/detail/presentation/widgets/appbar_detail_widget.dart';
 import 'package:dicoding_final/features/detail/presentation/widgets/detail_widget.dart';
 import 'package:dicoding_final/features/detail/presentation/widgets/menu_widget.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+@RoutePage()
+class DetailPage extends StatefulWidget implements AutoRouteWrapper {
+  const DetailPage({
+    required this.restaurantId,
+    super.key,
+  });
 
   static const routeName = '/detail';
+  final String restaurantId;
 
   @override
   State<DetailPage> createState() => _DetailPageState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider<DetailCubit>(
+      create: (context) => sl<DetailCubit>(),
+      child: this,
+    );
+  }
 }
 
 class _DetailPageState extends State<DetailPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void getRestaurantFromCubit() {
-    final restaurantId = context.modalRoute!.settings.arguments! as String;
+    final restaurantId = widget.restaurantId;
     context.read<DetailCubit>().getDetailRestaurant(restaurantId);
   }
 
@@ -48,7 +61,7 @@ class _DetailPageState extends State<DetailPage> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
           }
-          if(state is ReviewAdded){
+          if (state is ReviewAdded) {
             getRestaurantFromCubit();
           }
         },

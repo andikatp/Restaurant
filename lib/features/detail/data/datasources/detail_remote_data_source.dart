@@ -10,7 +10,10 @@ import 'package:http/http.dart' as http;
 
 abstract class DetailRemoteDataSource {
   const DetailRemoteDataSource();
-
+  
+  /// Calls the https://restaurant-api.dicoding.dev/detail/:id endpoint.
+  ///
+  /// Throw a [ServerException] for all the error codes.
   Future<DetailRestaurantModel> getDetailRestaurant(String id);
   Future<void> reviewRestaurant(String id, String review);
 }
