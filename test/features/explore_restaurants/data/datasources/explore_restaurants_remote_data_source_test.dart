@@ -1,9 +1,8 @@
 import 'package:dicoding_final/core/constants/api_endpoint.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
+import 'package:dicoding_final/features/explore_restaurants/data/datasources/explore_restaurants_remote_data_source.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/models/restaurant_model.dart';
-import 'package:dicoding_final/features/search/data/datasources/search_remote_data_source.dart';
-import 'package:dicoding_final/shared/models/restaurant_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
@@ -13,12 +12,12 @@ import '../../../../fixture/fixture_reader.dart';
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  late SearchRemoteDataSource remote;
+  late ExploreRestaurantsRemoteDataSource remote;
   late http.Client mockClient;
 
   setUp(() {
     mockClient = MockHttpClient();
-    remote = SearchRemoteDataSourceImpl(client: mockClient);
+    remote = ExploreRestaurantsRemoteDataSourceImpl(client: mockClient);
     registerFallbackValue(Uri());
   });
 
