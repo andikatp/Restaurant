@@ -49,33 +49,36 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DetailCubit, DetailState>(
-      listener: (context, state) {
-        if (state is DetailError) {
-          ScaffoldMessenger.of(context).removeCurrentSnackBar();
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.message)));
-        }
-        if (state is ReviewAdded) {
-          getRestaurantFromCubit();
-        }
-      },
-      builder: (context, state) {
-        if (state is DetailLoading) {
-          return const LoadingWidget();
-        }
-        if (state is DetailLoaded) {
-          final restaurant = state.restaurant;
-          return CustomScrollView(
-            slivers: [
-              AppBarDetail(restaurant: restaurant),
-              DetailWidget(restaurant: restaurant, addReview: addReview),
-              MenuWidget(restaurant: restaurant),
-            ],
-          );
-        }
-        return NetworkErrorWidget(onRetry: getRestaurantFromCubit);
-      },
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: BlocConsumer<DetailCubit, DetailState>(
+        listener: (context, state) {
+          if (state is DetailError) {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.message)));
+          }
+          if (state is ReviewAdded) {
+            getRestaurantFromCubit();
+          }
+        },
+        builder: (context, state) {
+          if (state is DetailLoading) {
+            return const LoadingWidget();
+          }
+          if (state is DetailLoaded) {
+            final restaurant = state.restaurant;
+            return CustomScrollView(
+              slivers: [
+                AppBarDetail(restaurant: restaurant),
+                DetailWidget(restaurant: restaurant, addReview: addReview),
+                MenuWidget(restaurant: restaurant),
+              ],
+            );
+          }
+          return NetworkErrorWidget(onRetry: getRestaurantFromCubit);
+        },
+      ),
     );
   }
 }

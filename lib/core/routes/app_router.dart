@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dicoding_final/core/commons/pages/empty_page.dart';
 import 'package:dicoding_final/core/commons/pages/splash_page.dart';
 import 'package:dicoding_final/core/navigation/bottom_navigation.dart';
 import 'package:dicoding_final/features/detail/presentation/pages/detail_page.dart';
@@ -24,11 +25,21 @@ class AppRouter extends _$AppRouter {
           path: AppNameRoute.home,
           children: [
             AutoRoute(
-              page: RestaurantRoute.page,
-              path: AppNameRoute.restaurant,
+              page: EmptyRouterPage.page,
+              path: 'restaurant',
               children: [
-                AutoRoute(page: DetailRoute.page, path: AppNameRoute.detail),
-                AutoRoute(page: SearchRoute.page, path: AppNameRoute.search),
+                AutoRoute(
+                  page: RestaurantRoute.page,
+                  path: AppNameRoute.restaurant,
+                ),
+                AutoRoute(
+                  page: DetailRoute.page,
+                  path: AppNameRoute.detail,
+                ),
+                AutoRoute(
+                  page: SearchRoute.page,
+                  path: AppNameRoute.search,
+                ),
               ],
             ),
             AutoRoute(page: SettingRoute.page, path: AppNameRoute.settings),
