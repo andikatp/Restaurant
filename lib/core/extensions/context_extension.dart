@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExt on BuildContext {
@@ -7,5 +6,4 @@ extension ContextExt on BuildContext {
   ModalRoute<dynamic>? get modalRoute => ModalRoute.of(this);
   FocusScopeNode get focusScope => FocusScope.of(this);
   ScaffoldMessengerState get messenger => ScaffoldMessenger.of(this);
-  StackRouter get routers => AutoRouter.of(this);
 }

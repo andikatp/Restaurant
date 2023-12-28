@@ -40,39 +40,37 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BlocConsumer<ExploreRestaurantsCubit, ExploreRestaurantsState>(
-          listener: (context, state) {
-            if (state is GetRestaurantsError) {
-              ScaffoldMessenger.of(context).removeCurrentSnackBar();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.message)));
-            }
-          },
-          builder: (context, state) {
-            if (state is GetRestaurantsLoading) {
-              return const LoadingWidget();
-            }
-            if (state is GetRestaurantsLoaded) {
-              return CustomScrollView(
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  const AppBarWidget(),
-                  SliverList.separated(
-                    itemCount: state.restaurants.length,
-                    itemBuilder: (_, index) {
-                      final restaurant = state.restaurants[index];
-                      return RestaurantTile(restaurant: restaurant);
-                    },
-                    separatorBuilder: (_, __) => Gap.h8,
-                  ),
-                ],
-              );
-            }
-            return NetworkErrorWidget(onRetry: fetchData);
-          },
-        ),
+    return SafeArea(
+      child: BlocConsumer<ExploreRestaurantsCubit, ExploreRestaurantsState>(
+        listener: (context, state) {
+          if (state is GetRestaurantsError) {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.message)));
+          }
+        },
+        builder: (context, state) {
+          if (state is GetRestaurantsLoading) {
+            return const LoadingWidget();
+          }
+          if (state is GetRestaurantsLoaded) {
+            return CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                const AppBarWidget(),
+                SliverList.separated(
+                  itemCount: state.restaurants.length,
+                  itemBuilder: (_, index) {
+                    final restaurant = state.restaurants[index];
+                    return RestaurantTile(restaurant: restaurant);
+                  },
+                  separatorBuilder: (_, __) => Gap.h8,
+                ),
+              ],
+            );
+          }
+          return NetworkErrorWidget(onRetry: fetchData);
+        },
       ),
     );
   }
