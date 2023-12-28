@@ -5,4 +5,7 @@ abstract class ExploreRestaurantsRepo {
   const ExploreRestaurantsRepo();
   ResultFuture<List<Restaurant>> getRestaurants();
   ResultFuture<List<Restaurant>> searchRestaurants(String restaurantName);
+  ResultFuture<List<Restaurant>> getSavedRestaurants();
+  ResultFuture<void> saveRestaurant(Restaurant restaurant);
+  ResultFuture<void> deleteSavedRestaurant(Restaurant restaurant);
 }
