@@ -30,50 +30,48 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
       context.read<ExploreRestaurantsCubit>().searchRestaurant('');
     }
 
-    return Scaffold(
-      body: BlocConsumer<ExploreRestaurantsCubit, ExploreRestaurantsState>(
-        listener: (context, state) {
-          if (state is SearchError) {
-            context.messenger.hideCurrentSnackBar();
-            context.messenger
-                .showSnackBar(SnackBar(content: Text(state.message)));
-          }
-        },
-        builder: (context, state) {
-          return CustomScrollView(
-            slivers: [
-              AppBarWidget(
-                controller: controller,
-                searchRestaurant: searchRestaurant,
+    return BlocConsumer<ExploreRestaurantsCubit, ExploreRestaurantsState>(
+      listener: (context, state) {
+        if (state is SearchError) {
+          context.messenger.hideCurrentSnackBar();
+          context.messenger
+              .showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+      builder: (context, state) {
+        return CustomScrollView(
+          slivers: [
+            AppBarWidget(
+              controller: controller,
+              searchRestaurant: searchRestaurant,
+            ),
+            if (state is GetRestaurantsInitial)
+              const LottieState(lottieAsset: AppConstant.searchLottie),
+            if (state is SearchLoading)
+              const SliverFillRemaining(
+                hasScrollBody: false,
+                child: LoadingWidget(),
               ),
-              if (state is GetRestaurantsInitial)
-                const LottieState(lottieAsset: AppConstant.searchLottie),
-              if (state is SearchLoading)
-                const SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: LoadingWidget(),
-                ),
-              if (state is SearchLoaded)
-                SliverList.separated(
-                  itemCount: state.restaurants.length,
-                  itemBuilder: (_, index) {
-                    final restaurant = state.restaurants[index];
-                    return RestaurantTile(restaurant: restaurant);
-                  },
-                  separatorBuilder: (_, __) => Gap.h8,
-                ),
-              if (state is SearchLoaded && state.restaurants.isEmpty)
-                const LottieState(lottieAsset: AppConstant.emptyLottie),
-              if (state is SearchError &&
-                  state.message.contains(AppConstant.noInternetConnection))
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: NetworkErrorWidget(onRetry: retrySearch),
-                ),
-            ],
-          );
-        },
-      ),
+            if (state is SearchLoaded)
+              SliverList.separated(
+                itemCount: state.restaurants.length,
+                itemBuilder: (_, index) {
+                  final restaurant = state.restaurants[index];
+                  return RestaurantTile(restaurant: restaurant);
+                },
+                separatorBuilder: (_, __) => Gap.h8,
+              ),
+            if (state is SearchLoaded && state.restaurants.isEmpty)
+              const LottieState(lottieAsset: AppConstant.emptyLottie),
+            if (state is SearchError &&
+                state.message.contains(AppConstant.noInternetConnection))
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: NetworkErrorWidget(onRetry: retrySearch),
+              ),
+          ],
+        );
+      },
     );
   }
 

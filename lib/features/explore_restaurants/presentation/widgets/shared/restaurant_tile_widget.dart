@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
@@ -22,7 +23,7 @@ class RestaurantTile extends StatelessWidget {
   Widget build(BuildContext context) {
     void goToDetail(Restaurant restaurant) {
       context.focusScope.unfocus();
-      context.routers.navigate(DetailRoute(restaurantId: restaurant.id));
+      context.router.push(DetailRoute(restaurantId: restaurant.id));
     }
 
     void makeFavorite(Restaurant restaurant) {
