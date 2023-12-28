@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Timer(
       duration,
       () => context.modalRoute!.navigator!
-          .pushReplacementNamed(AppRoutes.dashboardPage),
+          .pushReplacementNamed(AppRoutes.restaurantPage),
     );
   }
 

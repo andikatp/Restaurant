@@ -1,7 +1,0 @@
-import 'package:dicoding_final/core/utils/typedef.dart';
-import 'package:dicoding_final/shared/entities/restaurant.dart';
-
-abstract class DashboardRepo {
-  const DashboardRepo();
-  ResultFuture<List<Restaurant>> getRestaurants();
-}
