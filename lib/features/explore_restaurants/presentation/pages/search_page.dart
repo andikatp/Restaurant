@@ -4,6 +4,7 @@ import 'package:dicoding_final/core/commons/widgets/network_error_widget.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
+import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/cubit/explore_restaurants_cubit.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/search_widget/appbar.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/search_widget/lottie_state.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatelessWidget implements AutoRouteWrapper {
   const SearchPage({super.key});
 
   static const routeName = '/search';
@@ -73,6 +74,14 @@ class SearchPage extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider<ExploreRestaurantsCubit>(
+      create: (_) => sl<ExploreRestaurantsCubit>(),
+      child: this,
     );
   }
 }

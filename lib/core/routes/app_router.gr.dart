@@ -26,16 +26,10 @@ abstract class _$AppRouter extends RootStackRouter {
         )),
       );
     },
-    ExploreRestaurantsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const ExploreRestaurantsPage()),
-      );
-    },
     RestaurantRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const RestaurantPage(),
+        child: WrappedRoute(child: const RestaurantPage()),
       );
     },
     SavedRestaurantRoute.name: (routeData) {
@@ -47,7 +41,7 @@ abstract class _$AppRouter extends RootStackRouter {
     SearchRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SearchPage(),
+        child: WrappedRoute(child: const SearchPage()),
       );
     },
     SettingRoute.name: (routeData) {
@@ -100,20 +94,6 @@ class DetailRouteArgs {
   String toString() {
     return 'DetailRouteArgs{restaurantId: $restaurantId, key: $key}';
   }
-}
-
-/// generated route for
-/// [ExploreRestaurantsPage]
-class ExploreRestaurantsRoute extends PageRouteInfo<void> {
-  const ExploreRestaurantsRoute({List<PageRouteInfo>? children})
-      : super(
-          ExploreRestaurantsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ExploreRestaurantsRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
     const duration = Duration(seconds: 3);
     return Timer(
       duration,
-      () => context.router.push(const ExploreRestaurantsRoute()),
+      () => context.router.replaceNamed(AppNameRoute.restaurant),
     );
   }
 
