@@ -42,6 +42,4 @@ The project adopts a Test-Driven Development (TDD) approach to ensure code relia
 - [Lottie](https://pub.dev/packages/lottie): Lottie files animation for Flutter.
 - [Mocktail](https://pub.dev/packages/mocktail): Mocking library for Dart and Flutter.
 
-Feel free to customize and expand these sections based on the specifics of your project. Providing insights into your architecture and testing practices can be valuable for developers interested in contributing or understanding your project better.
-
 ### Feel free to explore and contribute to make this project even better! 🚀
