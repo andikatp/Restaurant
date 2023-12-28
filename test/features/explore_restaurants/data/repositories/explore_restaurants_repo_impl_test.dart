@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/core/network_info/network_info.dart';
-import 'package:dicoding_final/features/explore_restaurants/data/datasources/explore_restaurants_remote_data_source.dart';
+import 'package:dicoding_final/features/explore_restaurants/data/datasources/remote/explore_restaurants_remote_data_source.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/models/restaurant_model.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/repositories/explore_restaurants_impl.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/repositories/explore_restaurants.dart';

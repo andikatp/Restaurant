@@ -4,8 +4,8 @@ import 'package:dicoding_final/core/commons/pages/splash_page.dart';
 import 'package:dicoding_final/core/navigation/bottom_navigation.dart';
 import 'package:dicoding_final/features/detail/presentation/pages/detail_page.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/pages/restaurant_page.dart';
+import 'package:dicoding_final/features/explore_restaurants/presentation/pages/saved_restaurants_page.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/pages/search_page.dart';
-import 'package:dicoding_final/features/saved_restaurants/presentations/pages/saved_restaurants_page.dart';
 import 'package:dicoding_final/features/settings/presentations/pages/settings_page.dart';
 import 'package:flutter/foundation.dart';
 

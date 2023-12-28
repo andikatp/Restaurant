@@ -1,11 +1,12 @@
 import 'package:dicoding_final/core/network_info/network_info.dart';
+import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/features/detail/data/datasources/detail_remote_data_source.dart';
 import 'package:dicoding_final/features/detail/data/repositories/detail_repo_impl.dart';
 import 'package:dicoding_final/features/detail/domain/repositories/detail_repo.dart';
 import 'package:dicoding_final/features/detail/domain/usecases/get_detail_restaurant.dart';
 import 'package:dicoding_final/features/detail/domain/usecases/review_restaurant.dart';
 import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
-import 'package:dicoding_final/features/explore_restaurants/data/datasources/explore_restaurants_remote_data_source.dart';
+import 'package:dicoding_final/features/explore_restaurants/data/datasources/remote/explore_restaurants_remote_data_source.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/repositories/explore_restaurants_impl.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/repositories/explore_restaurants.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/usecases/get_restaurants.dart';
@@ -51,6 +52,7 @@ Future<void> init() async {
       () => NetworkInfoImpl(networkInfo: sl()),
     )
     // external
+    ..registerSingleton<AppRouter>(AppRouter()) 
     ..registerLazySingleton(http.Client.new)
     ..registerLazySingleton(InternetConnection.new);
 }

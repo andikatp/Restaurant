@@ -1,7 +1,7 @@
 import 'package:dicoding_final/core/constants/api_endpoint.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
-import 'package:dicoding_final/features/explore_restaurants/data/datasources/explore_restaurants_remote_data_source.dart';
+import 'package:dicoding_final/features/explore_restaurants/data/datasources/remote/explore_restaurants_remote_data_source.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/models/restaurant_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
