@@ -13,6 +13,18 @@ A Flutter project developed exclusively for Dicoding submission.
 - **Review**: Share your thoughts and read reviews from other users.
 - **Notification**: Stay updated with the latest restaurant-related notifications.
 
+##  🏗️ Architecture
+
+The project follows the principles of Clean Architecture, emphasizing separation of concerns and maintainability. It is structured into distinct layers, including:
+
+Presentation Layer: User interfaces and components built with Flutter.
+Domain Layer: Contains business logic and use cases.
+Data Layer: Manages data sources, repositories, and external services.
+
+##  🧪 Testing
+
+The project adopts a Test-Driven Development (TDD) approach to ensure code reliability and maintainability. Unit tests, integration tests, and widget tests are utilized to cover various aspects of the application.
+
 ## 🛠️ Built With
 
 - [Flutter](https://flutter.dev/): A UI toolkit for building natively compiled applications.
@@ -29,18 +41,6 @@ A Flutter project developed exclusively for Dicoding submission.
 - [Equatable](https://pub.dev/packages/equatable): Simplifying equality comparisons.
 - [Lottie](https://pub.dev/packages/lottie): Lottie files animation for Flutter.
 - [Mocktail](https://pub.dev/packages/mocktail): Mocking library for Dart and Flutter.
-
-##  🏗️ Architecture
-
-The project follows the principles of Clean Architecture, emphasizing separation of concerns and maintainability. It is structured into distinct layers, including:
-
-Presentation Layer: User interfaces and components built with Flutter.
-Domain Layer: Contains business logic and use cases.
-Data Layer: Manages data sources, repositories, and external services.
-
-##  🧪 Testing
-
-The project adopts a Test-Driven Development (TDD) approach to ensure code reliability and maintainability. Unit tests, integration tests, and widget tests are utilized to cover various aspects of the application.
 
 Feel free to customize and expand these sections based on the specifics of your project. Providing insights into your architecture and testing practices can be valuable for developers interested in contributing or understanding your project better.
 
