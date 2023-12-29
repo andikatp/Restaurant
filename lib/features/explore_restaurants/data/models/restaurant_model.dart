@@ -1,6 +1,8 @@
 import 'package:dicoding_final/core/utils/typedef.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/entities/restaurant.dart';
+import 'package:floor/floor.dart';
 
+@Entity(tableName: 'restaurant', primaryKeys: ['id'])
 class RestaurantModel extends Restaurant {
   const RestaurantModel({
     required super.id,
