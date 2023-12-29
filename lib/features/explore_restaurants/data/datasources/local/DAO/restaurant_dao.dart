@@ -9,6 +9,6 @@ abstract class RestaurantDao {
   @delete
   Future<void> deleteSavedRestaurant(RestaurantModel restaurant);
 
-  @Query('SELECT * FROM article')
+  @Query('SELECT * FROM restaurant')
   Future<List<RestaurantModel>> getRestaurants();
 }

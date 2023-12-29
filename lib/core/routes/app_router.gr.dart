@@ -47,7 +47,7 @@ abstract class _$AppRouter extends RootStackRouter {
     SavedRestaurantRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SavedRestaurantPage(),
+        child: WrappedRoute(child: const SavedRestaurantPage()),
       );
     },
     SearchRoute.name: (routeData) {
