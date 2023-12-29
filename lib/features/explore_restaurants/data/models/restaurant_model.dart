@@ -13,6 +13,17 @@ class RestaurantModel extends Restaurant {
     required super.rating,
   });
 
+  factory RestaurantModel.fromEntity(Restaurant restaurant) {
+    return RestaurantModel(
+      id: restaurant.id,
+      name: restaurant.name,
+      description: restaurant.description,
+      pictureId: restaurant.pictureId,
+      city: restaurant.city,
+      rating: restaurant.rating,
+    );
+  }
+
   const RestaurantModel.empty() : super.empty();
 
   factory RestaurantModel.fromJson(ResultMap map) {
