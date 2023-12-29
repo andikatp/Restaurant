@@ -6,6 +6,7 @@ import 'package:dicoding_final/features/explore_restaurants/presentation/widgets
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/restaurant_tile_widget.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -33,20 +34,27 @@ class _SavedRestaurantPageState extends State<SavedRestaurantPage> {
       ),
       body: Consumer<SavedProvider>(
         builder: (context, saved, child) {
-          print('isLoading: ${saved.isLoading}');
-          print('messageOfError: ${saved.messageOfError}');
-          print('Number of restaurants: ${saved.restaurants.length}');
-          return CustomScrollView(
-            slivers: [
+          return Column(
+            children: [
               if (saved.isLoading)
-                const SliverFillRemaining(child: LoadingWidget()),
-              if (saved.messageOfError.isNotEmpty)
-                SliverToBoxAdapter(
-                  child: Text(saved.messageOfError),
+                const Center(
+                  child: CircularProgressIndicator(),
                 ),
               if (saved.restaurants.isEmpty)
-                const LottieState(lottieAsset: AppConstant.networkErrorLottie),
-              const LottieState(lottieAsset: AppConstant.noInternetConnection),
+                const Center(
+                  child: Text('empty'),
+                ),
+              SizedBox(
+                height: 500.h,
+                child: ListView.separated(
+                  itemCount: saved.restaurants.length,
+                  itemBuilder: (_, index) {
+                    final restaurant = saved.restaurants[index];
+                    return RestaurantTile(restaurant: restaurant);
+                  },
+                  separatorBuilder: (_, __) => Gap.h8,
+                ),
+              ),
             ],
           );
         },
@@ -54,6 +62,20 @@ class _SavedRestaurantPageState extends State<SavedRestaurantPage> {
     );
   }
 }
+
+//  CustomScrollView(
+//             slivers: [
+//               if (saved.isLoading)
+//                 const SliverFillRemaining(child: LoadingWidget()),
+//               if (saved.messageOfError.isNotEmpty)
+//                 SliverToBoxAdapter(
+//                   child: Text(saved.messageOfError),
+//                 ),
+//               if (saved.restaurants.isEmpty)
+//                 const LottieState(lottieAsset: AppConstant.networkErrorLottie),
+//               const LottieState(lottieAsset: AppConstant.noInternetConnection),
+//             ],
+//           );
 
 // SliverFillRemaining(
 //             child: FutureBuilder(
