@@ -39,13 +39,15 @@ class SavedProvider with ChangeNotifier {
 
   Future<void> getSavedRestaurant() async {
     _isLoading = true;
+    await Future.microtask(notifyListeners);
+    await Future.delayed(const Duration(seconds: 3));
     final result = await _getSavedRestaurant();
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
       (restaurants) => _restaurants = restaurants,
     );
     _isLoading = false;
-    notifyListeners();
+    await Future.microtask(notifyListeners);
   }
 
   Future<void> deleteSavedRestaurant(Restaurant restaurant) async {
