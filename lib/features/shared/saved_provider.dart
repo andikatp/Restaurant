@@ -27,6 +27,7 @@ class SavedProvider with ChangeNotifier {
 
   Future<void> saveRestaurant(Restaurant restaurant) async {
     _isLoading = true;
+    await Future<void>.delayed(const Duration(seconds: 2));
     final result = await _saveRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
@@ -38,7 +39,6 @@ class SavedProvider with ChangeNotifier {
 
   Future<void> getSavedRestaurant() async {
     _isLoading = true;
-
     final result = await _getSavedRestaurant();
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),

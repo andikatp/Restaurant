@@ -16,7 +16,7 @@ class NetworkErrorWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset(
-            'assets/json/network_error.json',
+            AppConstant.networkErrorLottie,
             height: 200.h,
             fit: BoxFit.cover,
           ),
