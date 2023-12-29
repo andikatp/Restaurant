@@ -6,6 +6,7 @@ import 'package:dicoding_final/features/detail/domain/repositories/detail_repo.d
 import 'package:dicoding_final/features/detail/domain/usecases/get_detail_restaurant.dart';
 import 'package:dicoding_final/features/detail/domain/usecases/review_restaurant.dart';
 import 'package:dicoding_final/features/detail/presentation/cubit/detail_cubit.dart';
+import 'package:dicoding_final/features/explore_restaurants/data/datasources/local/app_database.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/datasources/remote/explore_restaurants_remote_data_source.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/repositories/explore_restaurants_impl.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/repositories/explore_restaurants.dart';
@@ -19,6 +20,10 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  // Database
+  final database =
+      await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+
   // Feature
   sl
     ..registerFactory(
@@ -52,7 +57,8 @@ Future<void> init() async {
       () => NetworkInfoImpl(networkInfo: sl()),
     )
     // external
-    ..registerSingleton<AppRouter>(AppRouter()) 
+    ..registerSingleton<AppRouter>(AppRouter())
+    ..registerSingleton<AppDatabase>(database)
     ..registerLazySingleton(http.Client.new)
     ..registerLazySingleton(InternetConnection.new);
 }
