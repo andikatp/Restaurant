@@ -40,7 +40,7 @@ class SavedProvider with ChangeNotifier {
   Future<void> getSavedRestaurant() async {
     _isLoading = true;
     await Future.microtask(notifyListeners);
-    await Future.delayed(const Duration(seconds: 3));
+    await Future<void>.delayed(const Duration(seconds: 3));
     final result = await _getSavedRestaurant();
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
