@@ -27,6 +27,7 @@ The project adopts a Test-Driven Development (TDD) approach to ensure code relia
 
 ## 🛠️ Built With
 
+- [AutoRouter]
 - [Flutter](https://flutter.dev/): A UI toolkit for building natively compiled applications.
 - [Bloc](https://pub.dev/packages/flutter_bloc): State management library for Flutter applications.
 - [BlocTest](https://pub.dev/packages/bloc_test): Helper methods for testing BLoC components.
