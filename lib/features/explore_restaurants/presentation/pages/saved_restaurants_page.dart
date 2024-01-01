@@ -11,39 +11,52 @@ import 'package:provider/provider.dart';
 @RoutePage()
 class SavedRestaurantPage extends StatelessWidget {
   const SavedRestaurantPage({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return Center(
       child: CustomScrollView(
         slivers: [
+          const SliverAppBar(
+            toolbarHeight: Sizes.p72,
+            floating: true,
+            title: Text('Saved Restaurants'),
+          ),
           FutureBuilder(
             future: context.read<SavedProvider>().getSavedRestaurant(),
             builder: (context, snapshot) {
-              final restaurants = context.read<SavedProvider>().restaurants;
+              final provider = context.read<SavedProvider>();
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const SliverFillRemaining(
                   hasScrollBody: false,
                   child: LoadingWidget(),
                 );
               }
-              if (restaurants.isEmpty) {
+              if (provider.restaurants.isEmpty) {
                 return const LottieState(
                   lottieAsset: AppConstant.emptySavedLottie,
                   text: AppConstant.initialSavedText,
                 );
               }
-              if (restaurants.isNotEmpty) {
-                return SliverList.separated(
-                  itemCount: restaurants.length,
-                  itemBuilder: (_, index) {
-                    final restaurant = restaurants[index];
-                    return RestaurantTile(restaurant: restaurant);
-                  },
-                  separatorBuilder: (_, __) => Gap.h8,
+              if (provider.messageOfError.isNotEmpty) {
+                return SliverFillRemaining(
+                  child: Center(
+                    child: Text(
+                      provider.messageOfError,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 );
               }
-              return const SizedBox();
+
+              return SliverList.separated(
+                itemCount: provider.restaurants.length,
+                itemBuilder: (_, index) {
+                  final restaurant = provider.restaurants[index];
+                  return RestaurantTile(restaurant: restaurant);
+                },
+                separatorBuilder: (_, __) => Gap.h8,
+              );
             },
           ),
         ],

@@ -17,15 +17,14 @@ class SavedProvider with ChangeNotifier {
   final GetSavedRestaurants _getSavedRestaurant;
   final DeleteSavedRestaurant _deleteSavedRestaurant;
 
-  final bool _isLoading = false;
   List<Restaurant> _restaurants = [];
   String _errorMessage = '';
 
-  bool get isLoading => _isLoading;
   List<Restaurant> get restaurants => _restaurants;
   String get messageOfError => _errorMessage;
 
   bool isFavorite(Restaurant restaurant) {
+    getSavedRestaurant();
     return _restaurants.contains(restaurant);
   }
 
@@ -33,16 +32,6 @@ class SavedProvider with ChangeNotifier {
     _restaurants.contains(restaurant)
         ? deleteSavedRestaurant(restaurant)
         : saveRestaurant(restaurant);
-    notifyListeners();
-  }
-
-  Future<void> saveRestaurant(Restaurant restaurant) async {
-    notifyListeners();
-    final result = await _saveRestaurant(restaurant);
-    result.fold(
-      (failure) => _errorMessage = errorMessage(failure),
-      (_) => null,
-    );
     notifyListeners();
   }
 
@@ -54,12 +43,20 @@ class SavedProvider with ChangeNotifier {
     );
   }
 
-  Future<void> deleteSavedRestaurant(Restaurant restaurant) async {
+  Future<void> saveRestaurant(Restaurant restaurant) async {
+    final result = await _saveRestaurant(restaurant);
+    result.fold(
+      (failure) => _errorMessage = errorMessage(failure),
+      (_) => _restaurants.add(restaurant),
+    );
     notifyListeners();
+  }
+
+  Future<void> deleteSavedRestaurant(Restaurant restaurant) async {
     final result = await _deleteSavedRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
-      (_) => null,
+      (_) => _restaurants.remove(restaurant),
     );
     notifyListeners();
   }
