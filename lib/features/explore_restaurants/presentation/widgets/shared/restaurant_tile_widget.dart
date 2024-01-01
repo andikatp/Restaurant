@@ -30,7 +30,7 @@ class RestaurantTile extends StatelessWidget {
 
     void makeFavorite(Restaurant restaurant) {
       Provider.of<SavedProvider>(context, listen: false)
-          .toggleFavorite(restaurant.id);
+          .toggleFavorite(restaurant);
     }
 
     return Material(
@@ -109,7 +109,7 @@ class RestaurantTile extends StatelessWidget {
                 builder: (context, saved, child) => IconButton(
                   onPressed: () => makeFavorite(restaurant),
                   icon: Icon(
-                    saved.isFavorite(restaurant.id)
+                    saved.isFavorite(restaurant)
                         ? Icons.favorite
                         : Icons.favorite_border_outlined,
                     size: Sizes.p28.sp,

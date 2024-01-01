@@ -17,61 +17,48 @@ class SavedProvider with ChangeNotifier {
   final GetSavedRestaurants _getSavedRestaurant;
   final DeleteSavedRestaurant _deleteSavedRestaurant;
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
   List<Restaurant> _restaurants = [];
-  final Set<String> _favoriteRestaurants = {};
   String _errorMessage = '';
 
   bool get isLoading => _isLoading;
   List<Restaurant> get restaurants => _restaurants;
   String get messageOfError => _errorMessage;
 
-  bool isFavorite(String restaurantId) {
-    return _favoriteRestaurants.contains(restaurantId);
+  bool isFavorite(Restaurant restaurant) {
+    return _restaurants.contains(restaurant);
   }
 
-  void toggleFavorite(String restaurantId) {
-    _favoriteRestaurants.contains(restaurantId)
-        ? _favoriteRestaurants.remove(restaurantId)
-        : _favoriteRestaurants.add(restaurantId);
-
+  Future<void> toggleFavorite(Restaurant restaurant) async {
+    _restaurants.contains(restaurant)
+        ? await deleteSavedRestaurant(restaurant)
+        : await saveRestaurant(restaurant);
     notifyListeners();
   }
 
   Future<void> saveRestaurant(Restaurant restaurant) async {
-    _isLoading = true;
-    await Future<void>.delayed(const Duration(seconds: 2));
     final result = await _saveRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
       (_) => null,
     );
-    _isLoading = false;
     notifyListeners();
   }
 
   Future<void> getSavedRestaurant() async {
-    _isLoading = true;
-    await Future.microtask(notifyListeners);
-    await Future<void>.delayed(const Duration(seconds: 3));
     final result = await _getSavedRestaurant();
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
       (restaurants) => _restaurants = restaurants,
     );
-    _isLoading = false;
-    await Future.microtask(notifyListeners);
   }
 
   Future<void> deleteSavedRestaurant(Restaurant restaurant) async {
-    _isLoading = true;
-
     final result = await _deleteSavedRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
       (_) => null,
     );
-    _isLoading = false;
     notifyListeners();
   }
 }

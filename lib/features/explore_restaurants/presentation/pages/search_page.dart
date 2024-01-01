@@ -16,8 +16,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SearchPage extends StatelessWidget implements AutoRouteWrapper {
   const SearchPage({super.key});
 
-  static const routeName = '/search';
-
   @override
   Widget build(BuildContext context) {
     final controller = TextEditingController();
@@ -46,7 +44,10 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
               searchRestaurant: searchRestaurant,
             ),
             if (state is GetRestaurantsInitial)
-              const LottieState(lottieAsset: AppConstant.searchLottie),
+              const LottieState(
+                lottieAsset: AppConstant.searchLottie,
+                text: '',
+              ),
             if (state is SearchLoading)
               const SliverFillRemaining(
                 hasScrollBody: false,
@@ -62,7 +63,10 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
                 separatorBuilder: (_, __) => Gap.h8,
               ),
             if (state is SearchLoaded && state.restaurants.isEmpty)
-              const LottieState(lottieAsset: AppConstant.emptyLottie),
+              const LottieState(
+                lottieAsset: AppConstant.emptyLottie,
+                text: AppConstant.emptyLottie,
+              ),
             if (state is SearchError &&
                 state.message.contains(AppConstant.noInternetConnection))
               SliverFillRemaining(

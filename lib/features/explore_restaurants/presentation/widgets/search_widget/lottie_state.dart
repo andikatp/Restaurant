@@ -1,4 +1,3 @@
-import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,10 @@ import 'package:lottie/lottie.dart';
 
 class LottieState extends StatelessWidget {
   const LottieState({
-    required this.lottieAsset, super.key,
+    required this.lottieAsset, required this.text, super.key,
   });
   final String lottieAsset;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,12 @@ class LottieState extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           Gap.h12,
-          Text(
-            AppConstant.searchText,
-            style: context.theme.textTheme.headlineSmall,
+          Center(
+            child: Text(
+              text,
+              style: context.theme.textTheme.headlineSmall,
+              textAlign: TextAlign.center,
+            ),
           ),
           Gap.h20,
         ],
