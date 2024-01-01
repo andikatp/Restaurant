@@ -16,7 +16,6 @@ class DetailPage extends StatelessWidget implements AutoRouteWrapper {
     required this.restaurantId,
     super.key,
   });
-
   final String restaurantId;
 
   @override
@@ -53,7 +52,8 @@ class DetailPage extends StatelessWidget implements AutoRouteWrapper {
             return NetworkErrorWidget(
               onRetry: () => cubit.getDetailRestaurant(restaurantId),
             );
-          } else if (state is ReviewAdded) {
+          }
+          if (state is ReviewAdded) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               cubit.getDetailRestaurant(restaurantId);
             });
