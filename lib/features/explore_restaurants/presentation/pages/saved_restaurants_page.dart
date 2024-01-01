@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
-import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/search_widget/lottie_state.dart';
+import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/appbar.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/restaurant_tile_widget.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +14,13 @@ class SavedRestaurantPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void searchSavedRestaurant(String query) =>
+        context.read<SavedProvider>().searchSavedRestaurant(query);
+
     return Center(
       child: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            toolbarHeight: Sizes.p72,
-            floating: true,
-            title: Text(
-              AppConstant.savedAppBarTitle,
-              style: context.theme.textTheme.headlineSmall,
-            ),
-          ),
+          AppBarWidget(searchRestaurant: searchSavedRestaurant),
           Consumer<SavedProvider>(
             builder: (context, provider, _) {
               if (provider.restaurants.isEmpty) {
@@ -43,7 +39,6 @@ class SavedRestaurantPage extends StatelessWidget {
                   ),
                 );
               }
-
               return SliverList.separated(
                 itemCount: provider.restaurants.length,
                 itemBuilder: (_, index) {

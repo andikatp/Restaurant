@@ -6,8 +6,8 @@ import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/cubit/explore_restaurants_cubit.dart';
-import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/search_widget/appbar.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/search_widget/lottie_state.dart';
+import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/appbar.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/restaurant_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,8 +18,6 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
-
     void searchRestaurant(String restaurantName) {
       context.read<ExploreRestaurantsCubit>().searchRestaurant(restaurantName);
     }
@@ -39,10 +37,7 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
       builder: (context, state) {
         return CustomScrollView(
           slivers: [
-            AppBarWidget(
-              controller: controller,
-              searchRestaurant: searchRestaurant,
-            ),
+            AppBarWidget(searchRestaurant: searchRestaurant),
             if (state is GetRestaurantsInitial)
               const LottieState(
                 lottieAsset: AppConstant.searchLottie,

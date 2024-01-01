@@ -6,12 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
-    required this.controller,
     required this.searchRestaurant,
     super.key,
   });
 
-  final TextEditingController controller;
   final void Function(String restaurantName) searchRestaurant;
 
   @override
@@ -25,7 +23,6 @@ class AppBarWidget extends StatelessWidget {
           type: MaterialType.transparency,
           child: TextField(
             autofocus: true,
-            controller: controller,
             onChanged: searchRestaurant,
             decoration: InputDecoration(
               border: OutlineInputBorder(
