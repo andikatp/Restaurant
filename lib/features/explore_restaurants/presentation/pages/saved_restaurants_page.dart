@@ -15,10 +15,39 @@ class SavedRestaurantPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text('data')],
+    return Center(
+      child: CustomScrollView(
+        slivers: [
+          FutureBuilder(
+            future: context.read<SavedProvider>().getSavedRestaurant(),
+            builder: (context, snapshot) {
+              final restaurants = context.read<SavedProvider>().restaurants;
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: LoadingWidget(),
+                );
+              }
+              if (restaurants.isEmpty) {
+                return const LottieState(
+                  lottieAsset: AppConstant.emptySavedLottie,
+                  text: AppConstant.initialSavedText,
+                );
+              }
+              if (restaurants.isNotEmpty) {
+                return SliverList.separated(
+                  itemCount: restaurants.length,
+                  itemBuilder: (_, index) {
+                    final restaurant = restaurants[index];
+                    return RestaurantTile(restaurant: restaurant);
+                  },
+                  separatorBuilder: (_, __) => Gap.h8,
+                );
+              }
+              return const SizedBox();
+            },
+          ),
+        ],
       ),
     );
   }

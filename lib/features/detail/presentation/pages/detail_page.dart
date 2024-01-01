@@ -9,59 +9,24 @@ import 'package:dicoding_final/features/detail/presentation/widgets/menu_widget.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@immutable
 @RoutePage()
-class DetailPage extends StatefulWidget implements AutoRouteWrapper {
+class DetailPage extends StatelessWidget implements AutoRouteWrapper {
   const DetailPage({
     required this.restaurantId,
     super.key,
   });
 
-  static const routeName = '/detail';
   final String restaurantId;
 
   @override
-  State<DetailPage> createState() => _DetailPageState();
-
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider<DetailCubit>(
-      create: (context) => sl<DetailCubit>(),
-      child: this,
-    );
-  }
-}
-
-class _DetailPageState extends State<DetailPage> {
-  void getRestaurantFromCubit() {
-    final restaurantId = widget.restaurantId;
-    context.read<DetailCubit>().getDetailRestaurant(restaurantId);
-  }
-
-  void addReview(String restaurantId, String review) {
-    context.read<DetailCubit>().addReview(restaurantId, review);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    getRestaurantFromCubit();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final cubit = context.read<DetailCubit>()
+      ..getDetailRestaurant(restaurantId);
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: BlocConsumer<DetailCubit, DetailState>(
-        listener: (context, state) {
-          if (state is DetailError) {
-            ScaffoldMessenger.of(context).removeCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
-          }
-          if (state is ReviewAdded) {
-            getRestaurantFromCubit();
-          }
-        },
+      body: BlocBuilder<DetailCubit, DetailState>(
         builder: (context, state) {
           if (state is DetailLoading) {
             return const LoadingWidget();
@@ -71,14 +36,41 @@ class _DetailPageState extends State<DetailPage> {
             return CustomScrollView(
               slivers: [
                 AppBarDetail(restaurant: restaurant),
-                DetailWidget(restaurant: restaurant, addReview: addReview),
+                DetailWidget(
+                  restaurant: restaurant,
+                  addReview: cubit.addReview,
+                ),
                 MenuWidget(restaurant: restaurant),
               ],
             );
           }
-          return NetworkErrorWidget(onRetry: getRestaurantFromCubit);
+          if (state is DetailError) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+            });
+            return NetworkErrorWidget(
+              onRetry: () => cubit.getDetailRestaurant(restaurantId),
+            );
+          } else if (state is ReviewAdded) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              cubit.getDetailRestaurant(restaurantId);
+            });
+          }
+          return NetworkErrorWidget(
+            onRetry: () => cubit.getDetailRestaurant(restaurantId),
+          );
         },
       ),
+    );
+  }
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider<DetailCubit>(
+      create: (context) => sl<DetailCubit>(),
+      child: this,
     );
   }
 }
