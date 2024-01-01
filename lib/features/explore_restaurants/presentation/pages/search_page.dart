@@ -46,7 +46,7 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
             if (state is GetRestaurantsInitial)
               const LottieState(
                 lottieAsset: AppConstant.searchLottie,
-                text: '',
+                text: AppConstant.searchText,
               ),
             if (state is SearchLoading)
               const SliverFillRemaining(

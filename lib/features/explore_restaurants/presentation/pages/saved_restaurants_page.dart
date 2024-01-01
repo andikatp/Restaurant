@@ -6,7 +6,6 @@ import 'package:dicoding_final/features/explore_restaurants/presentation/widgets
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/restaurant_tile_widget.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()

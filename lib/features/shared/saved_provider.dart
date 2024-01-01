@@ -29,14 +29,15 @@ class SavedProvider with ChangeNotifier {
     return _restaurants.contains(restaurant);
   }
 
-  Future<void> toggleFavorite(Restaurant restaurant) async {
+  void toggleFavorite(Restaurant restaurant) {
     _restaurants.contains(restaurant)
-        ? await deleteSavedRestaurant(restaurant)
-        : await saveRestaurant(restaurant);
+        ? deleteSavedRestaurant(restaurant)
+        : saveRestaurant(restaurant);
     notifyListeners();
   }
 
   Future<void> saveRestaurant(Restaurant restaurant) async {
+    notifyListeners();
     final result = await _saveRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
@@ -54,6 +55,7 @@ class SavedProvider with ChangeNotifier {
   }
 
   Future<void> deleteSavedRestaurant(Restaurant restaurant) async {
+    notifyListeners();
     final result = await _deleteSavedRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),

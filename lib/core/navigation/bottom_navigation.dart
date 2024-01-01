@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
       bottomNavigationBuilder: (_, tabsRouter) => Material(
         elevation: Sizes.p12,
         child: SalomonBottomBar(
-          backgroundColor: Colors.white,
+          selectedItemColor: Colours.primaryColor,
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           margin: REdgeInsets.symmetric(
