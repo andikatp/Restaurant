@@ -29,4 +29,5 @@ class AppConstant {
   static const String initialSavedText =
       'Opps, you got nothing, try adding some!';
   static const String addCommentText = 'Add Comment';
+  static const String savedAppBarTitle =  'Saved Restaurants';
 }
