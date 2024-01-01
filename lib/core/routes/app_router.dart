@@ -46,6 +46,7 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
               page: SavedRestaurantRoute.page,
               path: AppNameRoute.saved,
+              maintainState: false,
             ),
           ],
         ),
