@@ -6,12 +6,10 @@ import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/entities/restaurant.dart';
-import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class RestaurantTile extends StatelessWidget {
   const RestaurantTile({
@@ -26,10 +24,6 @@ class RestaurantTile extends StatelessWidget {
     void goToDetail(Restaurant restaurant) {
       context.focusScope.unfocus();
       context.router.push(DetailRoute(restaurantId: restaurant.id));
-    }
-
-    void makeFavorite(Restaurant restaurant) {
-      context.read<SavedProvider>().toggleFavorite(restaurant);
     }
 
     return Material(
