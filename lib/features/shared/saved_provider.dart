@@ -19,11 +19,24 @@ class SavedProvider with ChangeNotifier {
 
   bool _isLoading = false;
   List<Restaurant> _restaurants = [];
+  final Set<String> _favoriteRestaurants = {};
   String _errorMessage = '';
 
   bool get isLoading => _isLoading;
   List<Restaurant> get restaurants => _restaurants;
   String get messageOfError => _errorMessage;
+
+  bool isFavorite(String restaurantId) {
+    return _favoriteRestaurants.contains(restaurantId);
+  }
+
+  void toggleFavorite(String restaurantId) {
+    _favoriteRestaurants.contains(restaurantId)
+        ? _favoriteRestaurants.remove(restaurantId)
+        : _favoriteRestaurants.add(restaurantId);
+
+    notifyListeners();
+  }
 
   Future<void> saveRestaurant(Restaurant restaurant) async {
     _isLoading = true;
@@ -61,6 +74,4 @@ class SavedProvider with ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
-
-  
 }

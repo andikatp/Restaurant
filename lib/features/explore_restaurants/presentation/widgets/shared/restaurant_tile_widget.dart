@@ -6,10 +6,12 @@ import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/entities/restaurant.dart';
+import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class RestaurantTile extends StatelessWidget {
   const RestaurantTile({
@@ -27,7 +29,8 @@ class RestaurantTile extends StatelessWidget {
     }
 
     void makeFavorite(Restaurant restaurant) {
-      // TODO(Saved): Create a save button
+      Provider.of<SavedProvider>(context, listen: false)
+          .toggleFavorite(restaurant.id);
     }
 
     return Material(
@@ -63,6 +66,7 @@ class RestaurantTile extends StatelessWidget {
                   ),
                   SizedBox(
                     height: Sizes.p92.h,
+                    width: Sizes.p220.w,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,12 +105,16 @@ class RestaurantTile extends StatelessWidget {
                   ),
                 ],
               ),
-              IconButton(
-                onPressed: () => makeFavorite(restaurant),
-                icon: Icon(
-                  Icons.bookmark_border_outlined,
-                  size: Sizes.p36.sp,
-                  color: Colours.primaryColor,
+              Consumer<SavedProvider>(
+                builder: (context, saved, child) => IconButton(
+                  onPressed: () => makeFavorite(restaurant),
+                  icon: Icon(
+                    saved.isFavorite(restaurant.id)
+                        ? Icons.favorite
+                        : Icons.favorite_border_outlined,
+                    size: Sizes.p28.sp,
+                    color: Colours.primaryColor,
+                  ),
                 ),
               ),
             ],
