@@ -21,6 +21,13 @@ Future<Widget?> modalReviewWidget({
         width: double.infinity,
         height: Sizes.p400.h,
         padding: REdgeInsets.all(Sizes.p20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(Sizes.p24).r,
+            topRight: const Radius.circular(Sizes.p24).r,
+          ),
+        ),
         child: Column(
           children: [
             Container(
