@@ -40,14 +40,13 @@ class AppRouter extends _$AppRouter {
                   page: SearchRoute.page,
                   path: AppNameRoute.search,
                 ),
+                AutoRoute(
+                  page: SavedRestaurantRoute.page,
+                  path: AppNameRoute.saved,
+                ),
               ],
             ),
             AutoRoute(page: SettingRoute.page, path: AppNameRoute.settings),
-            AutoRoute(
-              page: SavedRestaurantRoute.page,
-              path: AppNameRoute.saved,
-              maintainState: false,
-            ),
           ],
         ),
       ];
