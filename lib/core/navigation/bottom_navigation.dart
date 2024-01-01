@@ -12,6 +12,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const homeItem = 'Home';
+    const savedItem = 'Saved';
+    const settingItem = 'Settings';
+    
     return AutoTabsScaffold(
       routes: const [
         RestaurantRoute(),
@@ -31,17 +35,17 @@ class HomePage extends StatelessWidget {
           items: [
             SalomonBottomBarItem(
               icon: const Icon(Icons.home),
-              title: const Text('Home'),
+              title: const Text(homeItem),
               unselectedColor: Colours.secondaryGreyColor,
             ),
             SalomonBottomBarItem(
               icon: const Icon(Icons.favorite),
-              title: const Text('Favorite'),
+              title: const Text(savedItem),
               unselectedColor: Colours.secondaryGreyColor,
             ),
             SalomonBottomBarItem(
               icon: const Icon(Icons.settings),
-              title: const Text('Settings'),
+              title: const Text(settingItem),
               unselectedColor: Colours.secondaryGreyColor,
             ),
           ],

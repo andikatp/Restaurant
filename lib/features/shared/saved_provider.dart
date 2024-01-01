@@ -60,4 +60,14 @@ class SavedProvider with ChangeNotifier {
     );
     notifyListeners();
   }
+
+  void searchSavedRestaurant(String query) {
+    _restaurants = _restaurants
+        .where(
+          (restaurant) =>
+              restaurant.name.toLowerCase().contains(query.toLowerCase()),
+        )
+        .toList();
+    notifyListeners();
+  }
 }
