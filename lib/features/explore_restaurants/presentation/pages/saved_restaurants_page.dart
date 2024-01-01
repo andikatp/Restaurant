@@ -23,42 +23,38 @@ class _SavedRestaurantPageState extends State<SavedRestaurantPage> {
   @override
   void initState() {
     super.initState();
+    print('a');
     Provider.of<SavedProvider>(context, listen: false).getSavedRestaurant();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Saved Restaurants'),
-      ),
-      body: Consumer<SavedProvider>(
-        builder: (context, saved, child) {
-          return Column(
-            children: [
-              if (saved.isLoading)
-                const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              if (saved.restaurants.isEmpty)
-                const Center(
-                  child: Text('empty'),
-                ),
-              SizedBox(
-                height: 500.h,
-                child: ListView.separated(
-                  itemCount: saved.restaurants.length,
-                  itemBuilder: (_, index) {
-                    final restaurant = saved.restaurants[index];
-                    return RestaurantTile(restaurant: restaurant);
-                  },
-                  separatorBuilder: (_, __) => Gap.h8,
-                ),
+    return Consumer<SavedProvider>(
+      builder: (context, saved, child) {
+        return Column(
+          children: [
+            if (saved.isLoading)
+              const Center(
+                child: CircularProgressIndicator(),
               ),
-            ],
-          );
-        },
-      ),
+            if (saved.restaurants.isEmpty)
+              const Center(
+                child: Text('empty'),
+              ),
+            SizedBox(
+              height: 500.h,
+              child: ListView.separated(
+                itemCount: saved.restaurants.length,
+                itemBuilder: (_, index) {
+                  final restaurant = saved.restaurants[index];
+                  return RestaurantTile(restaurant: restaurant);
+                },
+                separatorBuilder: (_, __) => Gap.h8,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
