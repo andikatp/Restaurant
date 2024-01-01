@@ -18,10 +18,6 @@ class AppBarDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void makeFavorite(String restaurantId) {
-      // TODO(Saved): Create a save button
-    }
-
     return SliverAppBar.large(
       title: Text(
         restaurant.name,
@@ -34,16 +30,6 @@ class AppBarDetail extends StatelessWidget {
           iconSize: MaterialStatePropertyAll(Sizes.p36.sp),
         ),
       ),
-      actions: [
-        IconButton(
-          onPressed: () => makeFavorite(restaurant.id),
-          icon: Icon(
-            Icons.bookmark_border,
-            size: Sizes.p36.sp,
-            color: Colours.primaryColor,
-          ),
-        ),
-      ],
       flexibleSpace: FlexibleSpaceBar(
         background: Hero(
           tag: restaurant.pictureId,

@@ -20,6 +20,10 @@ class Sizes {
   static const p92 = 92.0;
   static const p96 = 96.0;
   static const p100 = 100.0;
+  static const p120 = 120.0;
+  static const p148 = 148.0;
+  static const p150 = 150.0;
+  static const p220 = 220.0;
   static const p280 = 280.0;
   static const p300 = 300.0;
   static const p330 = 330.0;
