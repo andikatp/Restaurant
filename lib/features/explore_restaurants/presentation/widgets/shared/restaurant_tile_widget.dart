@@ -42,7 +42,7 @@ class RestaurantTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Wrap(
-                spacing: Sizes.p12.w,
+                spacing: Sizes.p20.w,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(Sizes.p12).r,
@@ -58,13 +58,13 @@ class RestaurantTile extends StatelessWidget {
                           ),
                         ),
                         errorWidget: (_, __, ___) => const Icon(Icons.error),
-                        height: Sizes.p120.h,
-                        width: Sizes.p100.h,
+                        height: Sizes.p140.h,
+                        width: Sizes.p120.h,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: Sizes.p120.h,
+                    height: Sizes.p140.h,
                     width: Sizes.p220.w,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -99,22 +99,18 @@ class RestaurantTile extends StatelessWidget {
                             ),
                           ],
                         ),
+                        Text(
+                          restaurant.description,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.theme.textTheme.bodySmall?.copyWith(
+                            color: Colours.secondaryGreyColor,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ],
-              ),
-              Consumer<SavedProvider>(
-                builder: (_, saved, __) => IconButton(
-                  onPressed: () => makeFavorite(restaurant),
-                  icon: Icon(
-                    saved.isFavorite(restaurant)
-                        ? Icons.favorite
-                        : Icons.favorite_border_outlined,
-                    size: Sizes.p28.sp,
-                    color: Colours.primaryColor,
-                  ),
-                ),
               ),
             ],
           ),
