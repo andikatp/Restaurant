@@ -44,14 +44,12 @@ class SavedProvider with ChangeNotifier {
   }
 
   Future<void> saveRestaurant(Restaurant restaurant) async {
-    if (!_restaurants.any((resto) => resto.id == restaurant.id)) {
-      final result = await _saveRestaurant(restaurant);
-      result.fold(
-        (failure) => _errorMessage = errorMessage(failure),
-        (_) => _restaurants.add(restaurant),
-      );
-      notifyListeners();
-    }
+    final result = await _saveRestaurant(restaurant);
+    result.fold(
+      (failure) => _errorMessage = errorMessage(failure),
+      (_) => _restaurants.add(restaurant),
+    );
+    notifyListeners();
   }
 
   Future<void> deleteSavedRestaurant(Restaurant restaurant) async {

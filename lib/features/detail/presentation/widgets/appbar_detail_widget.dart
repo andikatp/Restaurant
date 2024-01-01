@@ -21,9 +21,8 @@ class AppBarDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void makeFavorite(Restaurant restaurant) {
-      context.read<SavedProvider>().toggleFavorite(restaurant);
-    }
+    void makeFavorite(Restaurant restaurant) =>
+        context.read<SavedProvider>().toggleFavorite(restaurant);
 
     return SliverAppBar.large(
       title: Text(
