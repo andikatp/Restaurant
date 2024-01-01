@@ -25,11 +25,11 @@ class SavedProvider with ChangeNotifier {
 
   bool isFavorite(Restaurant restaurant) {
     getSavedRestaurant();
-    return _restaurants.contains(restaurant);
+    return _restaurants.any((resto) => resto.id == restaurant.id);
   }
 
   void toggleFavorite(Restaurant restaurant) {
-    _restaurants.contains(restaurant)
+    _restaurants.any((resto) => resto.id == restaurant.id)
         ? deleteSavedRestaurant(restaurant)
         : saveRestaurant(restaurant);
     notifyListeners();
@@ -44,12 +44,14 @@ class SavedProvider with ChangeNotifier {
   }
 
   Future<void> saveRestaurant(Restaurant restaurant) async {
-    final result = await _saveRestaurant(restaurant);
-    result.fold(
-      (failure) => _errorMessage = errorMessage(failure),
-      (_) => _restaurants.add(restaurant),
-    );
-    notifyListeners();
+    if (!_restaurants.any((resto) => resto.id == restaurant.id)) {
+      final result = await _saveRestaurant(restaurant);
+      result.fold(
+        (failure) => _errorMessage = errorMessage(failure),
+        (_) => _restaurants.add(restaurant),
+      );
+      notifyListeners();
+    }
   }
 
   Future<void> deleteSavedRestaurant(Restaurant restaurant) async {

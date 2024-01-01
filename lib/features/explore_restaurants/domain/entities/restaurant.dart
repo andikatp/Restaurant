@@ -1,3 +1,4 @@
+import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
 import 'package:equatable/equatable.dart';
 
 class Restaurant extends Equatable {
@@ -9,6 +10,17 @@ class Restaurant extends Equatable {
     required this.city,
     required this.rating,
   });
+
+  factory Restaurant.fromDetailRestaurant(DetailRestaurant detailRestaurant) {
+    return Restaurant(
+      id: detailRestaurant.id,
+      name: detailRestaurant.name,
+      description: detailRestaurant.description,
+      pictureId: detailRestaurant.pictureId,
+      city: detailRestaurant.city,
+      rating: detailRestaurant.rating,
+    );
+  }
 
   const Restaurant.empty()
       : this(
