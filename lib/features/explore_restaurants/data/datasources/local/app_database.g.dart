@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: library_private_types_in_public_api, avoid_returning_this, lines_longer_than_80_chars, cast_nullable_to_non_nullable
-
 part of 'app_database.dart';
 
 // **************************************************************************
@@ -81,18 +79,13 @@ class _$AppDatabase extends AppDatabase {
       },
       onUpgrade: (database, startVersion, endVersion) async {
         await MigrationAdapter.runMigrations(
-          database,
-          startVersion,
-          endVersion,
-          migrations,
-        );
+            database, startVersion, endVersion, migrations);
 
         await callback?.onUpgrade?.call(database, startVersion, endVersion);
       },
       onCreate: (database, version) async {
         await database.execute(
-          'CREATE TABLE IF NOT EXISTS `restaurant` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `pictureId` TEXT NOT NULL, `city` TEXT NOT NULL, `rating` REAL NOT NULL, PRIMARY KEY (`id`))',
-        );
+            'CREATE TABLE IF NOT EXISTS `restaurant` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `pictureId` TEXT NOT NULL, `city` TEXT NOT NULL, `rating` REAL NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -112,30 +105,28 @@ class _$RestaurantDao extends RestaurantDao {
     this.changeListener,
   )   : _queryAdapter = QueryAdapter(database),
         _restaurantModelInsertionAdapter = InsertionAdapter(
-          database,
-          'restaurant',
-          (RestaurantModel item) => <String, Object?>{
-            'id': item.id,
-            'name': item.name,
-            'description': item.description,
-            'pictureId': item.pictureId,
-            'city': item.city,
-            'rating': item.rating,
-          },
-        ),
+            database,
+            'restaurant',
+            (RestaurantModel item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'description': item.description,
+                  'pictureId': item.pictureId,
+                  'city': item.city,
+                  'rating': item.rating
+                }),
         _restaurantModelDeletionAdapter = DeletionAdapter(
-          database,
-          'restaurant',
-          ['id'],
-          (RestaurantModel item) => <String, Object?>{
-            'id': item.id,
-            'name': item.name,
-            'description': item.description,
-            'pictureId': item.pictureId,
-            'city': item.city,
-            'rating': item.rating,
-          },
-        );
+            database,
+            'restaurant',
+            ['id'],
+            (RestaurantModel item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'description': item.description,
+                  'pictureId': item.pictureId,
+                  'city': item.city,
+                  'rating': item.rating
+                });
 
   final sqflite.DatabaseExecutor database;
 
@@ -149,25 +140,20 @@ class _$RestaurantDao extends RestaurantDao {
 
   @override
   Future<List<RestaurantModel>> getRestaurants() async {
-    return _queryAdapter.queryList(
-      'SELECT * FROM restaurant',
-      mapper: (Map<String, Object?> row) => RestaurantModel(
-        id: row['id'] as String,
-        name: row['name'] as String,
-        description: row['description'] as String,
-        pictureId: row['pictureId'] as String,
-        city: row['city'] as String,
-        rating: row['rating'] as double,
-      ),
-    );
+    return _queryAdapter.queryList('SELECT * FROM restaurant',
+        mapper: (Map<String, Object?> row) => RestaurantModel(
+            id: row['id'] as String,
+            name: row['name'] as String,
+            description: row['description'] as String,
+            pictureId: row['pictureId'] as String,
+            city: row['city'] as String,
+            rating: row['rating'] as double));
   }
 
   @override
   Future<void> saveRestaurant(RestaurantModel restaurant) async {
     await _restaurantModelInsertionAdapter.insert(
-      restaurant,
-      OnConflictStrategy.abort,
-    );
+        restaurant, OnConflictStrategy.abort);
   }
 
   @override
