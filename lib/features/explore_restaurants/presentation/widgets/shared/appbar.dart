@@ -7,10 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
     required this.searchRestaurant,
+    required this.autoFocusValue,
     super.key,
   });
 
   final void Function(String restaurantName) searchRestaurant;
+  final bool autoFocusValue;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class AppBarWidget extends StatelessWidget {
         child: Material(
           type: MaterialType.transparency,
           child: TextField(
-            autofocus: true,
+            autofocus: autoFocusValue,
             onChanged: searchRestaurant,
             decoration: InputDecoration(
               border: OutlineInputBorder(

@@ -37,7 +37,10 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
       builder: (context, state) {
         return CustomScrollView(
           slivers: [
-            AppBarWidget(searchRestaurant: searchRestaurant),
+            AppBarWidget(
+              searchRestaurant: searchRestaurant,
+              autoFocusValue: true,
+            ),
             if (state is GetRestaurantsInitial)
               const LottieState(
                 lottieAsset: AppConstant.searchLottie,
