@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
-import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/search_widget/lottie_state.dart';
+import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/lottie_state.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/appbar.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/restaurant_tile_widget.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';

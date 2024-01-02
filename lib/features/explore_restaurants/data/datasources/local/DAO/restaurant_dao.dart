@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 
 @dao
 abstract class RestaurantDao {
-  @Insert()
+  @insert
   Future<void> saveRestaurant(RestaurantModel restaurant);
 
   @delete
