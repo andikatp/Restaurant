@@ -21,6 +21,8 @@ class AppBarDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final restaurantEntity = Restaurant.fromDetailRestaurant(restaurant);
+
     void makeFavorite(Restaurant restaurant) =>
         context.read<SavedProvider>().toggleFavorite(restaurant);
 
@@ -39,10 +41,9 @@ class AppBarDetail extends StatelessWidget {
       actions: [
         Consumer<SavedProvider>(
           builder: (_, saved, __) => IconButton(
-            onPressed: () =>
-                makeFavorite(Restaurant.fromDetailRestaurant(restaurant)),
+            onPressed: () => makeFavorite(restaurantEntity),
             icon: Icon(
-              saved.isFavorite(Restaurant.fromDetailRestaurant(restaurant))
+              saved.isFavorite(restaurantEntity)
                   ? Icons.favorite
                   : Icons.favorite_border_outlined,
               size: Sizes.p28.sp,

@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: library_private_types_in_public_api, lines_longer_than_80_chars, avoid_returning_this, require_trailing_commas, cast_nullable_to_non_nullable
+
 part of 'app_database.dart';
 
 // **************************************************************************
