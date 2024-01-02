@@ -51,6 +51,16 @@ class ExploreRestaurantsRepoImpl implements ExploreRestaurantsRepo {
       return Left(ServerFailure.fromException(e));
     }
   }
+  
+  @override
+  ResultFuture<List<RestaurantModel>> getSavedRestaurants() async {
+    try {
+      final result = await _database.restaurantDAO.getRestaurants();
+      return Right(result);
+    } on CacheException catch (e) {
+      return Left(CacheFailure.fromException(e));
+    }
+  }
 
   @override
   ResultFuture<void> deleteSavedRestaurant(Restaurant restaurant) async {
@@ -63,15 +73,6 @@ class ExploreRestaurantsRepoImpl implements ExploreRestaurantsRepo {
     }
   }
 
-  @override
-  ResultFuture<List<RestaurantModel>> getSavedRestaurants() async {
-    try {
-      final result = await _database.restaurantDAO.getRestaurants();
-      return Right(result);
-    } on CacheException catch (e) {
-      return Left(CacheFailure.fromException(e));
-    }
-  }
 
   @override
   ResultFuture<void> saveRestaurant(Restaurant restaurant) async {

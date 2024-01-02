@@ -1,4 +1,5 @@
 import 'package:dicoding_final/core/errors/error_message.dart';
+import 'package:dicoding_final/features/explore_restaurants/data/models/restaurant_model.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/entities/restaurant.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/usecases/delete_saved_restaurant.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/usecases/get_saved_restaurants.dart';
@@ -47,8 +48,9 @@ class SavedProvider with ChangeNotifier {
     final result = await _saveRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
-      (_) => _restaurants.add(restaurant),
+      (_) => null,
     );
+    _restaurants.add(RestaurantModel.fromEntity(restaurant));
     notifyListeners();
   }
 
@@ -56,8 +58,10 @@ class SavedProvider with ChangeNotifier {
     final result = await _deleteSavedRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
-      (_) => _restaurants.remove(restaurant),
+      (_) => null,
     );
+    _restaurants.remove(RestaurantModel.fromEntity(restaurant));
+
     notifyListeners();
   }
 
