@@ -32,13 +32,15 @@ class AppRouter extends _$AppRouter {
                   page: RestaurantRoute.page,
                   path: AppNameRoute.restaurant,
                 ),
-                AutoRoute(
+                CustomRoute(
                   page: DetailRoute.page,
                   path: AppNameRoute.detail,
+                  transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
                 ),
-                AutoRoute(
+                CustomRoute(
                   page: SearchRoute.page,
                   path: AppNameRoute.search,
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
                 ),
                 AutoRoute(
                   page: SavedRestaurantRoute.page,
