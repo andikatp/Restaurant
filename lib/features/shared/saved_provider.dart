@@ -48,9 +48,8 @@ class SavedProvider with ChangeNotifier {
     final result = await _saveRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
-      (_) => null,
+      (_) => _restaurants.add(RestaurantModel.fromEntity(restaurant)),
     );
-    _restaurants.add(RestaurantModel.fromEntity(restaurant));
     notifyListeners();
   }
 
@@ -58,10 +57,8 @@ class SavedProvider with ChangeNotifier {
     final result = await _deleteSavedRestaurant(restaurant);
     result.fold(
       (failure) => _errorMessage = errorMessage(failure),
-      (_) => null,
+      (_) => _restaurants.remove(RestaurantModel.fromEntity(restaurant)),
     );
-    _restaurants.remove(RestaurantModel.fromEntity(restaurant));
-
     notifyListeners();
   }
 
