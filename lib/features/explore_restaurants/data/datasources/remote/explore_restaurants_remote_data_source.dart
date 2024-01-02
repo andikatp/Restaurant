@@ -46,7 +46,8 @@ class ExploreRestaurantsRemoteDataSourceImpl
 
       final result = (decode['restaurants'] as List<dynamic>)
           .map((e) => RestaurantModel.fromJson(e as ResultMap))
-          .toList();
+          .toList()
+        ..shuffle();
 
       return result;
     } catch (e, s) {

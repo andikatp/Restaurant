@@ -6,7 +6,7 @@ import 'package:dicoding_final/core/constants/app_sizes.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/cubit/explore_restaurants_cubit.dart';
-import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/search_widget/lottie_state.dart';
+import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/lottie_state.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/appbar.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/widgets/shared/restaurant_tile_widget.dart';
 import 'package:flutter/material.dart';

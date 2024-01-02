@@ -6,10 +6,12 @@ import 'package:dicoding_final/core/extensions/context_extension.dart';
 import 'package:dicoding_final/core/res/colours.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/entities/restaurant.dart';
+import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class RestaurantTile extends StatelessWidget {
   const RestaurantTile({
@@ -26,6 +28,9 @@ class RestaurantTile extends StatelessWidget {
       context.router.push(DetailRoute(restaurantId: restaurant.id));
     }
 
+    void makeFavorite(Restaurant restaurant) =>
+        context.read<SavedProvider>().toggleFavorite(restaurant);
+
     return Material(
       color: Colors.white,
       child: InkWell(
@@ -36,7 +41,8 @@ class RestaurantTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Wrap(
-                spacing: Sizes.p20.w,
+                spacing: Sizes.p16.w,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(Sizes.p12).r,
@@ -59,7 +65,7 @@ class RestaurantTile extends StatelessWidget {
                   ),
                   SizedBox(
                     height: Sizes.p140.h,
-                    width: Sizes.p220.w,
+                    width: Sizes.p188.w,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,6 +108,18 @@ class RestaurantTile extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Consumer<SavedProvider>(
+                    builder: (_, saved, __) => IconButton(
+                      onPressed: () => makeFavorite(restaurant),
+                      icon: Icon(
+                        saved.isFavorite(restaurant)
+                            ? Icons.favorite
+                            : Icons.favorite_border_outlined,
+                        size: Sizes.p28.sp,
+                        color: Colours.primaryColor,
+                      ),
                     ),
                   ),
                 ],
