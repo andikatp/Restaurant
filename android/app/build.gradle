@@ -24,11 +24,10 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.dicoding_final"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
-        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -46,9 +45,8 @@ android {
         applicationId "com.example.dicoding_final"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        multiDexEnabled true
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -66,6 +64,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
-}
+dependencies {}

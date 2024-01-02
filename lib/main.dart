@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
@@ -8,6 +9,23 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AwesomeNotifications().initialize(
+    '',
+    [
+      NotificationChannel(
+        channelGroupKey: 'restaurant_channel_group',
+        channelKey: 'restaurant_channel',
+        channelName: 'restaurant',
+        channelDescription: 'restaurant notification',
+      ),
+    ],
+    channelGroups: [
+      NotificationChannelGroup(
+        channelGroupKey: 'restaurant_channel_group',
+        channelGroupName: 'restaurant_group',
+      ),
+    ],
+  );
   await init();
   runApp(MyApp());
 }
