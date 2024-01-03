@@ -9,7 +9,6 @@ import 'package:dicoding_final/features/detail/presentation/widgets/menu_widget.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-@immutable
 @RoutePage()
 class DetailPage extends StatelessWidget implements AutoRouteWrapper {
   const DetailPage({

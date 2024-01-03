@@ -63,7 +63,7 @@ class AppBarDetail extends StatelessWidget {
             child: CachedNetworkImage(
               imageUrl: AppConstant.imageUrl + restaurant.pictureId,
               fit: BoxFit.fill,
-              height: Sizes.p330.h,
+              height: Sizes.p332.h,
               placeholder: (_, __) => const Center(
                 child: CupertinoActivityIndicator(
                   color: Colours.primaryColor,

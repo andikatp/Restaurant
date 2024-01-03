@@ -1,3 +1,4 @@
+
 import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
 import 'package:dicoding_final/core/commons/widgets/network_error_widget.dart';
@@ -10,7 +11,6 @@ import 'package:dicoding_final/features/explore_restaurants/presentation/widgets
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-@immutable
 @RoutePage()
 class RestaurantPage extends StatelessWidget implements AutoRouteWrapper {
   const RestaurantPage({super.key});

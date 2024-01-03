@@ -58,13 +58,13 @@ class RestaurantTile extends StatelessWidget {
                           ),
                         ),
                         errorWidget: (_, __, ___) => const Icon(Icons.error),
-                        height: Sizes.p140.h,
+                        height: Sizes.p152.h,
                         width: Sizes.p120.h,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: Sizes.p140.h,
+                    height: Sizes.p152.h,
                     width: Sizes.p188.w,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -101,7 +101,7 @@ class RestaurantTile extends StatelessWidget {
                         ),
                         Text(
                           restaurant.description,
-                          maxLines: 2,
+                          maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: context.theme.textTheme.bodySmall?.copyWith(
                             color: Colours.secondaryGreyColor,
