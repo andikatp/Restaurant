@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/commons/widgets/loading_widget.dart';
 import 'package:dicoding_final/core/commons/widgets/network_error_widget.dart';
@@ -31,7 +30,10 @@ class RestaurantPage extends StatelessWidget implements AutoRouteWrapper {
           if (state is GetRestaurantsError) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
+                SnackBar(
+                  content: Text(state.message),
+                  behavior: SnackBarBehavior.floating,
+                ),
               );
             });
             return NetworkErrorWidget(onRetry: cubit.getRestaurants);

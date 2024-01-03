@@ -50,6 +50,7 @@ class DetailWidget extends StatelessWidget {
           const SnackBar(
             content: Text(reviewAddedMessage),
             duration: Duration(seconds: 1),
+            behavior: SnackBarBehavior.floating,
           ),
         );
       }

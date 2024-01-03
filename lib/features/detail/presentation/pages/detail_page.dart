@@ -45,7 +45,10 @@ class DetailPage extends StatelessWidget implements AutoRouteWrapper {
           if (state is DetailError) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
+                SnackBar(
+                  content: Text(state.message),
+                  behavior: SnackBarBehavior.floating,
+                ),
               );
             });
             return NetworkErrorWidget(
