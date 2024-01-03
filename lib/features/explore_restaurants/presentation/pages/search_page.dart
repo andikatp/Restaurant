@@ -30,8 +30,12 @@ class SearchPage extends StatelessWidget implements AutoRouteWrapper {
       listener: (context, state) {
         if (state is SearchError) {
           context.messenger.hideCurrentSnackBar();
-          context.messenger
-              .showSnackBar(SnackBar(content: Text(state.message)));
+          context.messenger.showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
         }
       },
       builder: (context, state) {
