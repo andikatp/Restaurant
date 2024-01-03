@@ -3,13 +3,21 @@ import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/background_service.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
+import 'package:dicoding_final/core/services/notification_helper.dart';
+import 'package:dicoding_final/features/settings/presentations/provider/scheduling_provider.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final notificationHelper = NotificationHelper();
+  await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
   BackgroundService().initializeIsolate();
   await AndroidAlarmManager.initialize();
   await init();
@@ -28,8 +36,15 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (_, child) => GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: ChangeNotifierProvider(
-          create: (_) => sl<SavedProvider>(),
+        child: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (_) => sl<SavedProvider>(),
+            ),
+            ChangeNotifierProvider(
+              create: (_) => SchedulingProvider(),
+            ),
+          ],
           child: MaterialApp.router(
             title: 'Restaurant',
             debugShowCheckedModeBanner: false,
