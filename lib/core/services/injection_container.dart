@@ -17,11 +17,11 @@ import 'package:dicoding_final/features/explore_restaurants/domain/usecases/get_
 import 'package:dicoding_final/features/explore_restaurants/domain/usecases/save_restaurant.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/usecases/search_restaurant.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/cubit/explore_restaurants_cubit.dart';
-import 'package:dicoding_final/features/settings/data/datasources/notification_data_source.dart';
-import 'package:dicoding_final/features/settings/data/repositories/notification_repo_impl.dart';
-import 'package:dicoding_final/features/settings/domain/repositories/notification_repo.dart';
-import 'package:dicoding_final/features/settings/domain/usecases/turn_notification.dart';
-import 'package:dicoding_final/features/settings/presentations/provider/scheduling_provider.dart';
+import 'package:dicoding_final/features/notification/data/datasources/notification_data_source.dart';
+import 'package:dicoding_final/features/notification/data/repositories/notification_repo_impl.dart';
+import 'package:dicoding_final/features/notification/domain/repositories/notification_repo.dart';
+import 'package:dicoding_final/features/notification/domain/usecases/turn_notification.dart';
+import 'package:dicoding_final/features/notification/presentations/provider/scheduling_provider.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';

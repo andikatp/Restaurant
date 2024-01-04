@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dicoding_final/core/errors/failure.dart';
-import 'package:dicoding_final/features/settings/domain/repositories/notification_repo.dart';
-import 'package:dicoding_final/features/settings/domain/usecases/turn_notification.dart';
+import 'package:dicoding_final/features/notification/domain/repositories/notification_repo.dart';
+import 'package:dicoding_final/features/notification/domain/usecases/turn_notification.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
