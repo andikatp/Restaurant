@@ -1,7 +1,6 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
-import 'package:dicoding_final/core/services/background_service.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/core/services/notification_service.dart';
 import 'package:dicoding_final/features/settings/presentations/provider/scheduling_provider.dart';
@@ -20,7 +19,7 @@ void main() async {
   await NotificationService.initialize();
 
   // Initialize background service
-  BackgroundService().initializeIsolate();
+  NotificationService().initializeIsolate();
 
   // Initialize Android Alarm Manager
   await AndroidAlarmManager.initialize();
