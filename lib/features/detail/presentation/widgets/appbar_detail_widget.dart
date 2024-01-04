@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/constants/app_sizes.dart';
@@ -37,6 +38,7 @@ class AppBarDetail extends StatelessWidget {
         style: ButtonStyle(
           iconSize: MaterialStatePropertyAll(Sizes.p36.sp),
         ),
+        onPressed: () => context.router.popUntil((route) => route.isFirst),
       ),
       actions: [
         Consumer<SavedProvider>(

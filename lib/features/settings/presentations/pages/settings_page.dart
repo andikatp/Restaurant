@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/extensions/context_extension.dart';
+import 'package:dicoding_final/core/navigation/navigation.dart';
 import 'package:dicoding_final/core/res/colours.dart';
+import 'package:dicoding_final/core/routes/app_router.dart';
+import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/core/services/noti.dart';
 import 'package:dicoding_final/core/services/notification_helper.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/models/restaurant_model.dart';
-import 'package:dicoding_final/features/explore_restaurants/domain/entities/restaurant.dart';
 import 'package:dicoding_final/features/settings/presentations/provider/scheduling_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -82,19 +84,27 @@ class _SwitchWidgetState extends State<SwitchWidget> {
           // }
           // await scheduled.scheduledNews(value: value);
           if (value) {
-            await NotificationHelper().showNotification(
-              flutterLocalNotificationsPlugin,
-              [
-                const RestaurantModel(
-                  id: 'id',
-                  name: 'name',
-                  description: 'description',
-                  pictureId: 'pictureId',
-                  city: 'city',
-                  rating: 2,
-                ),
-              ],
-            );
+            // await NotificationHelper().showNotification(
+            //   flutterLocalNotificationsPlugin,
+            //   [
+            //     const RestaurantModel(
+            //       id: 'id',
+            //       name: 'name',
+            //       description: 'description',
+            //       pictureId: 'pictureId',
+            //       city: 'city',
+            //       rating: 2,
+            //     ),
+            //   ],
+            // );
+            // await Noti().showNotification(title: 'aa', body: 'ass');
+            // await context.router
+            //     .push(DetailRoute(restaurantId: 'rqdv5juczeskfw1e867'));
+            // final router = _innerRouterKey.currentState?.controller;
+            // await router?.push(DetailRoute(restaurantId: 'rqdv5juczeskfw1e867'));
+            // Navigation.intentWithData(DetailRoute.name, 'rqdv5juczeskfw1e867');
+            Navigation.intentWithData(
+                DetailRoute(restaurantId: 'rqdv5juczeskfw1e867'),);
           }
         },
         activeColor: Colours.primaryColor,
