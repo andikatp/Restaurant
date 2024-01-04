@@ -3,8 +3,8 @@ import 'dart:isolate';
 import 'dart:ui';
 import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/core/services/notification_helper.dart';
+import 'package:dicoding_final/core/services/notification_service.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/datasources/remote/explore_restaurants_remote_data_source.dart';
-import 'package:dicoding_final/main.dart';
 
 final ReceivePort port = ReceivePort();
 

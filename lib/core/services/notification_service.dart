@@ -1,15 +1,12 @@
 import 'dart:developer';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:dicoding_final/core/navigation/navigation.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:go_router/go_router.dart';
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-class Noti {
+class NotificationService {
   static Future<void> initialize() async {
     const initializationSettingsAndroid =
         AndroidInitializationSettings('mipmap/ic_launcher');
@@ -27,11 +24,11 @@ class Noti {
       initializationSettings,
       onDidReceiveNotificationResponse: (details) {
         log('Received notification response. Payload: ${details.payload}');
-        //  context.routeData.push(DetailRoute(restaurantId: details.payload!));
-        // Navigation.intentWithData(DetailRoute.name, 'rqdv5juczeskfw1e867');
-        Navigation.intentWithData(
-          DetailRoute(restaurantId: 'rqdv5juczeskfw1e867'),
-        );
+        if (details.payload != null) {
+          Navigation.intentWithData(
+            DetailRoute(restaurantId: details.payload!),
+          );
+        }
       },
     );
   }

@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-import 'package:dicoding_final/core/navigation/navigation.dart';
-import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/models/restaurant_model.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/subjects.dart';
@@ -35,13 +32,7 @@ class NotificationHelper {
 
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onDidReceiveNotificationResponse: (payload) async {
-        // Navigation.intentWithData(DetailRoute.name, 'rqdv5juczeskfw1e867');
-        if (payload.payload != null) {
-          log('notification payload: ${payload.payload}');
-        }
-        selectNotificationSubject.add(payload.payload ?? 'empty payload');
-      },
+      onDidReceiveNotificationResponse: (payload) async {},
     );
   }
 

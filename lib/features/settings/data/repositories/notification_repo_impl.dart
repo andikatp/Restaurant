@@ -1,12 +1,22 @@
+import 'package:dartz/dartz.dart';
+import 'package:dicoding_final/core/errors/exception.dart';
+import 'package:dicoding_final/core/errors/failure.dart';
 import 'package:dicoding_final/core/utils/typedef.dart';
+import 'package:dicoding_final/features/settings/data/datasources/notification_data_source.dart';
 import 'package:dicoding_final/features/settings/domain/repositories/notification_repo.dart';
 
 class NotificationRepoImpl implements NotificationRepo {
-  NotificationRepoImpl({required NotificationRepo repo}) : _repo = repo;
-  final NotificationRepo _repo;
+  NotificationRepoImpl({required NotificationDataSource dataSource})
+      : _dataSource = dataSource;
+  final NotificationDataSource _dataSource;
 
   @override
-  ResultFuture<void> turnNotification() {
-    return _repo.turnNotification();
+  ResultFuture<void> turnNotification({required bool value}) async {
+    try {
+      await _dataSource.showNotification(isScheduled: value);
+      return const Right(null);
+    } on CacheException catch (e) {
+      return Left(CacheFailure.fromException(e));
+    }
   }
 }
