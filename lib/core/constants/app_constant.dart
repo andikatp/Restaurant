@@ -15,6 +15,7 @@ class AppConstant {
   static const String emptyLottie = 'assets/json/empty.json';
   static const String emptySavedLottie = 'assets/json/empty_saved.json';
   static const String networkErrorLottie = 'assets/json/network_error.json';
+  static const String bellLottie = 'assets/json/bell.json';
 
   // error message
   static const String noInternetConnection = 'Please check your connection';
@@ -22,10 +23,11 @@ class AppConstant {
       'Ups, API Error. please try again!';
   static const String cacheFailureMessage = 'Ups, API Error. please try again!';
   static const String generalFailureMessage = 'Ups, check your connection';
+  static const String settingText = 'Receive Notifications at 11 AM';
 
   // notification
   static const String notificationDetail = 'Recommendation restaurant for you';
-  static const String restaurantKey = 'currentRestaurant';
+  static const String restaurantsListKey = 'currentRestaurant';
 
   // others
   static const String hintText = 'Search...';

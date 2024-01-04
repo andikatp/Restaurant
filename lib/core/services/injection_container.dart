@@ -1,4 +1,5 @@
 import 'package:dicoding_final/core/network_info/network_info.dart';
+import 'package:dicoding_final/core/preferences/preferences.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/features/detail/data/datasources/remote/detail_remote_data_source.dart';
 import 'package:dicoding_final/features/detail/data/repositories/detail_repo_impl.dart';
@@ -60,6 +61,7 @@ Future<void> init() async {
     ..registerFactory(
       () => SchedulingProvider(
         turnNotification: sl(),
+        preferences: sl(),
       ),
     )
 
@@ -105,6 +107,9 @@ Future<void> init() async {
     // core
     ..registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(networkInfo: sl()),
+    )
+    ..registerLazySingleton<Preferences>(
+      () => PreferencesImpl(sharedPreferences: sl()),
     )
 
     // external
