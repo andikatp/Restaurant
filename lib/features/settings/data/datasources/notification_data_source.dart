@@ -42,13 +42,18 @@ class NotificationRemoteDataSourceImpl implements NotificationDataSource {
         jsonEncode(restaurant.toJson()),
       );
       final initialStartTime = DateTimeHelper.format();
-      final result = await AndroidAlarmManager.periodic(
+      final isAndroidAlarmRunning = await AndroidAlarmManager.periodic(
         const Duration(days: 1),
         1,
         NotificationService.callback,
         startAt: initialStartTime,
       );
-      log(result.toString());
+      if (!isAndroidAlarmRunning) {
+        throw const CacheException(
+          message: 'An error occured, try again later!',
+        );
+      }
+      log(isAndroidAlarmRunning.toString());
     } else {
       log('Scheduling News Canceled');
       await AndroidAlarmManager.cancel(1);
