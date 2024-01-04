@@ -20,7 +20,9 @@ void main() {
   group('fromJson', () {
     test('Should return a valid model when data is json', () async {
       // act
-      final result = DetailRestaurantModel.fromJson(tRestaurantJson);
+      final result = DetailRestaurantModel.fromJson(
+        tRestaurantJson['restaurant'] as ResultMap,
+      );
       // assert
       expect(result, tRestaurant);
     });
