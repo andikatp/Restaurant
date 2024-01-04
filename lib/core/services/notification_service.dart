@@ -91,14 +91,21 @@ class NotificationService {
   static Future<void> callback() async {
     log('cb called');
     await setupDependencyInjectionInIsolate();
-    final restaurant = RestaurantModel.fromJson(
-      jsonDecode(sl<SharedPreferences>().getString(AppConstant.restaurantKey)!)
-          as ResultMap,
-    );
+    final restaurantList = sl<SharedPreferences>()
+        .getStringList(AppConstant.restaurantsListKey)
+        ?.map(
+          (jsonString) =>
+              RestaurantModel.fromJson(jsonDecode(jsonString) as ResultMap),
+        )
+        .toList();
+
+    restaurantList?.shuffle();
+    final restaurant = restaurantList?[0];
+
     await NotificationService().showNotification(
-      title: restaurant.name,
+      title: restaurant?.name ?? 'No Name',
       body: AppConstant.notificationDetail,
-      payload: restaurant.id,
+      payload: restaurant?.id ?? 'rqdv5juczeskfw1e867',
     );
   }
 

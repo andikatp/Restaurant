@@ -36,10 +36,12 @@ class NotificationRemoteDataSourceImpl implements NotificationDataSource {
     if (isScheduled) {
       log('Scheduling News Activated');
       final restaurants = await _explore.getRestaurants();
-      final restaurant = restaurants[0];
-      await _sharedPreferences.setString(
-        AppConstant.restaurantKey,
-        jsonEncode(restaurant.toJson()),
+      final restaurantsString = restaurants
+          .map((restaurant) => jsonEncode(restaurant.toJson()))
+          .toList();
+      await _sharedPreferences.setStringList(
+        AppConstant.restaurantsListKey,
+        restaurantsString,
       );
       final initialStartTime = DateTimeHelper.format();
       final isAndroidAlarmRunning = await AndroidAlarmManager.periodic(
