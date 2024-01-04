@@ -1,46 +1,8 @@
 {
-  "error": false,
-  "message": "",
-  "restaurant": {
-    "id": "",
-    "name": "",
-    "description": "",
-    "city": "",
-    "address": "",
-    "pictureId": "",
-    "categories": [
-      {
-        "name": ""
-      },
-      {
-        "name": ""
-      }
-    ],
-    "menus": {
-      "foods": [
-        {
-          "name": ""
-        },
-        {
-          "name": ""
-        }
-      ],
-      "drinks": [
-        {
-          "name": ""
-        },
-        {
-          "name": ""
-        }
-      ]
-    },
-    "rating": 1.0,
-    "customerReviews": [
-      {
-        "name": "",
-        "review": "",
-        "date": ""
-      }
-    ]
-  }
+  "id": "",
+  "name": "",
+  "description": "",
+  "pictureId": "",
+  "city": "",
+  "rating": 1.1
 }

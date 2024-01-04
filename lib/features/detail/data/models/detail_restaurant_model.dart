@@ -17,7 +17,7 @@ class DetailRestaurantModel extends DetailRestaurant {
     required super.rating,
     required super.customerReviews,
   });
-  
+
   const DetailRestaurantModel.empty() : super.empty();
 
   factory DetailRestaurantModel.fromJson(ResultMap json) {
@@ -47,14 +47,20 @@ class DetailRestaurantModel extends DetailRestaurant {
       'city': city,
       'address': address,
       'pictureId': pictureId,
-      'categories': categories
-          .map((category) => (category as CategoryModel).toJson())
-          .toList(),
-      'menus': (menu as MenuModel).toJson(),
+      'categories': categories.map((category) {
+        final categoryModel = CategoryModel(name: category.name);
+        return categoryModel.toJson();
+      }).toList(),
+      'menus': MenuModel(foods: menu.foods, drinks: menu.drinks).toJson(),
       'rating': rating,
-      'customerReviews': customerReviews
-          .map((review) => (review as CustomerReviewModel).toJson())
-          .toList(),
+      'customerReviews': customerReviews.map((review) {
+        final customerReviewModel = CustomerReviewModel(
+          name: review.name,
+          date: review.date,
+          review: review.review,
+        );
+        return customerReviewModel.toJson();
+      }).toList(),
     };
   }
 }

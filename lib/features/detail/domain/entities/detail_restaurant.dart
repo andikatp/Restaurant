@@ -30,7 +30,7 @@ class DetailRestaurant extends Equatable {
             foods: [Category(name: '')],
             drinks: [Category(name: '')],
           ),
-          rating: 1,
+          rating: 1.1,
           customerReviews: const [
             CustomerReview(name: '', review: '', date: ''),
           ],
