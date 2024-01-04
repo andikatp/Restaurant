@@ -38,28 +38,38 @@ class SwitchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<SchedulingProvider>(
-      builder: (context, scheduled, child) => Switch.adaptive(
-        value: scheduled.isScheduled,
-        onChanged: (value) async {
-          context.messenger.removeCurrentSnackBar();
-          context.messenger.showSnackBar(
-            SnackBar(
-              content: Text(
-                value
-                    ? 'Notifications Turned On. You will now receive daily '
-                        'notifications at 11 AM.'
-                    : "Notifications Turned Off. You won't receive daily "
-                        'notifications.',
-              ),
-              behavior: SnackBarBehavior.floating,
-              duration: const Duration(seconds: 1),
+      builder: (context, scheduled, child) {
+        if (scheduled.errorMessage.isNotEmpty) {
+          return Center(
+            child: Text(
+              scheduled.errorMessage,
+              textAlign: TextAlign.center,
             ),
           );
-          await scheduled.scheduledRestaurant(value: value);
-        },
-        activeColor: Colours.primaryColor,
-        inactiveTrackColor: Colours.backgroundColor,
-      ),
+        }
+        return Switch.adaptive(
+          value: scheduled.isScheduled,
+          onChanged: (value) async {
+            context.messenger.removeCurrentSnackBar();
+            context.messenger.showSnackBar(
+              SnackBar(
+                content: Text(
+                  value
+                      ? 'Notifications Turned On. You will now receive daily '
+                          'notifications at 11 AM.'
+                      : "Notifications Turned Off. You won't receive daily "
+                          'notifications.',
+                ),
+                behavior: SnackBarBehavior.floating,
+                duration: const Duration(seconds: 1),
+              ),
+            );
+            await scheduled.scheduledRestaurant(value: value);
+          },
+          activeColor: Colours.primaryColor,
+          inactiveTrackColor: Colours.backgroundColor,
+        );
+      },
     );
   }
 }
