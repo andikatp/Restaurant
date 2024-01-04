@@ -27,7 +27,7 @@ void main() {
   test('Should perform a GET request on an URL', () async {
     // arrange
     when(() => mockClient.get(any())).thenAnswer(
-      (_) async => http.Response(fixtureReader('restaurant.json'), 200),
+      (_) async => http.Response(fixtureReader('detail_restaurant.json'), 200),
     );
     // act
     await remote.getDetailRestaurant(tId);
@@ -43,7 +43,7 @@ void main() {
   test('Should return List of [Restaurant] when the response is 200', () async {
     // arrange
     when(() => mockClient.get(any())).thenAnswer(
-      (_) async => http.Response(fixtureReader('restaurant.json'), 200),
+      (_) async => http.Response(fixtureReader('detail_restaurant.json'), 200),
     );
     // act
     final result = await remote.getDetailRestaurant(tId);
