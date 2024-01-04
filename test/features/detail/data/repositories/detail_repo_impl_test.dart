@@ -40,7 +40,7 @@ void main() {
     expect(true, await mockNetworkInfo.isConnected);
   });
 
-  group('device is online', () {
+  group('remote', () {
     const tException = ServerException(message: 'message');
 
     setUp(
@@ -100,7 +100,8 @@ void main() {
             result,
             equals(const Right<dynamic, void>(null)),
           );
-          verify(() => mockRemote.getDetailRestaurant(tId)).called(1);
+          verify(() => mockRemote.reviewRestaurant(tParams.id, tParams.review))
+              .called(1);
           verifyNoMoreInteractions(mockRemote);
         });
 
