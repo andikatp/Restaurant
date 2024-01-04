@@ -26,6 +26,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
@@ -33,6 +34,7 @@ Future<void> init() async {
   // Database
   final database =
       await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   // Feature
   sl
@@ -94,7 +96,10 @@ Future<void> init() async {
       () => DetailRemoteDataSourceImpl(client: sl()),
     )
     ..registerLazySingleton<NotificationDataSource>(
-      () => NotificationRemoteDataSourceImpl(notificationsPlugin: sl()),
+      () => NotificationRemoteDataSourceImpl(
+        explore: sl<ExploreRestaurantsRemoteDataSource>(),
+        sharedPreferences: sl<SharedPreferences>(),
+      ),
     )
 
     // core
@@ -105,6 +110,7 @@ Future<void> init() async {
     // external
     ..registerSingleton<AppRouter>(AppRouter())
     ..registerSingleton<AppDatabase>(database)
+    ..registerSingleton<SharedPreferences>(sharedPreferences)
     ..registerLazySingleton(http.Client.new)
     ..registerLazySingleton(InternetConnection.new)
     ..registerLazySingleton(FlutterLocalNotificationsPlugin.new);

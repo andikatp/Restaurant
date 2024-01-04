@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dicoding_final/core/navigation/navigation.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
+import 'package:dicoding_final/core/utils/typedef.dart';
+import 'package:dicoding_final/features/explore_restaurants/data/models/restaurant_model.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationService {
   static bool _isInitialized = false;
@@ -66,17 +70,21 @@ class NotificationService {
   static Future<void> callback() async {
     log('cb called');
     await setupDependencyInjectionInIsolate();
+    final restaurant = RestaurantModel.fromJson(
+      jsonDecode(sl<SharedPreferences>().getString('currentRestaurant')!)
+          as ResultMap,
+    );
     await NotificationService().showNotification(
-      title: 'aa',
-      body: 'asa',
-      payload: 'rqdv5juczeskfw1e867',
+      title: restaurant.name,
+      body: restaurant.description,
+      payload: restaurant.id,
     );
   }
 
   static Future<void> setupDependencyInjectionInIsolate() async {
-    _isInitialized = true;
     if (!_isInitialized) {
       await init();
+      _isInitialized = true;
     }
   }
 }

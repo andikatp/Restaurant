@@ -32,6 +32,7 @@ dependencies:
   provider: ^6.1.1
   rxdart: ^0.27.7
   salomon_bottom_bar: ^3.3.2
+  shared_preferences: ^2.2.2
   sqflite: ^2.3.0
   very_good_analysis: ^5.1.0
 
