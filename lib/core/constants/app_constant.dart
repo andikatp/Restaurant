@@ -23,6 +23,10 @@ class AppConstant {
   static const String cacheFailureMessage = 'Ups, API Error. please try again!';
   static const String generalFailureMessage = 'Ups, check your connection';
 
+  // notification
+  static const String notificationDetail = 'Recommendation restaurant for you';
+  static const String restaurantKey = 'currentRestaurant';
+
   // others
   static const String hintText = 'Search...';
   static const String searchText = 'Start Searching Here..';

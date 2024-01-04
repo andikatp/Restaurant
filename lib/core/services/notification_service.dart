@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:isolate';
 import 'dart:ui';
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/navigation/navigation.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
@@ -91,12 +92,12 @@ class NotificationService {
     log('cb called');
     await setupDependencyInjectionInIsolate();
     final restaurant = RestaurantModel.fromJson(
-      jsonDecode(sl<SharedPreferences>().getString('currentRestaurant')!)
+      jsonDecode(sl<SharedPreferences>().getString(AppConstant.restaurantKey)!)
           as ResultMap,
     );
     await NotificationService().showNotification(
       title: restaurant.name,
-      body: restaurant.description,
+      body: AppConstant.notificationDetail,
       payload: restaurant.id,
     );
   }
