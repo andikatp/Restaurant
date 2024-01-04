@@ -16,7 +16,13 @@ import 'package:dicoding_final/features/explore_restaurants/domain/usecases/get_
 import 'package:dicoding_final/features/explore_restaurants/domain/usecases/save_restaurant.dart';
 import 'package:dicoding_final/features/explore_restaurants/domain/usecases/search_restaurant.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/cubit/explore_restaurants_cubit.dart';
+import 'package:dicoding_final/features/settings/data/datasources/notification_data_source.dart';
+import 'package:dicoding_final/features/settings/data/repositories/notification_repo_impl.dart';
+import 'package:dicoding_final/features/settings/domain/repositories/notification_repo.dart';
+import 'package:dicoding_final/features/settings/domain/usecases/turn_notification.dart';
+import 'package:dicoding_final/features/settings/presentations/provider/scheduling_provider.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -43,7 +49,18 @@ Future<void> init() async {
         deleteSavedRestaurant: sl(),
       ),
     )
-    ..registerFactory(() => DetailCubit(usecase: sl(), addReview: sl()))
+    ..registerFactory(
+      () => DetailCubit(
+        usecase: sl(),
+        addReview: sl(),
+      ),
+    )
+    ..registerFactory(
+      () => SchedulingProvider(
+        turnNotification: sl(),
+      ),
+    )
+
     // usecases
     ..registerLazySingleton(() => GetRestaurants(repo: sl()))
     ..registerLazySingleton(() => SearchRestaurant(repo: sl()))
@@ -52,6 +69,8 @@ Future<void> init() async {
     ..registerLazySingleton(() => DeleteSavedRestaurant(repo: sl()))
     ..registerLazySingleton(() => GetDetailRestaurant(repo: sl()))
     ..registerLazySingleton(() => ReviewRestaurant(repo: sl()))
+    ..registerLazySingleton(() => TurnNotification(repo: sl()))
+
     // repos
     ..registerLazySingleton<ExploreRestaurantsRepo>(
       () => ExploreRestaurantsRepoImpl(
@@ -63,6 +82,10 @@ Future<void> init() async {
     ..registerLazySingleton<DetailRepo>(
       () => DetailRepoImpl(remote: sl(), network: sl()),
     )
+    ..registerLazySingleton<NotificationRepo>(
+      () => NotificationRepoImpl(dataSource: sl()),
+    )
+
     // data sources
     ..registerLazySingleton<ExploreRestaurantsRemoteDataSource>(
       () => ExploreRestaurantsRemoteDataSourceImpl(client: sl()),
@@ -70,13 +93,19 @@ Future<void> init() async {
     ..registerLazySingleton<DetailRemoteDataSource>(
       () => DetailRemoteDataSourceImpl(client: sl()),
     )
+    ..registerLazySingleton<NotificationDataSource>(
+      () => NotificationRemoteDataSourceImpl(notificationsPlugin: sl()),
+    )
+
     // core
     ..registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(networkInfo: sl()),
     )
+
     // external
     ..registerSingleton<AppRouter>(AppRouter())
     ..registerSingleton<AppDatabase>(database)
     ..registerLazySingleton(http.Client.new)
-    ..registerLazySingleton(InternetConnection.new);
+    ..registerLazySingleton(InternetConnection.new)
+    ..registerLazySingleton(FlutterLocalNotificationsPlugin.new);
 }

@@ -3,7 +3,7 @@ import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/background_service.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
-import 'package:dicoding_final/core/services/notification_helper.dart';
+import 'package:dicoding_final/core/services/notification_service.dart';
 import 'package:dicoding_final/features/settings/presentations/provider/scheduling_provider.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +16,23 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final notificationHelper = NotificationHelper();
-  await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
-  BackgroundService().initializeIsolate();
-  await AndroidAlarmManager.initialize();
+
+  // Initialize dependencies
   await init();
+
+  // Initialize notification helper
+  await NotificationService.initialize();
+
+  // Initialize background service
+  BackgroundService().initializeIsolate();
+
+  // Initialize Android Alarm Manager
+  await AndroidAlarmManager.initialize();
+
+  // Run the app
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
@@ -42,7 +52,7 @@ class MyApp extends StatelessWidget {
               create: (_) => sl<SavedProvider>(),
             ),
             ChangeNotifierProvider(
-              create: (_) => SchedulingProvider(),
+              create: (_) => sl<SchedulingProvider>(),
             ),
           ],
           child: MaterialApp.router(
