@@ -1,5 +1,5 @@
 import 'package:dicoding_final/core/preferences/preferences.dart';
-import 'package:dicoding_final/features/settings/domain/usecases/turn_notification.dart';
+import 'package:dicoding_final/features/notification/domain/usecases/turn_notification.dart';
 import 'package:flutter/material.dart';
 
 class SchedulingProvider extends ChangeNotifier {
