@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dicoding_final/core/utils/typedef.dart';
 import 'package:dicoding_final/features/detail/data/models/detail_restaurant_model.dart';
 import 'package:dicoding_final/features/detail/domain/entities/detail_restaurant.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,9 +10,9 @@ import '../../../../fixture/fixture_reader.dart';
 void main() {
   const tRestaurant = DetailRestaurantModel.empty();
   final tRestaurantJson =
-      jsonDecode(fixtureReader('restaurant.json')) as Map<String, dynamic>;
+      jsonDecode(fixtureReader('detail_restaurant.json')) as ResultMap;
 
-  test('Should be a subclass of [Restaurant] entity', () {
+  test('Should be a subclass of [DetailRestaurant] entity', () {
     // assert
     expect(tRestaurant, equals(isA<DetailRestaurant>()));
   });
@@ -38,7 +39,6 @@ void main() {
         'pictureId': '',
         'categories': [
           {'name': ''},
-          {'name': ''},
         ],
         'menus': {
           'foods': [
@@ -47,11 +47,11 @@ void main() {
           'drinks': [
             {'name': ''},
           ],
-          'rating': 1.1,
-          'customerReviews': [
-            {'name': '', 'review': '', 'date': ''},
-          ],
         },
+        'rating': 1.1,
+        'customerReviews': [
+          {'name': '', 'review': '', 'date': ''},
+        ],
       };
       // assert
       expect(result, equals(expectedMap));

@@ -16,5 +16,12 @@ class MenuModel extends Menu {
     );
   }
 
-  ResultMap toJson() => {'foods': foods, 'drinks': drinks};
+  ResultMap toJson() => {
+        'foods': foods
+            .map((food) => CategoryModel(name: food.name).toJson())
+            .toList(),
+        'drinks': drinks
+            .map((drink) => CategoryModel(name: drink.name).toJson())
+            .toList(),
+      };
 }

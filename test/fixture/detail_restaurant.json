@@ -1,0 +1,33 @@
+{
+  "id": "",
+  "name": "",
+  "description": "",
+  "city": "",
+  "address": "",
+  "pictureId": "",
+  "categories": [
+    {
+      "name": ""
+    }
+  ],
+  "menus": {
+    "foods": [
+      {
+        "name": ""
+      }
+    ],
+    "drinks": [
+      {
+        "name": ""
+      }
+    ]
+  },
+  "rating": 1.1,
+  "customerReviews": [
+    {
+      "name": "",
+      "review": "",
+      "date": ""
+    }
+  ]
+}
