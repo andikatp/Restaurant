@@ -6,14 +6,15 @@ import 'package:dicoding_final/features/explore_restaurants/domain/usecases/sear
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockSearchRepo extends Mock implements ExploreRestaurantsRepo {}
+class MockExploreRestaurantsRepo extends Mock
+    implements ExploreRestaurantsRepo {}
 
 void main() {
   late ExploreRestaurantsRepo mockRepo;
   late SearchRestaurant usecase;
 
   setUp(() {
-    mockRepo = MockSearchRepo();
+    mockRepo = MockExploreRestaurantsRepo();
     usecase = SearchRestaurant(repo: mockRepo);
   });
 
@@ -21,8 +22,9 @@ void main() {
   const tRestaurantName = 'test';
   const tFailure = ServerFailure(message: 'message');
 
-  test('Should call [SearchRepo] when call [SearchRestaurant] usecase',
-      () async {
+  test(
+      'Should call [MockExploreRestaurantsRepo] when call '
+      '[SearchRestaurant] usecase', () async {
     // arrange
     when(() => mockRepo.searchRestaurants(any()))
         .thenAnswer((_) async => const Right(tRestaurants));
@@ -38,8 +40,8 @@ void main() {
   });
 
   test(
-      'Should  return [ServerFailure] when call [GetRestaurant] usecase failed',
-      () async {
+      'Should  return [ServerFailure] when call '
+      '[SearchRestaurant] usecase failed', () async {
     // arrange
     when(() => mockRepo.searchRestaurants(any()))
         .thenAnswer((_) async => const Left(tFailure));
