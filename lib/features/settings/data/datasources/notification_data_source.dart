@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:dicoding_final/core/constants/app_constant.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
+import 'package:dicoding_final/core/services/date_time_helper.dart';
 import 'package:dicoding_final/core/services/notification_service.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/datasources/remote/explore_restaurants_remote_data_source.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,13 +38,15 @@ class NotificationRemoteDataSourceImpl implements NotificationDataSource {
       final restaurants = await _explore.getRestaurants();
       final restaurant = restaurants[0];
       await _sharedPreferences.setString(
-        'currentRestaurant',
+        AppConstant.restaurantKey,
         jsonEncode(restaurant.toJson()),
       );
+      final initialStartTime = DateTimeHelper.format();
       final result = await AndroidAlarmManager.periodic(
-        const Duration(seconds: 5),
+        const Duration(days: 1),
         1,
         NotificationService.callback,
+        startAt: initialStartTime,
       );
       log(result.toString());
     } else {
