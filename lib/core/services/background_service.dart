@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:isolate';
 import 'dart:ui';
 import 'package:dicoding_final/core/services/injection_container.dart';
-import 'package:dicoding_final/core/services/notification_helper.dart';
 import 'package:dicoding_final/core/services/notification_service.dart';
 import 'package:dicoding_final/features/explore_restaurants/data/datasources/remote/explore_restaurants_remote_data_source.dart';
 
@@ -25,17 +24,29 @@ class BackgroundService {
     );
   }
 
+  @pragma('vm:entry-point')
   static Future<void> callback() async {
-    log('Alarm fired!');
-    final notificationHelper = NotificationHelper();
-    final result =
-        sl<ExploreRestaurantsRemoteDataSourceImpl>().getRestaurants();
-    await notificationHelper.showNotification(
-      flutterLocalNotificationsPlugin,
-      await result,
-    );
+    try {
+      await setupDependencyInjectionInIsolate();
+      log('Alarm fired!');
+      final notificationService = NotificationService();
+      final result =
+          await sl<ExploreRestaurantsRemoteDataSourceImpl>().getRestaurants();
+      await notificationService.showNotification(
+        title: result[0].name,
+        body: result[0].description,
+        payload: result[0].id,
+      );
+      _uiSendPort ??= IsolateNameServer.lookupPortByName(_isolateName);
+      _uiSendPort?.send(null);
+    } catch (e, stackTrace) {
+      log('Error in isolate: $e\n$stackTrace');
+    }
+  }
 
-    _uiSendPort ??= IsolateNameServer.lookupPortByName(_isolateName);
-    _uiSendPort?.send(null);
+  static Future<void> setupDependencyInjectionInIsolate() async {
+    log('Initializing dependencies in isolate');
+    await init();
+    log('Dependencies initialized in isolate');
   }
 }

@@ -7,12 +7,8 @@ import 'package:dicoding_final/core/services/notification_service.dart';
 import 'package:dicoding_final/features/settings/presentations/provider/scheduling_provider.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +29,6 @@ void main() async {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
@@ -44,7 +39,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(412, 732),
       minTextAdapt: true,
-      builder:  (_, child) => GestureDetector(
+      builder: (_, child) => GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: MultiProvider(
           providers: [

@@ -20,24 +20,4 @@ class SchedulingProvider extends ChangeNotifier {
     );
     notifyListeners();
   }
-
-  // Future<bool> scheduledRestaurant({bool value = false}) {
-  //   _isScheduled = value;
-  //   if (_isScheduled) {
-  //     log('Scheduling News Activated');
-  //     notifyListeners();
-  //     return AndroidAlarmManager.periodic(
-  //       const Duration(seconds: 5),
-  //       1,
-  //       BackgroundService.callback,
-  //       startAt: DateTimeHelper.format(),
-  //       exact: true,
-  //       wakeup: true,
-  //     );
-  //   } else {
-  //     log('Scheduling News Canceled');
-  //     notifyListeners();
-  //     return AndroidAlarmManager.cancel(1);
-  //   }
-  // }
 }

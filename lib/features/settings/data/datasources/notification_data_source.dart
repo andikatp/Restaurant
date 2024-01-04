@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:dicoding_final/core/errors/exception.dart';
+import 'package:dicoding_final/core/services/notification_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 abstract class NotificationDataSource {
@@ -29,7 +30,7 @@ class NotificationRemoteDataSourceImpl implements NotificationDataSource {
       await AndroidAlarmManager.periodic(
         const Duration(seconds: 5),
         1,
-        callback,
+        NotificationService.callback,
       );
     } else {
       log('Scheduling News Canceled');
