@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'package:dicoding_final/core/navigation/navigation.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
+import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-
 class NotificationService {
+  static bool _isInitialized = false;
+
   static Future<void> initialize() async {
     const initializationSettingsAndroid =
         AndroidInitializationSettings('mipmap/ic_launcher');
@@ -20,6 +20,8 @@ class NotificationService {
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
+    final flutterLocalNotificationsPlugin =
+        sl<FlutterLocalNotificationsPlugin>();
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) {
@@ -50,11 +52,31 @@ class NotificationService {
     String? body,
     String? payload,
   }) async {
+    final flutterLocalNotificationsPlugin =
+        sl<FlutterLocalNotificationsPlugin>();
     return flutterLocalNotificationsPlugin.show(
       id,
       title,
       body,
       notificationDetails(),
+      payload: payload,
     );
+  }
+
+  static Future<void> callback() async {
+    log('cb called');
+    await setupDependencyInjectionInIsolate();
+    await NotificationService().showNotification(
+      title: 'aa',
+      body: 'asa',
+      payload: 'rqdv5juczeskfw1e867',
+    );
+  }
+
+  static Future<void> setupDependencyInjectionInIsolate() async {
+    _isInitialized = true;
+    if (!_isInitialized) {
+      await init();
+    }
   }
 }
