@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:isolate';
+import 'dart:ui';
 import 'package:dicoding_final/core/navigation/navigation.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
@@ -8,35 +10,53 @@ import 'package:dicoding_final/features/explore_restaurants/data/models/restaura
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+final ReceivePort port = ReceivePort();
+
 class NotificationService {
   static bool _isInitialized = false;
+  static const String _isolateName = 'isolate';
+  static SendPort? _uiSendPort;
+
+  void initializeIsolate() {
+    IsolateNameServer.registerPortWithName(
+      port.sendPort,
+      _isolateName,
+    );
+  }
 
   static Future<void> initialize() async {
-    const initializationSettingsAndroid =
-        AndroidInitializationSettings('mipmap/ic_launcher');
-    final initializationSettingsDarwin = DarwinInitializationSettings(
-      requestSoundPermission: false,
-      requestBadgePermission: false,
-      requestAlertPermission: false,
-      onDidReceiveLocalNotification: (id, title, body, payload) {},
-    );
-    final initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsDarwin,
-    );
-    final flutterLocalNotificationsPlugin =
-        sl<FlutterLocalNotificationsPlugin>();
-    await flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onDidReceiveNotificationResponse: (details) {
-        log('Received notification response. Payload: ${details.payload}');
-        if (details.payload != null) {
-          Navigation.intentWithData(
-            DetailRoute(restaurantId: details.payload!),
-          );
-        }
-      },
-    );
+    try {
+      const initializationSettingsAndroid =
+          AndroidInitializationSettings('mipmap/ic_launcher');
+      final initializationSettingsDarwin = DarwinInitializationSettings(
+        requestSoundPermission: false,
+        requestBadgePermission: false,
+        requestAlertPermission: false,
+        onDidReceiveLocalNotification: (id, title, body, payload) {},
+      );
+      final initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid,
+        iOS: initializationSettingsDarwin,
+      );
+      final flutterLocalNotificationsPlugin =
+          sl<FlutterLocalNotificationsPlugin>();
+      await flutterLocalNotificationsPlugin.initialize(
+        initializationSettings,
+        onDidReceiveNotificationResponse: (details) {
+          log('Received notification response. Payload: ${details.payload}');
+          if (details.payload != null) {
+            Navigation.intentWithData(
+              DetailRoute(restaurantId: details.payload!),
+            );
+          }
+        },
+      );
+
+      _uiSendPort ??= IsolateNameServer.lookupPortByName(_isolateName);
+      _uiSendPort?.send(null);
+    } catch (e, stackTrace) {
+      log('Error in isolate: $e\n$stackTrace');
+    }
   }
 
   NotificationDetails notificationDetails() {
