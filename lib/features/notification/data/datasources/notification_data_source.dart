@@ -21,8 +21,8 @@ abstract class NotificationDataSource {
   Future<void> showNotification({required bool isScheduled});
 }
 
-class NotificationRemoteDataSourceImpl implements NotificationDataSource {
-  NotificationRemoteDataSourceImpl({
+class NotificationDataSourceImpl implements NotificationDataSource {
+  NotificationDataSourceImpl({
     required ExploreRestaurantsRemoteDataSource explore,
     required SharedPreferences sharedPreferences,
   })  : _explore = explore,
@@ -49,6 +49,8 @@ class NotificationRemoteDataSourceImpl implements NotificationDataSource {
         1,
         NotificationService.callback,
         startAt: initialStartTime,
+        exact: true,
+        wakeup: true,
       );
       if (!isAndroidAlarmRunning) {
         throw const CacheException(

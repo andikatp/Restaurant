@@ -21,7 +21,7 @@ import 'package:dicoding_final/features/notification/data/datasources/notificati
 import 'package:dicoding_final/features/notification/data/repositories/notification_repo_impl.dart';
 import 'package:dicoding_final/features/notification/domain/repositories/notification_repo.dart';
 import 'package:dicoding_final/features/notification/domain/usecases/turn_notification.dart';
-import 'package:dicoding_final/features/notification/presentations/provider/scheduling_provider.dart';
+import 'package:dicoding_final/features/notification/presentation/provider/scheduling_provider.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
@@ -98,7 +98,7 @@ Future<void> init() async {
       () => DetailRemoteDataSourceImpl(client: sl()),
     )
     ..registerLazySingleton<NotificationDataSource>(
-      () => NotificationRemoteDataSourceImpl(
+      () => NotificationDataSourceImpl(
         explore: sl<ExploreRestaurantsRemoteDataSource>(),
         sharedPreferences: sl<SharedPreferences>(),
       ),

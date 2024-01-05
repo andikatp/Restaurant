@@ -3,7 +3,7 @@ import 'package:dicoding_final/core/res/theme.dart';
 import 'package:dicoding_final/core/routes/app_router.dart';
 import 'package:dicoding_final/core/services/injection_container.dart';
 import 'package:dicoding_final/core/services/notification_service.dart';
-import 'package:dicoding_final/features/notification/presentations/provider/scheduling_provider.dart';
+import 'package:dicoding_final/features/notification/presentation/provider/scheduling_provider.dart';
 import 'package:dicoding_final/features/shared/saved_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
