@@ -6,7 +6,7 @@ import 'package:dicoding_final/features/detail/presentation/pages/detail_page.da
 import 'package:dicoding_final/features/explore_restaurants/presentation/pages/restaurant_page.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/pages/saved_restaurants_page.dart';
 import 'package:dicoding_final/features/explore_restaurants/presentation/pages/search_page.dart';
-import 'package:dicoding_final/features/notification/presentations/pages/settings_page.dart';
+import 'package:dicoding_final/features/notification/presentation/pages/settings_page.dart';
 import 'package:flutter/foundation.dart';
 
 part 'app_router.gr.dart';

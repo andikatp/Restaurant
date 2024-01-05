@@ -67,7 +67,7 @@ void main() {
       });
 
       test(
-          'Should return server failure data when the call to '
+          'Should return [ServerFailure] data when the call to '
           'remote data is unsuccessful', () async {
         // arrange
         when(() => mockRemote.getDetailRestaurant(any())).thenThrow(tException);
@@ -106,7 +106,7 @@ void main() {
         });
 
         test(
-            'Should return server failure data when the call to '
+            'Should return [ServerFailure] data when the call to '
             'remote data is unsuccessful', () async {
           // arrange
           when(() => mockRemote.reviewRestaurant(any(), any()))
