@@ -27,30 +27,31 @@ The project adopts a Test-Driven Development (TDD) approach to ensure code relia
 
 ## 🛠️ Built With
 
-- [AndroidAlarmManagerPlus](https://pub.dev/packages/android_alarm_manager_plus): Scheduling background tasks on Android with ease.
-- [AutoRouter](https://pub.dev/packages/auto_route): Code generation for navigation in Flutter.
-- [Flutter](https://flutter.dev/): A UI toolkit for building natively compiled applications.
-- [BlocTest](https://pub.dev/packages/bloc_test): Helper methods for testing BLoC components.
-- [CachedNetworkImage](https://pub.dev/packages/cached_network_image): Caching network images for improved performance.
-- [Dartz](https://pub.dev/packages/dartz): Bringing functional programming to Dart.
-- [Equatable](https://pub.dev/packages/equatable): Simplifying equality comparisons in Dart.
-- [Floor](https://pub.dev/packages/floor): SQLite abstraction for Flutter applications.
-- [flutterBloc](https://pub.dev/packages/flutter_bloc): State management library for Flutter applications.
-- [flutterLocalNotification](https://pub.dev/packages/flutter_local_notifications): Handling local notifications in Flutter.
-- [flutterRatingBar](https://pub.dev/packages/flutter_rating_bar): A simple yet fully customizable star rating bar.
-- [FlutterScreenUtils](https://pub.dev/packages/flutter_screenutil): Screen adaptation utility for different screen sizes.
-- [flutterSvg](https://pub.dev/packages/flutter_svg): SVG rendering in Flutter.
-- [GetIt](https://pub.dev/packages/get_it): A simple service locator for Dart and Flutter projects.
-- [Http](https://pub.dev/packages/http): A composable, Future-based library for making HTTP requests.
-- [internetConnectionCheckerPlus](https://pub.dev/packages/internet_connection_checker_plus): Checking internet connectivity.
-- [intl](https://pub.dev/packages/intl): Internationalization and localization support for Dart.
-- [Lottie](https://pub.dev/packages/lottie): Lottie files animation for Flutter.
-- [Mocktail](https://pub.dev/packages/mocktail): Mocking library for Dart and Flutter.
-- [Provider](https://pub.dev/packages/provider): Simple and effective state management using provider patterns.
-- [RxDart](https://pub.dev/packages/rxdart): Reactive programming in Dart.
-- [SalomonBottomBar](https://pub.dev/packages/salomon_bottom_bar): A customizable and visually appealing bottom navigation bar.
-- [SharedPreferences](https://pub.dev/packages/shared_preferences): Easy storage of key-value pairs for app data persistence.
-- [SqFlite](https://pub.dev/packages/sqflite): SQLite database implementation for Flutter applications.
-- [VeryGoodAnalysis](https://pub.dev/packages/very_good_analysis): Ensuring code quality with best practices.
+- **[AndroidAlarmManagerPlus](https://pub.dev/packages/android_alarm_manager_plus):** Scheduling background tasks on Android with ease.
+- **[AutoRouter](https://pub.dev/packages/auto_route):** Code generation for navigation in Flutter.
+- **[Bloc](https://pub.dev/packages/flutter_bloc):** Efficient state management for Flutter applications.
+- **[BlocTest](https://pub.dev/packages/bloc_test):** Helper methods for testing BLoC components.
+- **[CachedNetworkImage](https://pub.dev/packages/cached_network_image):** Caching network images for improved performance.
+- **[Dartz](https://pub.dev/packages/dartz):** Bringing functional programming to Dart.
+- **[Equatable](https://pub.dev/packages/equatable):** Simplifying equality comparisons in Dart.
+- **[Floor](https://pub.dev/packages/floor):** SQLite abstraction for Flutter applications.
+- **[flutterBloc](https://pub.dev/packages/flutter_bloc):** Legacy version of the Bloc library for Flutter.
+- **[flutterLocalNotification](https://pub.dev/packages/flutter_local_notifications):** Handling local notifications in Flutter.
+- **[flutterRatingBar](https://pub.dev/packages/flutter_rating_bar):** A simple yet fully customizable star rating bar.
+- **[FlutterScreenUtils](https://pub.dev/packages/flutter_screenutil):** Streamlining screen adaptation across different sizes.
+- **[flutterSvg](https://pub.dev/packages/flutter_svg):** SVG rendering in Flutter.
+- **[GetIt](https://pub.dev/packages/get_it):** A straightforward service locator for Dart and Flutter projects.
+- **[Http](https://pub.dev/packages/http):** Making composable and Future-based HTTP requests.
+- **[internetConnectionCheckerPlus](https://pub.dev/packages/internet_connection_checker_plus):** Checking internet connectivity.
+- **[intl](https://pub.dev/packages/intl):** Internationalization and localization support for Dart.
+- **[Lottie](https://pub.dev/packages/lottie):** Seamless integration of Lottie files for captivating animations.
+- **[Mocktail](https://pub.dev/packages/mocktail):** A powerful mocking library for Dart and Flutter.
+- **[Provider](https://pub.dev/packages/provider):** Simple and effective state management using provider patterns.
+- **[RxDart](https://pub.dev/packages/rxdart):** Reactive programming in Dart.
+- **[SalomonBottomBar](https://pub.dev/packages/salomon_bottom_bar):** A customizable and visually appealing bottom navigation bar.
+- **[SharedPreferences](https://pub.dev/packages/shared_preferences):** Easy storage of key-value pairs for app data persistence.
+- **[SqFlite](https://pub.dev/packages/sqflite):** SQLite database implementation for Flutter applications.
+- **[VeryGoodAnalysis](https://pub.dev/packages/very_good_analysis):** Ensuring code quality with best practices.
+
 
 ### Feel free to explore and contribute to make this project even better! 🚀
