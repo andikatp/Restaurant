@@ -27,7 +27,7 @@ void main() {
   group('SchedulingProvider Tests', () {
     const tValue = true;
     const tFailure = CacheFailure(message: 'message');
-    test('should schedule restaurant and update state', () async {
+    test('Should schedule restaurant and update state', () async {
       // Arrange
       when(() => mockPreferences.setDailyNews(value: any(named: 'value')))
           .thenReturn(null);
@@ -45,7 +45,7 @@ void main() {
       verify(() => mockTurnNotification(tValue)).called(1);
     });
 
-    test('should handle failure and update error message', () async {
+    test('Should handle failure and update error message', () async {
       // Arrange
       when(() => mockPreferences.setDailyNews(value: any(named: 'value')))
           .thenReturn(null);
