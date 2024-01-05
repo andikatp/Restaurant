@@ -1,6 +1,6 @@
 # 🍔 Restaurant Dicoding
 
-A Flutter project developed exclusively for Dicoding submission.
+A Flutter project developed exclusively for Dicoding submission using CLean Architechture and TDD with 56 Tests.
 
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
