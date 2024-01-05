@@ -3,14 +3,14 @@
 A Flutter project developed exclusively for Dicoding submission using CLean Architechture and TDD with 56 Tests.
 <table >
   <tr >
-    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/1.png" height="700" /></td>
-    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/2.png" height="700" /></td>
-    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/3.png" height="700" /></td>
+    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/1.png" height="500" /></td>
+    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/2.png" height="500" /></td>
+    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/3.png" height="500" /></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/4.png" height="700" /></td>
-    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/5.png" height="700" /></td>
-    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/6.png" height="700" /></td>
+    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/4.png" height="500" /></td>
+    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/5.png" height="500" /></td>
+    <td align="center"><img src="https://github.com/andikatp/restaurant/blob/main/img/6.png" height="500" /></td>
   </tr>
 </table>
 
