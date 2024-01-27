@@ -1,6 +1,6 @@
-# 🍔 Restaurant Dicoding
+# 🍔 Restaurant
 
-A Flutter project developed exclusively for Dicoding submission using CLean Architechture and TDD with 56 Tests.
+A Modest Flutter project developed using CLean Architechture and TDD with 56 Tests.
 <table >
   <tr >
     <td align="center"><img src="https://github.com/andikatp/restaurant/blob/third-submission/img/1.png" height="500" /></td>
