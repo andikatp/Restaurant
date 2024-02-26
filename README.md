@@ -1,6 +1,6 @@
 # 🍔 Restaurant
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
-
+ 
 A Modest Flutter project developed using Clean Architechture and TDD with 56 Tests.
 <table >
   <tr >
