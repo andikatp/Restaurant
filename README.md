@@ -13,7 +13,7 @@ A Modest Flutter project developed using Clean Architechture and TDD with 56 Tes
     <td align="center"><img src="https://github.com/andikatp/restaurant/blob/third-submission/img/5.png" height="500" /></td>
     <td align="center"><img src="https://github.com/andikatp/restaurant/blob/third-submission/img/6.png" height="500" /></td>
   </tr>
-</table>
+</table> 
    
 ## 🎉 Features
 
